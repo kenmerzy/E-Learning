@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+ 
 }
 
 .App-logo {
@@ -35,4 +36,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.ant-menu, .ant-menu-light, .ant-menu-root, .ant-menu-horizontal
+{
+  border:none;  
+}
+
+.ant-menu li {
+  color: orangered ;
 }

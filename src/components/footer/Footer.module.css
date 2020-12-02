@@ -1,0 +1,43 @@
+.Title{
+  text-align: center;
+  color: black;
+  font-size: calc(6px + 4vmin);
+}
+.BottomWaterMark{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: black0;
+  font-size: calc(5px + 1vmin);
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-top: 2%;
+}
+.Info{
+  text-align: start;
+  font-size: calc(2px + 2vmin);
+  padding-left: 1%;
+  width: 20%;
+}
+.InfoDetails{
+  display: flex;
+  flex-direction: row;
+  font-size: calc(1px + 2vmin);
+}
+.Icon{
+  height: calc(2px + 3vmin);
+}
+.CompanyIcon{
+  height: calc(6px + 4vmin);
+}
+.CompanyName{
+  display: flex;
+  flex-direction: row;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-bottom: 2%;
+}
+.CompanyName p{
+  font-size: calc(0px + 3vmin);
+  margin-right: 1%;
+}
