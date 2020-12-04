@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
-import styles from './HomePage.module.css'
+import styles from './HomePage.module.scss'
 
 const HomePage = () => {
   const Home = () => {

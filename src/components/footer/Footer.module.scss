@@ -1,13 +1,16 @@
-.Title{
+@import "../../assets/styles/_configs";
+
+.Container{
   text-align: center;
-  color: black;
+  color: $white;
   font-size: calc(6px + 4vmin);
+  background-image: url("../../assets/images/Footer.png") ;
 }
 .BottomWaterMark{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: black0;
+  color: $white;
   font-size: calc(5px + 1vmin);
   padding-left: 1%;
   padding-right: 1%;

@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Link,
 } from 'react-router-dom'
-import logo from '../../logo.svg'
-import styles from './Header.module.css'
+import logo from '../../assets/images/Logo.svg'
+import styles from './Header.module.scss'
 
 const Header = () => {
   const listMenu = [
@@ -32,12 +32,14 @@ const Header = () => {
 
   return (
     <div className={styles.AppHeader}>
-      <Link
-        to="/"
-      >
-        <img src={logo} className={styles.AppLogo} alt="logo" />
-        <a>E-Learning</a>
-      </Link>
+      <div className={styles.WrappedLogo}>
+        <Link
+          to="/"
+        >
+
+          <img src={logo} className={styles.AppLogo} alt="logo" />
+        </Link>
+      </div>
       <div className={styles.AppHeaderMenu}>
         <div>
           <nav>

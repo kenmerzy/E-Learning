@@ -1,10 +1,10 @@
 import React from 'react'
 import logo from '../../logo.svg'
-import styles from './Footer.module.css'
+import styles from './Footer.module.scss'
 
 const Footer = () => {
   return (
-    <div className={styles.Title}>
+    <div className={styles.Container}>
       <p>Who We Are</p>
       <div className={styles.CompanyName}>
         <p>E-Learing Company</p>
