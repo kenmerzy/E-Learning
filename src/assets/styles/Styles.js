@@ -4,6 +4,3 @@ export const Fonts = {
   ProTextRegular: 'SFProText-Regular',
   ProTextSemibold: 'SFProText-Semibold',
 }
-export const TextStyles = {
-
-}

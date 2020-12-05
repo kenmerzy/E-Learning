@@ -1,3 +1,4 @@
+@import "../../assets/styles/_configs";
 
 .AppLogo {
   height: 3vmin;
@@ -5,9 +6,7 @@
 }
 
 .WrappedLogo {
- 
-  margin-left: 50% ;
- 
+ background-color: transparent;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -19,17 +18,13 @@
   background-color:transparent;
   min-height: 10vmin;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(4px + 2vmin);
-  color:#000000;
+  font-size: calc( 2vmin);
+  padding-left: 10%;
+  padding-right: 10%;
 }
-.AppHeader a{
-  color:#000000;
-  display: flex;
-  flex-direction: row;
-}
+
 
 
 
@@ -43,28 +38,56 @@
 }
 .AppHeaderMenu
 {
-  flex:1;
-  color:#000000;
-}
-.AppHeaderMenuItem {
-  list-style: none;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.AppHeaderMenuItem li{
-  background-color:transparent;
-  color:#000000;
-  
-  text-decoration: none;
-  height: 100%;
-  padding: 0px 25px;
+  flex:1;
+  margin-left: 40vmin;
+
+  ul{
+    list-style: none;
+    display: flex;
+    flex:1;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+      li {
+        display: flex;
+        flex:1;
+        justify-content: space-between;
+        text-decoration: none;
+        height: 100%;
+
+          a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 5px; 
+            :hover{
+              background-color: rgba(255, 255, 255, 0.1);
+            }
+              .MenuItem{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px 10px 20px;
+                border-radius: 10px;
+                :hover{
+                  background-color:transparent
+                }
+                 
+                p{
+                  margin-left: 10px;
+                  color: $white;
+                  margin-bottom: 0;
+                  
+                }
+              }
+           }
+         }
+      }
 }
 
 
-.AppHeaderMenuItem :hover,
-.AppHeaderMenuItem :active,
-.AppHeaderMenuItem a.active {
-  color:#000000;
 
-}

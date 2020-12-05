@@ -4,7 +4,11 @@
   text-align: center;
   color: $white;
   font-size: calc(6px + 4vmin);
-  background-image: url("../../assets/images/Footer.png") ;
+  width: 100%;
+  background-image: url("../../assets/images/footer.svg") ;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 1500px;
 }
 .BottomWaterMark{
   display: flex;
@@ -44,3 +48,4 @@
   font-size: calc(0px + 3vmin);
   margin-right: 1%;
 }
+
