@@ -6,27 +6,14 @@ import {
 } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
+import Home from '../Home/Home'
+import Courses from '../Courses/Courses'
+import Tutorials from '../Tutorials/Tutorials'
+import Livestreams from '../Livestreams/Livestreams'
+import Pricing from '../Pricing/Pricing'
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {
-  const Home = () => {
-    return (
-      <h2>Home</h2>
-    )
-  }
-  const Account = () => {
-    return <h2>Account</h2>
-  }
-  const Courses = () => {
-    return <h2>Courses</h2>
-  }
-  const Tutorials = () => {
-    return <h2>Tutorials</h2>
-  }
-  const Pricing = () => {
-    return <h2>Pricing</h2>
-  }
-
   return (
     <div className={styles.Container}>
       <Router>
@@ -35,7 +22,7 @@ const MainPage = () => {
           <Switch>
             <Route path="/courses" component={Courses} />
             <Route path="/tutorials" component={Tutorials} />
-            <Route path="/livestreams" component={Account} />
+            <Route path="/livestreams" component={Livestreams} />
             <Route path="/pricing" component={Pricing} />
             <Route path="/" component={Home} />
           </Switch>

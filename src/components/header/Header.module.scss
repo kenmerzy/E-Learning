@@ -1,7 +1,7 @@
 @import "../../assets/styles/_configs";
 
 .AppLogo {
-  height: 3vmin;
+  height: 25px;
   pointer-events: 'cursor';
 }
 
@@ -20,12 +20,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: calc( 2vmin);
+  font-size: 18px;
   padding-left: 10%;
   padding-right: 10%;
 }
-
-
 
 
 @keyframes App-logo-spin {
@@ -40,7 +38,7 @@
 {
   display: flex;
   flex:1;
-  margin-left: 40vmin;
+  margin-left: 20%;
 
   ul{
     list-style: none;

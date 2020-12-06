@@ -1,0 +1,93 @@
+@import "../../assets/styles/_configs";
+
+
+.Container
+{
+background-color: transparent;
+}
+.Introduction
+{
+  width:360px;
+  margin: 0px 0px 20px;
+  p {
+    position: static;
+    width:100%;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 30px;
+    color: $secondary-dark;
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+  }
+}
+.Description
+{
+  margin: 0px 0px 20px;
+
+  p{
+    position: static;
+    width: 360px;
+
+    /* Medium Text */
+
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 130%;
+
+
+    /* Text */
+
+    color: #000000;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 30px;
+  }
+}
+.ButtonPurchase
+{
+  margin: 0px 30px 20px;
+  outline-style: none;
+
+  :focus, :active{
+    outline-style: none;
+    border:none;  
+  }
+
+}
+.MiniDescription
+{
+  position: static;
+  width: 280px;
+  height: 51px;
+  left: 0px;
+  top: 449px;
+  
+  /* Small Text */
+  
+  font-family: SF Pro Text;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  /* or 17px */
+  
+  
+  color: rgba(0, 0, 0, 0.7);
+  
+  mix-blend-mode: normal;
+  
+  /* Inside Auto Layout */
+  
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+  margin: 0px 30px; 
+}
+
+
