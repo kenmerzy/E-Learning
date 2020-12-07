@@ -1,11 +1,11 @@
 import React from 'react'
 import 'antd/dist/antd.css'
-import './css/App.css'
-import { HomePage } from './screens'
+import './css/App.scss'
+import { MainPage } from './pages'
 
 const App = () => {
   return (
-    <HomePage />
+    <MainPage />
   )
 }
 

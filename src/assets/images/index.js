@@ -1,0 +1,5 @@
+export const logo = require('./Logo.svg')
+export const account = require('./account.svg')
+export const billing = require('./billing.svg')
+export const certificates = require('./certificates.svg')
+export const courses = require('./account.svg')

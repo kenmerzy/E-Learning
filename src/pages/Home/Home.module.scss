@@ -1,0 +1,164 @@
+@import "../../assets/styles/_configs";
+
+
+.Container
+{
+background-color: transparent;
+padding-top: 100px;
+}
+.Introduction
+{
+  width:360px;
+  margin: 0px 0px 60px;
+  p {
+    position: static;
+    width:100%;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: $secondary-dark;
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 55px;
+  }
+}
+.Description
+{
+  margin: 0px 0px 50px;
+
+  p{
+    position: static;
+    width: 360px;
+
+    /* Medium Text */
+
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 130%;
+
+
+    /* Text */
+
+    color: #000000;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 0px;
+  }
+}
+.ButtonPurchase
+{
+  margin: 0px 0px 50px;
+  outline-style: none;
+  padding: 12px 30px 12px 12px ;
+  border-radius: 20px;
+  background-color: linear-gradient(#FFFFFF,#D9DFFF);
+  border:1px solid transparent;
+  
+   :active{
+    outline-style: none;
+    border:none;  
+  }
+    :focus{
+      outline:none;
+      outline-style: none;
+      border:none;  
+      background-color: green;
+  }
+}
+.coverTextGetProAccess{
+  margin: 0px 0px 0px 0px;
+}
+.GetProAccess{
+  position: static;
+  width: 132px;
+  height: 22px;
+  left: 0px;
+  top: 0px;
+
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 130%;
+  
+  /* or 19px */
+  color: #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px 0px 0px;
+  text-transform: uppercase;
+}
+.iconProAccess{
+  width:60px;
+}
+.insideButtonPurchase{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.money{
+  position: static;
+  width: 90px;
+  height: 19px;
+  margin: 0px 0px 0px -4px;
+
+  /* Small Text */
+
+  font-family: "SF Pro Text";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 130%;
+/* identical to box height, or 17px */
+
+color: #595C7B;
+}
+.MiniDescription
+{
+  position: static;
+  width: 280px;
+  height: 51px;
+  left: 0px;
+  top: 449px;
+  
+  /* Small Text */
+  
+  font-family: SF Pro Text;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  /* or 17px */
+  color: #000000;
+  mix-blend-mode: normal;
+  /* Inside Auto Layout */
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+  margin: 0px 0px; 
+}
+
+.CoverIntro{
+background-color: transparent;
+padding: 0px 0px 0px 0px;
+}
+.CoverIntroAndMockup
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex:1;
+  width:100%;
+}
+.mockup{
+  width: 1050px;
+}
+.CoverMockup{
+  width: 100%;
+  display: flex;
+}

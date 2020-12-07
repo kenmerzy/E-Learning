@@ -2,59 +2,90 @@ import React from 'react'
 import {
   Link,
 } from 'react-router-dom'
-import logo from '../../logo.svg'
-import styles from './Header.module.css'
+import logo from '../../assets/images/Logo.svg'
+import courses from '../../assets/images/courses.svg'
+import tutorials from '../../assets/images/tutorials.svg'
+import livestreams from '../../assets/images/livestreams.svg'
+import pricing from '../../assets/images/pricing.svg'
+import account from '../../assets/images/account.svg'
+import more from '../../assets/images/more.png'
+import search from '../../assets/images/search.svg'
+import styles from './Header.module.scss'
 
 const Header = () => {
   const listMenu = [
     {
       id: 1,
-      title: 'Home',
-      link: '/',
+      title: 'Courses',
+      link: '/courses',
+      icon: courses,
     },
     {
       id: 2,
-      title: 'Courses',
-      link: '/courses',
+      title: 'Tutorials',
+      link: '/tutorials',
+      icon: tutorials,
     },
     {
       id: 3,
-      title: 'Become a teacher',
-      link: '/becomeateacher',
+      title: 'Livestreams',
+      link: '/Livestreams',
+      icon: livestreams,
 
     },
     {
       id: 4,
-      title: 'Account',
-      link: '/account',
+      title: 'Pricing',
+      link: '/pricing',
+      icon: pricing,
+    },
+    {
+      id: 5,
+      icon: more,
+    },
+    {
+      id: 6,
+      icon: search,
+    },
+    {
+      id: 7,
+      icon: account,
+
     },
   ]
 
+  // const handleOptionsClick = () => {
+  //   console.log('Click!!')
+  // }
+
   return (
     <div className={styles.AppHeader}>
-      <Link
-        to="/"
-      >
-        <img src={logo} className={styles.AppLogo} alt="logo" />
-        <a>E-Learning</a>
-      </Link>
+      <div className={styles.WrappedLogo}>
+        <Link
+          to="/"
+        >
+          <img src={logo} className={styles.AppLogo} alt="logo" />
+        </Link>
+      </div>
       <div className={styles.AppHeaderMenu}>
-        <div>
-          <nav>
-            <ul className={styles.AppHeaderMenuItem}>
-              {listMenu.map((item) => <li key={item.id}>
-                <Link
-                  onClick={() => {
-                    console.log('item', item.title)
-                  }}
-                  to={item.link}
-                >
-                  {item.title}
-                </Link>
-              </li>)}
-            </ul>
-          </nav>
-        </div>
+        <ul>
+          {listMenu.map((item) => <li key={item.id}>
+            <Link
+              onClick={() => {
+                console.log('item', item.title)
+              }}
+              to={item.link}
+            >
+              <div className={styles.MenuItem}>
+                <img src={item.icon} className={styles.AppLogo} alt="logo" />
+                {item.title
+                  && <p>
+                    {item.title}
+                  </p>}
+              </div>
+            </Link>
+          </li>)}
+        </ul>
       </div>
     </div>
   )
