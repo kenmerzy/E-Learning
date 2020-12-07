@@ -72,14 +72,15 @@
                 padding: 10px 20px 10px 20px;
                 border-radius: 10px;
                 :hover{
-                  background-color:transparent
+                  background-color:transparent;
                 }
                  
                 p{
                   margin-left: 10px;
                   color: $white;
                   margin-bottom: 0;
-                  
+                  text-decoration: none;
+                 
                 }
               }
            }
