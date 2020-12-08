@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import styles from './Home.module.scss'
 import iconProAccess from '../../assets/images/iconGetProAccess.png'
 import mockup from '../../assets/images/mockup.png'
+import HoursOfCourses from '../../components/Courses/HoursOfCourses/HoursOfCourses'
 
 const Home = () => {
   return (
@@ -54,6 +55,9 @@ const Home = () => {
           />
         </div>
       </div>
+      <div className={styles.Separator} />
+      <HoursOfCourses />
+
     </div>
   )
 }

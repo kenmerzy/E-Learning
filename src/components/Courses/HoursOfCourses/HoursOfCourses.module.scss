@@ -1,0 +1,83 @@
+@import "../../../assets/styles/configs";
+
+.HourOfCourses{
+  width: 100%;
+
+  .line1{
+    width:29%;
+    font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 17px;
+    line-height: 130%;
+    color: gray;
+  }
+  .title{
+    width:29%;
+      font-family: "SF Pro Text";
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 49px;
+    line-height: 130%;
+    color: $black;
+  }
+  .line3{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+
+
+    .description{
+      width:29%;
+      font-family: "SF Pro Text";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 130%;
+      color: $black;
+
+    }
+    .logo{
+      width:36%;
+      margin: 0% 7%;
+      height: 44px;
+
+        ul{
+          list-style: none;
+          height: 100%;
+          display: flex;
+          flex:1;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+
+          li {
+            display: flex;
+            flex:1;
+            justify-content: space-between;
+            text-decoration: none;
+            height: 100%;
+
+            .itemLogo{
+              height: 44px;
+            }
+          }
+        }
+    }
+    .coverSearch{
+      display: flex;
+      flex:1;
+      background-color: green;
+
+      .formSearch{
+      
+      }
+      .inputSearch{
+        height: 60px;
+        width:80%;
+        background-color: blue;
+        border-radius: 30px;
+      }
+    }
+  }
+}
