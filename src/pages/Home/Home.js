@@ -57,7 +57,6 @@ const Home = () => {
       </div>
       <div className={styles.Separator} />
       <HoursOfCourses />
-
     </div>
   )
 }
