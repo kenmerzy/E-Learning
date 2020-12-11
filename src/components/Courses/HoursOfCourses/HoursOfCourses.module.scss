@@ -72,29 +72,38 @@
     .search{
       display: flex;
       flex-direction: row;
-      width:260px;
+      width:15%;
       height: 44px;
-      background: linear-gradient(to bottom, rgba(99, 106, 150,0.8) 0%, rgba(182, 186, 214,0.5) 80%);
+      background: linear-gradient(to bottom, rgba(99, 106, 150,0.8) 0%, rgba(182, 186, 214,0.5) 90%);
       align-items: center;
       padding:10px 10px ;
       border-radius: 22px;
+      background-color: aquamarine;
 
       .formInput{
         :focus{
           outline-style:none ;
         }
         .input{
-          width:200px;
+          width:94%;
           height: 44px;
           border: none;
           background-color: transparent;
           color: $white;
+          margin-right:5px;
+          margin-left:5px;
+
         }
       }
       img{
         width:24px;
         height: 24px;
-        margin-right: 5px;
+      }
+      .delete
+      {
+        width:18px;
+        height: 18px;
+        margin-right: 3px;
       }
     }
   }

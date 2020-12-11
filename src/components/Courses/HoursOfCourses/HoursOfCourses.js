@@ -13,6 +13,7 @@ import LogoProtoPie from '../../../assets/images/LogoProtoPie.png'
 import LogoSketch from '../../../assets/images/LogoSketch.png'
 import LogoWebflow from '../../../assets/images/LogoWebflow.png'
 import search from '../../../assets/images/search.png'
+import deleteIcon from '../../../assets/images/delete.png'
 
 const HoursOfCourses = () => {
   const listLogo = [
@@ -47,6 +48,8 @@ const HoursOfCourses = () => {
     },
 
   ]
+  const handleDeleteSearchClick = () => {
+  }
   return (
     <div className={styles.Container}>
       <div className={styles.HourOfCourses}>
@@ -70,12 +73,26 @@ const HoursOfCourses = () => {
           </div>
           <div className={styles.search}>
             <img src={search} alt="logo" />
-            <form className={styles.formInput}>
+            <form
+              className={styles.formInput}
+              onSubmit={(e) => { e.preventDefault() }}
+            >
               <input
                 className={styles.input}
                 placeholder="Search..."
+                formNoValidate
               />
             </form>
+            <Link
+              onClick={handleDeleteSearchClick}
+              to="/"
+            >
+              <img
+                src={deleteIcon}
+                alt="logo"
+                className={styles.delete}
+              />
+            </Link>
           </div>
         </div>
       </div>
