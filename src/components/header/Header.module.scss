@@ -15,7 +15,6 @@
 
 .AppHeader {
   width:100%;
-
   background-color:transparent;
   min-height: 10vmin;
   display: flex;
@@ -24,7 +23,9 @@
   font-size: 18px;
   padding-left: 10%;
   padding-right: 10%;
-  background-color: blue;
+  width:100%;
+  position: relative;
+
 }
 
 

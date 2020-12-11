@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: row;
     width:100%;
+    align-items: center;
 
 
     .description{
@@ -57,27 +58,48 @@
             justify-content: space-between;
             text-decoration: none;
             height: 100%;
-
-            .itemLogo{
-              height: 44px;
+        
+            a{
+            
+              img{
+                width:44px;
+                height: 44px;
+              }
             }
           }
         }
     }
-    .coverSearch{
+    .search{
       display: flex;
-      flex:1;
-      background-color: green;
+      flex-direction: row;
+      width:260px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(99, 106, 150,0.8) 0%, rgba(182, 186, 214,0.5) 80%);
+      align-items: center;
+      padding:10px 10px ;
+      border-radius: 22px;
 
-      .formSearch{
-      
+      .formInput{
+        :focus{
+          outline-style:none ;
+        }
+        .input{
+          width:200px;
+          height: 44px;
+          border: none;
+          background-color: transparent;
+          color: $white;
+        }
       }
-      .inputSearch{
-        height: 60px;
-        width:80%;
-        background-color: blue;
-        border-radius: 30px;
+      img{
+        width:24px;
+        height: 24px;
+        margin-right: 5px;
       }
     }
   }
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $white;
+  opacity: 1; /* Firefox */
 }

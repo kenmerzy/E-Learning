@@ -4,7 +4,6 @@ import {
   Link,
 } from 'react-router-dom'
 //  
-import { Form } from 'react-bootstrap'
 import styles from './HoursOfCourses.module.scss'
 import LogoSwiftUI from '../../../assets/images/LogoSwiftUI.png'
 import LogoReact from '../../../assets/images/LogoReact.png'
@@ -13,6 +12,7 @@ import LogoFramer from '../../../assets/images/LogoFramer.png'
 import LogoProtoPie from '../../../assets/images/LogoProtoPie.png'
 import LogoSketch from '../../../assets/images/LogoSketch.png'
 import LogoWebflow from '../../../assets/images/LogoWebflow.png'
+import search from '../../../assets/images/search.png'
 
 const HoursOfCourses = () => {
   const listLogo = [
@@ -69,11 +69,13 @@ const HoursOfCourses = () => {
             </ul>
           </div>
           <div className={styles.search}>
-            <Form>
+            <img src={search} alt="logo" />
+            <form className={styles.formInput}>
               <input
-                placeholder="Search for..."
+                className={styles.input}
+                placeholder="Search..."
               />
-            </Form>
+            </form>
           </div>
         </div>
       </div>
