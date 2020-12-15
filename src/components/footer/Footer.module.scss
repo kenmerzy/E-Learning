@@ -5,13 +5,11 @@
   color: $white;
   font-size: calc(6px + 4vmin);
   width: 100%;
-  background-image: url("../../assets/images/footer.png") ;
-  background-repeat: no-repeat;
-  background-size: 1920px 1400px;
-  padding-left: 10%;
-  padding-right: 10%;
-  margin-top: 500px;
-  padding-top: 220px;
+  // background-image: url("../../assets/images/footer.png") ;
+  // background-repeat: no-repeat;
+  // background-size: 1920px 1400px;
+  margin-top: 200px;
+
 
   .BottomWaterMark{
     display: flex;
@@ -29,7 +27,7 @@
     flex-direction: column;
     justify-content: flex-start;
     text-align: start;
-    font-size: calc(2px + 2vmin);
+    font-size: calc(2px + 4vmin);
     padding-left: 1%;
     width: 20%;
   }
@@ -44,6 +42,9 @@
     img{
       width:30px;
       height:30px;
+    }
+    p{
+      margin: 5px 0px 0px 0px;
     }
   }
   .Icon{
@@ -64,12 +65,9 @@
     font-size: calc(3px + 3vmin);
     margin-right: 2%;
   }
-  .CoverInfoAndMembers{
-    display: flex;
-    flex-direction: row;
   
-  }
   .Members{
+    margin-top: 3%;
     display: flex;
     flex:1;
       ul{
@@ -96,6 +94,9 @@
             font-weight: 600;
             color: white;
 
+          }
+          .position{
+            margin: 20px 0px;
           }
           .description{
             margin: 15px 0px;

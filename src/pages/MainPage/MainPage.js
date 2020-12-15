@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react'
 import {
   BrowserRouter as Router,
@@ -15,20 +16,23 @@ import styles from './MainPage.module.scss'
 
 const MainPage = () => {
   return (
+
     <div className={styles.Container}>
-      <Router>
-        <Header />
-        <div className={styles.Main}>
-          <Switch>
-            <Route path="/courses" component={Courses} />
-            <Route path="/tutorials" component={Tutorials} />
-            <Route path="/livestreams" component={Livestreams} />
-            <Route path="/pricing" component={Pricing} />
-            <Route path="/" component={Home} />
-          </Switch>
-        </div>
-        <Footer />
-      </Router>
+      <div className="container">
+        <Router>
+          <Header />
+          <div className={styles.Main}>
+            <Switch>
+              <Route path="/courses" component={Courses} />
+              <Route path="/tutorials" component={Tutorials} />
+              <Route path="/livestreams" component={Livestreams} />
+              <Route path="/pricing" component={Pricing} />
+              <Route path="/" component={Home} />
+            </Switch>
+          </div>
+          <Footer />
+        </Router>
+      </div>
     </div>
   )
 }

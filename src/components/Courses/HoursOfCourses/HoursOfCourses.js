@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
-import React from 'react'
+import React
+  from 'react'
 import {
   Link,
 } from 'react-router-dom'
@@ -16,6 +17,7 @@ import search from '../../../assets/images/search.png'
 import deleteIcon from '../../../assets/images/delete.png'
 
 const HoursOfCourses = () => {
+  // const [valueInput, setValueInput] = useState('')
   const listLogo = [
     {
       id: 1,

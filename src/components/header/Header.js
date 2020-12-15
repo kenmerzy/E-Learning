@@ -59,33 +59,36 @@ const Header = () => {
   // }
 
   return (
-    <div className={styles.AppHeader}>
-      <div className={styles.WrappedLogo}>
-        <Link
-          to="/"
-        >
-          <img src={logo} className={styles.AppLogo} alt="logo" />
-        </Link>
-      </div>
-      <div className={styles.AppHeaderMenu}>
-        <ul>
-          {listMenu.map((item) => <li key={item.id}>
-            <Link
-              onClick={() => {
-                console.log('item', item.title)
-              }}
-              to={item.link}
-            >
-              <div className={styles.MenuItem}>
-                <img src={item.icon} className={styles.AppLogo} alt="logo" />
-                {item.title
-                  && <p>
-                    {item.title}
-                  </p>}
-              </div>
-            </Link>
-          </li>)}
-        </ul>
+    <div className="container">
+
+      <div className={styles.AppHeader}>
+        <div className={styles.WrappedLogo}>
+          <Link
+            to="/"
+          >
+            <img src={logo} className={styles.AppLogo} alt="logo" />
+          </Link>
+        </div>
+        <div className={styles.AppHeaderMenu}>
+          <ul>
+            {listMenu.map((item) => <li key={item.id}>
+              <Link
+                onClick={() => {
+                  console.log('item', item.title)
+                }}
+                to={item.link}
+              >
+                <div className={styles.MenuItem}>
+                  <img src={item.icon} className={styles.AppLogo} alt="logo" />
+                  {item.title
+                    && <p>
+                      {item.title}
+                    </p>}
+                </div>
+              </Link>
+            </li>)}
+          </ul>
+        </div>
       </div>
     </div>
   )

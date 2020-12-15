@@ -74,11 +74,10 @@
       flex-direction: row;
       width:15%;
       height: 44px;
-      background: linear-gradient(to bottom, rgba(99, 106, 150,0.8) 0%, rgba(182, 186, 214,0.5) 90%);
+      background: linear-gradient(to bottom, rgba(99, 106, 150,0.8) 0%, rgba(182, 186, 214,0.8) 90%);
       align-items: center;
       padding:10px 10px ;
       border-radius: 22px;
-      background-color: aquamarine;
 
       .formInput{
         :focus{

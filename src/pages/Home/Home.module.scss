@@ -50,13 +50,13 @@
           font-family: "SF Pro Text";
           font-style: normal;
           font-weight: normal;
-          font-size: 20px;
+          font-size: 23px;
           line-height: 130%;
     
     
           /* Text */
     
-          color: #000000;
+          color: $white;
           flex: none;
           order: 1;
           flex-grow: 0;
@@ -76,10 +76,10 @@
         font-family: "SF Pro Text";
         font-style: normal;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 20px;
         line-height: 130%;
         /* or 17px */
-        color: #000000;
+        color: $white;
         mix-blend-mode: normal;
         /* Inside Auto Layout */
         flex: none;
@@ -94,13 +94,13 @@
       display: flex;
 
       .mockup{
-        width: 80%;
+        width: 100%;
       }
     }
   }
 
   .Separator{
-    height: 400px;
+    height: 200px;
   }
   .ButtonPurchase
 {
