@@ -57,7 +57,57 @@ const HoursOfCourses = () => {
       <div className={styles.HourOfCourses}>
         <p className={styles.line1}>120 HOURS OF COURSES</p>
         <p className={styles.title}>Learn the best tools and platforms</p>
-        <div className={styles.line3}>
+        <div className="row">
+          <div className="col-lg-3">
+            <p className={styles.description}>We focus on industry leading platforms so that you can be prepared for your next job. Then we teach all we can about them.</p>
+
+          </div>
+          <div className="col-lg-6">
+            <div className={styles.logo}>
+              <ul>
+                {listLogo.map((item) => <li key={item.id}>
+                  <Link
+                    onClick={() => {
+                      console.log('item logo search courses')
+                    }}
+                    to="/"
+                  >
+                    <img src={item.icon} className={styles.itemLogo} alt="logo" />
+                  </Link>
+                </li>)}
+              </ul>
+            </div>
+          </div>
+          <div
+            className="col-lg-3"
+            style={{ flexDirection: 'row', alignItems: 'center' }}
+          >
+            <div className={styles.search}>
+              <img src={search} alt="logo" />
+              <form
+                className={styles.formInput}
+                onSubmit={(e) => { e.preventDefault() }}
+              >
+                <input
+                  className={styles.input}
+                  placeholder="Search..."
+                  formNoValidate
+                />
+              </form>
+              <Link
+                onClick={handleDeleteSearchClick}
+                to="/"
+              >
+                <img
+                  src={deleteIcon}
+                  alt="logo"
+                  className={styles.delete}
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+        {/* <div className={styles.line3}>
           <p className={styles.description}>We focus on industry leading platforms so that you can be prepared for your next job. Then we teach all we can about them.</p>
           <div className={styles.logo}>
             <ul>
@@ -96,7 +146,7 @@ const HoursOfCourses = () => {
               />
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
 

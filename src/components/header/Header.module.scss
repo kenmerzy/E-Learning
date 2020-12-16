@@ -1,7 +1,7 @@
 @import "../../assets/styles/_configs";
 
 .AppLogo {
-  height: 25px;
+  height: 30px;
   pointer-events: 'cursor';
 }
 
@@ -36,11 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.AppHeaderMenu
-{
-  display: flex;
-  flex:1;
-  margin-left: 20%;
+
 
   ul{
     list-style: none;
@@ -64,7 +60,7 @@
             justify-content: center;
             padding: 10px 5px; 
             :hover{
-              background-color: rgba(255, 255, 255, 0.1);
+              background-color: rgba(255, 255, 255, 0.2);
             }
               .MenuItem{
                 display: flex;
@@ -75,11 +71,16 @@
                 border-radius: 10px;
                 :hover{
                   background-color:transparent;
+                  text-decoration: none;
                 }
                  
                 p{
                   margin-left: 10px;
                   color: $white;
+                  font-family: "SF Pro Text";
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 23px;
                   margin-bottom: 0;
                   text-decoration: none;
                  
@@ -88,7 +89,6 @@
            }
          }
       }
-}
 
 
 

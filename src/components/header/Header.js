@@ -61,34 +61,39 @@ const Header = () => {
   return (
     <div className="container">
 
-      <div className={styles.AppHeader}>
-        <div className={styles.WrappedLogo}>
-          <Link
-            to="/"
-          >
-            <img src={logo} className={styles.AppLogo} alt="logo" />
-          </Link>
+      <div className="row" style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <div className="col-lg-3">
+          <div className={styles.WrappedLogo}>
+            <Link
+              to="/"
+            >
+              <img src={logo} className={styles.AppLogo} alt="logo" />
+            </Link>
+          </div>
         </div>
-        <div className={styles.AppHeaderMenu}>
-          <ul>
-            {listMenu.map((item) => <li key={item.id}>
-              <Link
-                onClick={() => {
-                  console.log('item', item.title)
-                }}
-                to={item.link}
-              >
-                <div className={styles.MenuItem}>
-                  <img src={item.icon} className={styles.AppLogo} alt="logo" />
-                  {item.title
-                    && <p>
-                      {item.title}
-                    </p>}
-                </div>
-              </Link>
-            </li>)}
-          </ul>
+        <div className="col-lg-9">
+          <div className={styles.AppHeaderMenu}>
+            <ul>
+              {listMenu.map((item) => <li key={item.id}>
+                <Link
+                  onClick={() => {
+                    console.log('item', item.title)
+                  }}
+                  to={item.link}
+                >
+                  <div className={styles.MenuItem}>
+                    <img src={item.icon} className={styles.AppLogo} alt="logo" />
+                    {item.title
+                      && <p>
+                        {item.title}
+                      </p>}
+                  </div>
+                </Link>
+              </li>)}
+            </ul>
+          </div>
         </div>
+
       </div>
     </div>
   )
