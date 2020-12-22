@@ -6,15 +6,15 @@ import {
 } from 'react-router-dom'
 //  
 import styles from './HoursOfCourses.module.scss'
-import LogoSwiftUI from '../../../assets/images/LogoSwiftUI.png'
-import LogoReact from '../../../assets/images/LogoReact.png'
-import LogoFigma from '../../../assets/images/LogoFigma.png'
-import LogoFramer from '../../../assets/images/LogoFramer.png'
-import LogoProtoPie from '../../../assets/images/LogoProtoPie.png'
-import LogoSketch from '../../../assets/images/LogoSketch.png'
-import LogoWebflow from '../../../assets/images/LogoWebflow.png'
-import search from '../../../assets/images/search.png'
-import deleteIcon from '../../../assets/images/delete.png'
+import LogoSwiftUI from '../../../assets/images/LogoSwiftUI.svg'
+import LogoReact from '../../../assets/images/LogoReact.svg'
+import LogoFigma from '../../../assets/images/LogoFigma.svg'
+import LogoFramer from '../../../assets/images/LogoFramer.svg'
+import LogoProtoPie from '../../../assets/images/LogoProtoPie.svg'
+import LogoSketch from '../../../assets/images/LogoSketch.svg'
+import LogoWebflow from '../../../assets/images/LogoWebflow.svg'
+import search from '../../../assets/images/search.svg'
+import deleteIcon from '../../../assets/images/delete.svg'
 
 const HoursOfCourses = () => {
   // const [valueInput, setValueInput] = useState('')
@@ -58,11 +58,11 @@ const HoursOfCourses = () => {
         <p className={styles.line1}>120 HOURS OF COURSES</p>
         <p className={styles.title}>Learn the best tools and platforms</p>
         <div className="row">
-          <div className="col-lg-3">
+          <div className="col-lg-3" style={{ marginTop: 10 }}>
             <p className={styles.description}>We focus on industry leading platforms so that you can be prepared for your next job. Then we teach all we can about them.</p>
 
           </div>
-          <div className="col-lg-6">
+          <div className="col-lg-6" style={{ marginTop: 10 }}>
             <div className={styles.logo}>
               <ul>
                 {listLogo.map((item) => <li key={item.id}>
@@ -80,7 +80,7 @@ const HoursOfCourses = () => {
           </div>
           <div
             className="col-lg-3"
-            style={{ flexDirection: 'row', alignItems: 'center' }}
+            style={{ marginTop: 10 }}
           >
             <div className={styles.search}>
               <img src={search} alt="logo" />

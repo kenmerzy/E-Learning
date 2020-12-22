@@ -6,10 +6,9 @@ import logo from '../../assets/images/Logo.svg'
 import courses from '../../assets/images/courses.svg'
 import tutorials from '../../assets/images/tutorials.svg'
 import livestreams from '../../assets/images/livestreams.svg'
-import pricing from '../../assets/images/pricing.svg'
 import account from '../../assets/images/account.svg'
-import more from '../../assets/images/more.png'
 import search from '../../assets/images/search.svg'
+import iconCart from '../../assets/images/iconCart.svg'
 import styles from './Header.module.scss'
 
 const Header = () => {
@@ -28,20 +27,21 @@ const Header = () => {
     },
     {
       id: 3,
-      title: 'Livestreams',
-      link: '/Livestreams',
+      title: 'Authors',
+      link: '/authors',
       icon: livestreams,
 
     },
     {
       id: 4,
-      title: 'Pricing',
-      link: '/pricing',
-      icon: pricing,
+      title: 'Account',
+      link: '/account',
+      icon: account,
     },
     {
       id: 5,
-      icon: more,
+      icon: iconCart,
+      link: '/cart',
     },
     {
       id: 6,
@@ -61,8 +61,8 @@ const Header = () => {
   return (
     <div className="container">
 
-      <div className="row" style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <div className="col-lg-3">
+      <div className="row" style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 20 }}>
+        <div className="col-lg-2">
           <div className={styles.WrappedLogo}>
             <Link
               to="/"
@@ -71,24 +71,26 @@ const Header = () => {
             </Link>
           </div>
         </div>
-        <div className="col-lg-9">
-          <div className={styles.AppHeaderMenu}>
+        <div className="col-lg-10" style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <div className="row">
             <ul>
               {listMenu.map((item) => <li key={item.id}>
-                <Link
-                  onClick={() => {
-                    console.log('item', item.title)
-                  }}
-                  to={item.link}
-                >
-                  <div className={styles.MenuItem}>
-                    <img src={item.icon} className={styles.AppLogo} alt="logo" />
-                    {item.title
-                      && <p>
-                        {item.title}
-                      </p>}
-                  </div>
-                </Link>
+                <div className="col-lg-2">
+                  <Link
+                    onClick={() => {
+                      console.log('item', item.title)
+                    }}
+                    to={item.link}
+                  >
+                    <div className={styles.MenuItem}>
+                      <img src={item.icon} className={styles.AppLogo} alt="logo" />
+                      {item.title
+                        && <p>
+                          {item.title}
+                        </p>}
+                    </div>
+                  </Link>
+                </div>
               </li>)}
             </ul>
           </div>

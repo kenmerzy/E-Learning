@@ -5,13 +5,15 @@ import {
   Switch,
   Route,
 } from 'react-router-dom'
+
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import Home from '../Home/Home'
 import Courses from '../Courses/Courses'
 import Tutorials from '../Tutorials/Tutorials'
-import Livestreams from '../Livestreams/Livestreams'
-import Pricing from '../Pricing/Pricing'
+import Authors from '../Authors/Authors'
+import Account from '../Account/Account'
+import Cart from '../Cart/Cart'
 import styles from './MainPage.module.scss'
 
 const MainPage = () => {
@@ -25,8 +27,9 @@ const MainPage = () => {
             <Switch>
               <Route path="/courses" component={Courses} />
               <Route path="/tutorials" component={Tutorials} />
-              <Route path="/livestreams" component={Livestreams} />
-              <Route path="/pricing" component={Pricing} />
+              <Route path="/authors" component={Authors} />
+              <Route path="/account" component={Account} />
+              <Route path="/cart" component={Cart} />
               <Route path="/" component={Home} />
             </Switch>
           </div>

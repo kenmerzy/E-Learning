@@ -1,7 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import styles from './Home.module.scss'
-import iconProAccess from '../../assets/images/iconGetProAccess.png'
 import mockup from '../../assets/images/mockup.png'
 import HoursOfCourses from '../../components/Courses/HoursOfCourses/HoursOfCourses'
 
@@ -21,26 +19,6 @@ const Home = () => {
                 Don’t skip design. Learn design and code, by building real apps with React and Swift. Complete courses about the best tools.
               </p>
             </div>
-            <Button
-              variant="light"
-              bsPrefix={styles.ButtonPurchase}
-              onClick={
-                () => { console.log({ a: 'click' }) }
-              }
-            >
-              <div className={styles.insideButtonPurchase}>
-                <img
-                  src={iconProAccess}
-                  className={styles.iconProAccess}
-                  alt="logo"
-                />
-
-                <div className={styles.coverTextGetProAccess}>
-                  <p className={styles.GetProAccess}>Get Pro Access</p>
-                  <p className={styles.money}>$19 per month</p>
-                </div>
-              </div>
-            </Button>
 
             <div className={styles.MiniDescription}>
               <p>

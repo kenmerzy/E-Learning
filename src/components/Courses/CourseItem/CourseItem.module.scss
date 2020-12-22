@@ -1,0 +1,50 @@
+@import "../../../assets/styles/configs";
+
+.container{
+  position: relative;
+height: 330px;
+width: 240px;
+border-radius:20px ;
+background: linear-gradient(to bottom, rgba(158, 236, 217,1) 0%,rgba(47, 184, 255,1) 80%);
+padding:20px;
+text-align: center;
+ .background{
+   
+ }
+ .logo{
+  position: absolute;
+   top:20px;
+   right:20px;
+   width:32px;
+   height:32px;
+ }
+ .author{
+  position: absolute;
+   top:72px;
+   right:20px;
+   width:32px;
+   height:32px;
+ }
+ .title{
+   color: $white;
+   font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 29px;
+  text-align: center;
+
+ }
+ .description{
+  font-family: SF Pro Text;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 18px;
+/* identical to box height */
+
+text-align: center;
+
+color: rgba(255, 255, 255, 0.8);
+ }
+}

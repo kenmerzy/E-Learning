@@ -79,6 +79,7 @@ const Footer = () => {
               backgroundColor: 'rgba(0, 0, 0, 0.2)',
               padding: 40,
               borderRadius: 30,
+              marginTop: 30,
             }}
           >
             <a href={members[0].link} target="_blank" rel="noopener noreferrer">
@@ -98,6 +99,8 @@ const Footer = () => {
               backgroundColor: 'rgba(0, 0, 0, 0.2)',
               padding: 40,
               borderRadius: 30,
+              marginTop: 30,
+
             }}
           >
             <a href={members[1].link} target="_blank" rel="noopener noreferrer">
