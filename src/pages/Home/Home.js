@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Home.module.scss'
-import mockup from '../../assets/images/mockup.png'
+import mockup from '../../assets/images/mockup.svg'
 import HoursOfCourses from '../../components/Courses/HoursOfCourses/HoursOfCourses'
 
 const Home = () => {

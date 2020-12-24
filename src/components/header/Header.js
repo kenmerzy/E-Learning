@@ -4,8 +4,8 @@ import {
 } from 'react-router-dom'
 import logo from '../../assets/images/Logo.svg'
 import courses from '../../assets/images/courses.svg'
-import tutorials from '../../assets/images/tutorials.svg'
-import livestreams from '../../assets/images/livestreams.svg'
+import author from '../../assets/images/author.svg'
+import mycourses from '../../assets/images/mycourses.svg'
 import account from '../../assets/images/account.svg'
 import search from '../../assets/images/search.svg'
 import iconCart from '../../assets/images/iconCart.svg'
@@ -21,35 +21,31 @@ const Header = () => {
     },
     {
       id: 2,
-      title: 'Tutorials',
-      link: '/tutorials',
-      icon: tutorials,
+      title: 'My courses',
+      link: '/myCourses',
+      icon: mycourses,
     },
     {
       id: 3,
       title: 'Authors',
       link: '/authors',
-      icon: livestreams,
+      icon: author,
 
     },
+
     {
       id: 4,
-      title: 'Account',
-      link: '/account',
-      icon: account,
-    },
-    {
-      id: 5,
       icon: iconCart,
       link: '/cart',
     },
     {
-      id: 6,
+      id: 5,
       icon: search,
     },
     {
-      id: 7,
+      id: 6,
       icon: account,
+      link: '/account',
 
     },
   ]
@@ -84,10 +80,7 @@ const Header = () => {
                   >
                     <div className={styles.MenuItem}>
                       <img src={item.icon} className={styles.AppLogo} alt="logo" />
-                      {item.title
-                        && <p>
-                          {item.title}
-                        </p>}
+                      {item.title && <p>{item.title}</p>}
                     </div>
                   </Link>
                 </div>

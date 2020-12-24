@@ -10,7 +10,7 @@ import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import Home from '../Home/Home'
 import Courses from '../Courses/Courses'
-import Tutorials from '../Tutorials/Tutorials'
+import MyCourses from '../MyCourses/MyCourses'
 import Authors from '../Authors/Authors'
 import Account from '../Account/Account'
 import Cart from '../Cart/Cart'
@@ -26,7 +26,7 @@ const MainPage = () => {
           <div className={styles.Main}>
             <Switch>
               <Route path="/courses" component={Courses} />
-              <Route path="/tutorials" component={Tutorials} />
+              <Route path="/myCourses" component={MyCourses} />
               <Route path="/authors" component={Authors} />
               <Route path="/account" component={Account} />
               <Route path="/cart" component={Cart} />
