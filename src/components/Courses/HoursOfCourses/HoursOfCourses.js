@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React
+import React, { useState }
   from 'react'
 import {
   Link,
@@ -17,7 +17,6 @@ import search from '../../../assets/images/search.svg'
 import deleteIcon from '../../../assets/images/delete.svg'
 
 const HoursOfCourses = () => {
-  // const [valueInput, setValueInput] = useState('')
   const listLogo = [
     {
       id: 1,
@@ -50,7 +49,13 @@ const HoursOfCourses = () => {
     },
 
   ]
+  const [valueInput, setValueInput] = useState('')
   const handleDeleteSearchClick = () => {
+    setValueInput('')
+  }
+  // eslint-disable-next-line no-unused-vars
+  const setValueChange = (event) => {
+    setValueInput(event.target.value)
   }
   return (
     <div className={styles.Container}>
@@ -92,6 +97,8 @@ const HoursOfCourses = () => {
                   className={styles.input}
                   placeholder="Search..."
                   formNoValidate
+                  value={valueInput}
+                  onChange={setValueChange}
                 />
               </form>
               <Link
@@ -107,46 +114,7 @@ const HoursOfCourses = () => {
             </div>
           </div>
         </div>
-        {/* <div className={styles.line3}>
-          <p className={styles.description}>We focus on industry leading platforms so that you can be prepared for your next job. Then we teach all we can about them.</p>
-          <div className={styles.logo}>
-            <ul>
-              {listLogo.map((item) => <li key={item.id}>
-                <Link
-                  onClick={() => {
-                    console.log('item logo search courses')
-                  }}
-                  to="/"
-                >
-                  <img src={item.icon} className={styles.itemLogo} alt="logo" />
-                </Link>
-              </li>)}
-            </ul>
-          </div>
-          <div className={styles.search}>
-            <img src={search} alt="logo" />
-            <form
-              className={styles.formInput}
-              onSubmit={(e) => { e.preventDefault() }}
-            >
-              <input
-                className={styles.input}
-                placeholder="Search..."
-                formNoValidate
-              />
-            </form>
-            <Link
-              onClick={handleDeleteSearchClick}
-              to="/"
-            >
-              <img
-                src={deleteIcon}
-                alt="logo"
-                className={styles.delete}
-              />
-            </Link>
-          </div>
-        </div> */}
+
       </div>
     </div>
 

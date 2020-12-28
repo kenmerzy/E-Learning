@@ -1,10 +1,9 @@
 import React from 'react'
+import styles from './Account.module.scss'
 
 const Account = () => {
   return (
-    <div>
-      <h1>Account here</h1>
-    </div>
+    <div className={styles.container} />
   )
 }
 export default Account

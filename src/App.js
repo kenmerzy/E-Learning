@@ -1,5 +1,5 @@
 import React from 'react'
-import 'antd/dist/antd.css'
+import './css/index.css'
 import './css/App.scss'
 import { MainPage } from './pages'
 
