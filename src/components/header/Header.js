@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Link,
 } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import logo from '../../assets/images/Logo.svg'
 import courses from '../../assets/images/courses.svg'
 import author from '../../assets/images/author.svg'
@@ -10,8 +11,14 @@ import account from '../../assets/images/account.svg'
 import search from '../../assets/images/search.svg'
 import iconCart from '../../assets/images/iconCart.svg'
 import styles from './Header.module.scss'
+import { userAction } from '../../redux/actions'
 
 const Header = () => {
+  const dispatch = useDispatch()
+
+  const handleAccountClick = () => {
+    dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: true }))
+  }
   const listMenu = [
     {
       id: 1,
@@ -42,18 +49,8 @@ const Header = () => {
       id: 5,
       icon: search,
     },
-    {
-      id: 6,
-      icon: account,
-      link: '/account',
 
-    },
   ]
-
-  // const handleOptionsClick = () => {
-  //   console.log('Click!!')
-  // }
-
   return (
     <div className="container">
 
@@ -73,9 +70,7 @@ const Header = () => {
               {listMenu.map((item) => <li key={item.id}>
                 <div className="col-lg-2">
                   <Link
-                    onClick={() => {
-                      console.log('item', item.title)
-                    }}
+                    onClick={item.onClick}
                     to={item.link}
                   >
                     <div className={styles.MenuItem}>
@@ -85,6 +80,18 @@ const Header = () => {
                   </Link>
                 </div>
               </li>)}
+              <li>
+                <div className="col-lg-2">
+                  <Link
+                    to="/"
+                    onClick={handleAccountClick}
+                  >
+                    <div className={styles.MenuItem}>
+                      <img src={account} className={styles.AppLogo} alt="logo" />
+                    </div>
+                  </Link>
+                </div>
+              </li>
             </ul>
           </div>
         </div>

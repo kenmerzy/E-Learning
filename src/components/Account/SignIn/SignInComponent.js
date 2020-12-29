@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { userAction } from '../../../redux/actions'
 import styles from './SignInComponent.module.scss'
 import phone from '../../../assets/images/phone.png'
+import deleteIcon from '../../../assets/images/delete.svg'
 import Password from '../../../assets/images/Password.svg'
 
 const SignInComponent = () => {
   const [valuePhoneNumber, setValuePhoneNumber] = useState('')
   const [valuePassword, setValuePassword] = useState('')
+  const [token] = useState(useSelector((value) => value?.userReducer?.token))
+
+  const dispatch = useDispatch()
   const setValuePhoneChange = (event) => {
     setValuePhoneNumber(event.target.value)
   }
@@ -13,7 +19,24 @@ const SignInComponent = () => {
     setValuePassword(event.target.value)
   }
   const handleSigninClick = () => {
-
+    dispatch(userAction.LOGIN({
+      token: 'tokentam',
+    }))
+    dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
+    console.log('===============================================')
+    console.log('token', token)
+    console.log('===============================================')
+  }
+  const handleChangeModalToSignUp = () => {
+    dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
+    const timeout = setTimeout(() => {
+      dispatch(userAction.SET_ACCOUNT_STATE({ accountState: 'SignUp' }))
+      dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: true }))
+      clearTimeout(timeout)
+    }, 50)
+  }
+  const handleCloseClick = () => {
+    dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
   }
   return (
     <div className={styles.container}>
@@ -72,16 +95,40 @@ const SignInComponent = () => {
           By clicking on Sign up, you agree to our Terms of service and Privacy policy.
         </p>
         <p className={styles.textSignIn}>
-          <span>{'Already have an account?  '}</span>
-          <span><a>Sign in</a></span>
+          <span>{"Don't have an account? "}</span>
+          <span>
+            <button
+              type="button"
+              onClick={handleChangeModalToSignUp}
+            >
+              Sign up
+            </button>
+          </span>
         </p>
         <p className={styles.textSignIn}>
           <span>
             {'Forgot password? '}
           </span>
-          <span><a>Reset password</a></span>
+          <span>
+            <button
+              type="button"
+            >
+              Reset password
+            </button>
+          </span>
         </p>
+        <button
+          className={styles.buttonClose}
+          onClick={handleCloseClick}
+          type="button"
+        >
+          <img
+            src={deleteIcon}
+            alt="logo"
+          />
+        </button>
       </div>
+
     </div>
   )
 }

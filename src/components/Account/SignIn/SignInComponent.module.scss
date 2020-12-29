@@ -5,14 +5,15 @@
 .container{
  
   position: absolute;
-    width: 100%;
+  width: 550px;
+  margin-top: 12%;
 
+  
   .coverT
   {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    width: 550px;
-    margin: 0% 10%;
     height: 700px;
     background: rgba(50, 61, 109, 0.5);
 
@@ -22,6 +23,31 @@
     backdrop-filter: blur(40px);
     border-radius: 20px;
     padding: 60px 80px;
+
+    .buttonClose{
+      position: absolute;
+      display: flex;
+      cursor: pointer;
+      width:36px;
+      height:36px;
+      right:-15px;
+      top:-15px;
+      border-radius: 18px;
+      background-color: #b2b2b2;
+      border : solid 2px #FFFFFF ;
+      align-items: center;
+      outline: none;
+      justify-content: center;
+
+      :focus{
+        outline: none;
+      }
+      img{
+        width:18px;
+        height:18px;
+      
+      }
+    }
 
     p{
       font-family: 'SF Pro Text';
@@ -136,7 +162,10 @@
     }
     .textSignIn{
       span{
-        a{
+        button{
+          background-color: transparent;
+          border:none;
+          outline: none;
           font-family: 'SF Pro Text';
           font-style: normal;
           font-weight: bold;
@@ -147,4 +176,5 @@
       }
     }
   }
+ 
 }
