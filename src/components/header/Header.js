@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Link,
 } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../assets/images/Logo.svg'
 import courses from '../../assets/images/courses.svg'
 import author from '../../assets/images/author.svg'
@@ -12,10 +12,15 @@ import search from '../../assets/images/search.svg'
 import iconCart from '../../assets/images/iconCart.svg'
 import styles from './Header.module.scss'
 import { userAction } from '../../redux/actions'
+import verified from '../../assets/images/verified.svg'
 
 const Header = () => {
+  const token = useSelector((value) => value?.userReducer?.token)
   const dispatch = useDispatch()
 
+  console.log('===============================================')
+  console.log('token Header', token)
+  console.log('===============================================')
   const handleAccountClick = () => {
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: true }))
   }
@@ -29,7 +34,7 @@ const Header = () => {
     {
       id: 2,
       title: 'My courses',
-      link: '/myCourses',
+      link: '/mycourses',
       icon: mycourses,
     },
     {
@@ -82,14 +87,27 @@ const Header = () => {
               </li>)}
               <li>
                 <div className="col-lg-2">
-                  <Link
-                    to="/"
-                    onClick={handleAccountClick}
-                  >
-                    <div className={styles.MenuItem}>
-                      <img src={account} className={styles.AppLogo} alt="logo" />
-                    </div>
-                  </Link>
+                  {
+                    !token
+                      ? <Link
+                        // eslint-disable-next-line react/jsx-indent-props
+                        to="/"
+                        // eslint-disable-next-line react/jsx-indent-props
+                        onClick={handleAccountClick}
+                      >
+                        <div className={styles.MenuItem}>
+                          <img src={account} className={styles.AppLogo} alt="logo" />
+                        </div>
+                      </Link>
+                      : <Link
+                        // eslint-disable-next-line react/jsx-indent-props
+                        to="/account"
+                      >
+                        <div className={styles.MenuItem}>
+                          <img src={verified} className={styles.AppLogo} alt="logo" />
+                        </div>
+                      </Link>
+                  }
                 </div>
               </li>
             </ul>

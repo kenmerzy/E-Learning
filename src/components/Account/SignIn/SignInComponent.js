@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { userAction } from '../../../redux/actions'
 import styles from './SignInComponent.module.scss'
 import phone from '../../../assets/images/phone.png'
@@ -7,11 +7,11 @@ import deleteIcon from '../../../assets/images/delete.svg'
 import Password from '../../../assets/images/Password.svg'
 
 const SignInComponent = () => {
+  const dispatch = useDispatch()
+
   const [valuePhoneNumber, setValuePhoneNumber] = useState('')
   const [valuePassword, setValuePassword] = useState('')
-  const [token] = useState(useSelector((value) => value?.userReducer?.token))
 
-  const dispatch = useDispatch()
   const setValuePhoneChange = (event) => {
     setValuePhoneNumber(event.target.value)
   }
@@ -19,13 +19,13 @@ const SignInComponent = () => {
     setValuePassword(event.target.value)
   }
   const handleSigninClick = () => {
-    dispatch(userAction.LOGIN({
-      token: 'tokentam',
-    }))
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
-    console.log('===============================================')
-    console.log('token', token)
-    console.log('===============================================')
+    const timeout = setTimeout(() => {
+      dispatch(userAction.LOGIN({
+        token: 'tokentam',
+      }))
+      clearTimeout(timeout)
+    }, 50)
   }
   const handleChangeModalToSignUp = () => {
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))

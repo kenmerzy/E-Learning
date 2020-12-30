@@ -45,11 +45,11 @@ const MainPage = () => {
           <div className={styles.Main}>
             <Switch>
               <Route path="/courses" component={Courses} />
-              <Route path="/myCourses" component={MyCourses} />
+              <Route path="/mycourses" component={MyCourses} />
               <Route path="/authors" component={Authors} />
               <Route path="/cart" component={Cart} />
-              <Route path="/" component={Home} />
               <Route path="/account" component={Account} />
+              <Route path="/" component={Home} />
             </Switch>
           </div>
           <Footer />

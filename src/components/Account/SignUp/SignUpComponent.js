@@ -5,13 +5,19 @@ import styles from './SignUpComponent.module.scss'
 import phone from '../../../assets/images/phone.png'
 import Password from '../../../assets/images/Password.svg'
 import deleteIcon from '../../../assets/images/delete.svg'
+import user from '../../../assets/images/user.png'
 
 const SignUpComponent = () => {
+  const [valueName, setValueName] = useState('')
   const [valuePhoneNumber, setValuePhoneNumber] = useState('')
   const [valuePassword, setValuePassword] = useState('')
   const [valueConfirmPassword, setValueConfirmPassword] = useState('')
+  const [accountType, setAccountType] = useState('student')
   const dispatch = useDispatch()
 
+  const setValueNameChange = (event) => {
+    setValueName(event.target.value)
+  }
   const setValuePhoneChange = (event) => {
     setValuePhoneNumber(event.target.value)
   }
@@ -20,6 +26,9 @@ const SignUpComponent = () => {
   }
   const setValueConfirmPasswordChange = (event) => {
     setValueConfirmPassword(event.target.value)
+  }
+  const handleAccountTypeChange = (event) => {
+    setAccountType(event.target.value)
   }
   const handleSignUpClick = () => {
   }
@@ -38,7 +47,27 @@ const SignUpComponent = () => {
     <div className={styles.container}>
       <div className={styles.coverT}>
         <p className={styles.title}>Sign up</p>
-        <p className={styles.description}>Access to 80+ hours of courses, tutorials and source files</p>
+        <p className={styles.description}> Phone number is use to Sign in as a username</p>
+        <div className={styles.divInput}>
+          <div className={styles.coverImage}>
+            <img
+              src={user}
+              alt="logo"
+            />
+          </div>
+          <form
+            className={styles.formInput}
+            onSubmit={(e) => { e.preventDefault() }}
+          >
+            <input
+              className={styles.input}
+              placeholder="Your name"
+              formNoValidate
+              value={valueName}
+              onChange={setValueNameChange}
+            />
+          </form>
+        </div>
         <div className={styles.divInput}>
           <div className={styles.coverImage}>
             <img
@@ -59,7 +88,6 @@ const SignUpComponent = () => {
             />
           </form>
         </div>
-
         <div className={styles.divInput}>
           <div className={styles.coverImage}>
             <img
@@ -102,6 +130,17 @@ const SignUpComponent = () => {
             />
           </form>
         </div>
+        <div className={styles.accountType}>
+          <span>Sign up as a </span>
+          <select
+            value={accountType}
+            onChange={handleAccountTypeChange}
+          >
+            <option value="student">Student</option>
+            <option value="authors">Author</option>
+          </select>
+        </div>
+
         <button
           className={styles.buttonSignUp}
           onClick={handleSignUpClick}

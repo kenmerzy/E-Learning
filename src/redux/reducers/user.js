@@ -1,7 +1,7 @@
 import { userType } from '../types'
 
 const initState = {
-  token: '',
+  token: null,
   accountState: 'SignIn',
   isModalShow: false,
 }
