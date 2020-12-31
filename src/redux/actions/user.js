@@ -6,6 +6,19 @@ export const LOGIN = (data, callback) => {
     payload: { data, callback },
   }
 }
+
+export const REGISTER = (data, callback) => {
+  return {
+    type: userType.REGISTER,
+    payload: { data, callback },
+  }
+}
+export const GET_PROFILE = (data, callback) => {
+  return {
+    type: userType.GET_PROFILE,
+    payload: { data, callback },
+  }
+}
 export const SET_IS_MODAL_SHOW = (data, callback) => {
   return {
     type: userType.SET_IS_MODAL_SHOW,

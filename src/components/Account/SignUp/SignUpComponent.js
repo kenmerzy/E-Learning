@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import Modal from 'react-bootstrap/Modal'
 import { userAction } from '../../../redux/actions'
 import styles from './SignUpComponent.module.scss'
 import phone from '../../../assets/images/phone.png'
 import Password from '../../../assets/images/Password.svg'
 import deleteIcon from '../../../assets/images/delete.svg'
 import user from '../../../assets/images/user.png'
+import ModalComponent from '../ModalComponent/ModalComponent'
 
 const SignUpComponent = () => {
   const [valueName, setValueName] = useState('')
@@ -13,6 +15,8 @@ const SignUpComponent = () => {
   const [valuePassword, setValuePassword] = useState('')
   const [valueConfirmPassword, setValueConfirmPassword] = useState('')
   const [accountType, setAccountType] = useState('student')
+  const [isModalShow, setIsModalShow] = useState(false)
+  const [textModal, setTextModal] = useState('Password and confirm password is incorrect !')
   const dispatch = useDispatch()
 
   const setValueNameChange = (event) => {
@@ -31,6 +35,27 @@ const SignUpComponent = () => {
     setAccountType(event.target.value)
   }
   const handleSignUpClick = () => {
+    if (valuePassword === valueConfirmPassword) {
+      dispatch(userAction.REGISTER({
+        sdt: valuePhoneNumber,
+        password: valuePassword,
+        hoVaTen: valueName,
+        accountType,
+      }, (response) => {
+        console.log('response', response)
+
+        if (response.success) {
+          setTextModal('Sign up successful !')
+          setIsModalShow(true)
+        } else {
+          setTextModal('Sign up fail !')
+          setIsModalShow(true)
+        }
+      }))
+    } else {
+      setTextModal('Password and confirm password is incorrect !')
+      setIsModalShow(true)
+    }
   }
   const handleChangeModalToSignInClick = () => {
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
@@ -43,8 +68,23 @@ const SignUpComponent = () => {
   const handleCloseClick = () => {
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
   }
+  const handleModalComponentCloseClick = () => {
+    setIsModalShow(false)
+  }
   return (
     <div className={styles.container}>
+      {isModalShow && <Modal
+        show
+        centered
+        backdrop
+        bsPrefix="modal"
+      >
+        <ModalComponent
+          textModal={textModal}
+          handleModalComponentCloseClick={handleModalComponentCloseClick}
+        />
+      </Modal>}
+
       <div className={styles.coverT}>
         <p className={styles.title}>Sign up</p>
         <p className={styles.description}> Phone number is use to Sign in as a username</p>

@@ -28,7 +28,7 @@ const ProfileItem = (props) => {
             onChange={onChange}
           />
         </form>
-        : <div className={styles.formInput}><p>{value}</p></div>}
+        : <div className={styles.textP}><p>{value}</p></div>}
     </div>
 
   )

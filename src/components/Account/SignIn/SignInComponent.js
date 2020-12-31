@@ -11,7 +11,8 @@ const SignInComponent = () => {
 
   const [valuePhoneNumber, setValuePhoneNumber] = useState('')
   const [valuePassword, setValuePassword] = useState('')
-
+  // const [sdt, setSdt] = useState('0123456789')
+  // const [passwordUser, setPasswordUser] = useState('123456')
   const setValuePhoneChange = (event) => {
     setValuePhoneNumber(event.target.value)
   }
@@ -19,13 +20,21 @@ const SignInComponent = () => {
     setValuePassword(event.target.value)
   }
   const handleSigninClick = () => {
-    dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
-    const timeout = setTimeout(() => {
-      dispatch(userAction.LOGIN({
-        token: 'tokentam',
-      }))
-      clearTimeout(timeout)
-    }, 50)
+    dispatch(userAction.LOGIN({
+      sdt: valuePhoneNumber,
+      password: valuePassword,
+    }, (response) => {
+      console.log('Dang nhap thanh cong !!!')
+      console.log('dataLgoin', response.data)
+
+      if (response.success) {
+        dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
+      } else {
+        console.log('===============================================')
+        console.log('Dang nhap that bai !!!')
+        console.log('===============================================')
+      }
+    }))
   }
   const handleChangeModalToSignUp = () => {
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
@@ -105,7 +114,7 @@ const SignInComponent = () => {
             </button>
           </span>
         </p>
-        <p className={styles.textSignIn}>
+        {/* <p className={styles.textSignIn}>
           <span>
             {'Forgot password? '}
           </span>
@@ -116,7 +125,7 @@ const SignInComponent = () => {
               Reset password
             </button>
           </span>
-        </p>
+        </p> */}
         <button
           className={styles.buttonClose}
           onClick={handleCloseClick}

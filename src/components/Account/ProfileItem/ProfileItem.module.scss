@@ -5,9 +5,8 @@
 .divInput{
   margin: 30px 0px 0px 0px;
   width:320px;
-  height:60px;
-  padding: 10px;
-
+  min-height:52px;
+  padding: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,12 +20,13 @@
 
   .coverImage{
     display: flex;
-    width:49px;
-    height:42px;
-    border-radius: 49px;
+    width:47px;
+    height:42px;  
+    border-radius: 42px;
     align-items: center;
     justify-items: center;
     background-color: rgba(255, 255, 255, 0.2);
+    margin-right: 10px;
     img{
       display: flex;
       width:30px;
@@ -37,8 +37,7 @@
 
 
   .formInput{
-    width:100%;
-    padding: 15px;
+    width:90%;
     :focus{
       outline-style:none ;
     }
@@ -60,5 +59,21 @@
       font-size: 18px;
 
     }
+  }
+  .textP{
+    width:270px;
+    display: flex;
+
+    p{
+      display: flex;
+      align-items: center;
+      word-break: break-word;
+      width:100%;
+      background-color: transparent;
+      color: $white;
+      font-size: 18px;
+      margin: 0px 0px 0px 0px;
+    }
+    
   }
 }

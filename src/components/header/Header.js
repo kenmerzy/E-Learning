@@ -16,11 +16,9 @@ import verified from '../../assets/images/verified.svg'
 
 const Header = () => {
   const token = useSelector((value) => value?.userReducer?.token)
+  const name = useSelector((value) => value?.userReducer?.name)
   const dispatch = useDispatch()
 
-  console.log('===============================================')
-  console.log('token Header', token)
-  console.log('===============================================')
   const handleAccountClick = () => {
     dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: true }))
   }
@@ -86,7 +84,7 @@ const Header = () => {
                 </div>
               </li>)}
               <li>
-                <div className="col-lg-2">
+                <div>
                   {
                     !token
                       ? <Link
@@ -105,6 +103,7 @@ const Header = () => {
                       >
                         <div className={styles.MenuItem}>
                           <img src={verified} className={styles.AppLogo} alt="logo" />
+                          {name && <p>{name}</p>}
                         </div>
                       </Link>
                   }
