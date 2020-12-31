@@ -8,6 +8,9 @@
 .WrappedLogo {
  background-color: transparent;
  margin-bottom: 10px;
+ .link{
+   text-decoration: none;
+ }
 
 }
 
@@ -55,7 +58,9 @@
         text-decoration: none;
         height: 100%;
         width: 100%;
-
+        .link{
+          text-decoration: none;
+        }
           a{
             display: flex;
             align-items: center;

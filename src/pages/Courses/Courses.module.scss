@@ -1,0 +1,95 @@
+@import "../../assets/styles/_configs";
+
+.container
+{
+  width:100%;
+  display:flex;
+  flex-direction: row;
+
+  .menuChuDe{
+    display:flex;
+    flex-direction: column;
+    width:150px;
+    height:fit-content;
+
+    ul{
+      width:160px;
+      li{
+        width:160px;
+        text-align: left;
+        border: 1px solid rgba(0,0,0,.125);
+        padding: 5px 20px;
+        .categoryTitle{
+          color:darkred;
+          font-family: 'SF Pro Display';
+          font-style: normal;
+          font-weight: bold;
+          font-size: 26px;
+          width:120px;
+          margin:0px 0px 0px -5px;
+        }
+        a{
+          width:160px;
+          width:auto;
+          height:100%;
+          text-decoration: none;
+          color:$black;
+          font-family: 'SF Pro Display';
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+          div{
+            width:160px;
+            padding: 10px 0px ;
+          }
+        }
+          p{
+            width:140px;
+            margin :0px 0px 0px 20px ;
+
+          }
+        }
+      }
+    }
+  .courses{
+      
+    .divFilter{
+      margin-left: 150px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+     
+      p{
+          color:$white;
+          font-family: 'SF Pro Display';
+          font-style: normal;
+          font-weight: normal;
+          font-size: 25px;
+          margin:0px 0px;
+
+      }
+      select{
+        margin:0px 10px;
+        padding:5px 15px;
+        outline:none;
+        color: rgba(0, 0, 0);
+        font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        border-radius: 5px;
+         background-color: rgba(255, 255, 255, 1);
+        option {
+          margin-left: 5px;
+          outline:none;
+          color: rgba(0, 0, 0);
+          font-family: 'SF Pro Text';
+          font-style: normal;
+          font-weight: bold;
+          font-size: 25px;
+          margin:0px 5px;
+       }
+      }
+    }
+  }
+}

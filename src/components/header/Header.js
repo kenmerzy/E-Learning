@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent-props */
 import React from 'react'
 import {
   Link,
@@ -62,6 +63,7 @@ const Header = () => {
           <div className={styles.WrappedLogo}>
             <Link
               to="/"
+              className={styles.link}
             >
               <img src={logo} className={styles.AppLogo} alt="logo" />
             </Link>
@@ -75,6 +77,7 @@ const Header = () => {
                   <Link
                     onClick={item.onClick}
                     to={item.link}
+                    className={styles.link}
                   >
                     <div className={styles.MenuItem}>
                       <img src={item.icon} className={styles.AppLogo} alt="logo" />
@@ -92,6 +95,7 @@ const Header = () => {
                         to="/"
                         // eslint-disable-next-line react/jsx-indent-props
                         onClick={handleAccountClick}
+                        className={styles.link}
                       >
                         <div className={styles.MenuItem}>
                           <img src={account} className={styles.AppLogo} alt="logo" />
@@ -100,6 +104,7 @@ const Header = () => {
                       : <Link
                         // eslint-disable-next-line react/jsx-indent-props
                         to="/account"
+                        className={styles.link}
                       >
                         <div className={styles.MenuItem}>
                           <img src={verified} className={styles.AppLogo} alt="logo" />

@@ -1,5 +1,4 @@
 @import "../../../assets/styles/configs";
-
 .container{
   position: relative;
   height: 330px;
@@ -8,6 +7,8 @@
   background: linear-gradient(to bottom, rgba(8, 32, 62,1) 0%,rgba(116, 165, 193,1) 80%);
   padding:20px;
   text-align: center;
+  text-decoration: none !important;
+ 
   .background{
     
   }
@@ -40,9 +41,6 @@
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 18px;
-  /* identical to box height */
-
   text-align: center;
 
   color: rgba(255, 255, 255, 0.8);
