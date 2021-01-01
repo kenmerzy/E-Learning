@@ -6,10 +6,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useHistory,
 } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import CourseItem from '../../components/Courses/CourseItem/CourseItem'
 import LogoFlutter from '../../assets/images/LogoFlutter.svg'
-import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
+// import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 import AvatarMeng from '../../assets/images/AvatarMeng.svg'
 import background1 from '../../assets/images/background1.svg'
 import background12 from '../../assets/images/background12.svg'
@@ -18,6 +20,7 @@ import background9 from '../../assets/images/background9.svg'
 import background10 from '../../assets/images/background10.svg'
 import background11 from '../../assets/images/background11.svg'
 import styles from './Courses.module.scss'
+import { coursesAction } from '../../redux/actions'
 
 const arrayCourses = [
   {
@@ -166,15 +169,22 @@ const authors = [
 ]
 
 const Courses = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const [filterAuthor, setFilterAuthor] = useState('')
-  const [maLoaiKhoaHoc, setMaLoaiKhoaHoc] = useState('')
   const handleFilterAuthorChange = (event) => {
     setFilterAuthor(event.target.value)
+  }
+  const handleMenuItemClick = (item) => {
+    dispatch(coursesAction.GET_MA_LOAI_KHOA_HOC({ maLoaiKhoaHoc: item.maLoaiKhoaHoc }))
+  }
+  const handleCourseItemClick = (item) => {
+    history.push(`details/${item.maLoaiKhoaHoc}/${item.id}`)
   }
 
   const listmaLoaiKhoaHoc = categories.map((item) => <ListGroup.Item as="li">
     <Link
-      onClick={() => { setMaLoaiKhoaHoc(item.maLoaiKhoaHoc) }}
+      onClick={() => handleMenuItemClick(item)}
       to={`/courses/${item.maLoaiKhoaHoc}`}
       key={`${item.maLoaiKhoaHoc}`}
     >
@@ -188,11 +198,6 @@ const Courses = () => {
     .map((item) => <option value={item.value}>{item.name}</option>)
 
   const filterItems = (maLoaiKH) => {
-    console.log('===============================================')
-    console.log('listItems',)
-    console.log('maLoaiKH', maLoaiKH)
-    console.log('maLoai', maLoaiKhoaHoc)
-    console.log('===============================================')
     if (!maLoaiKH) {
       if (!filterAuthor) {
         // All
@@ -208,7 +213,7 @@ const Courses = () => {
           background={item.background}
           id={item.id}
           maLoaiKhoaHoc={item.maLoaiKhoaHoc}
-
+          onClick={handleCourseItemClick}
         />)
       }
       // filter by authors
@@ -226,7 +231,7 @@ const Courses = () => {
           background={item.background}
           id={item.id}
           maLoaiKhoaHoc={item.maLoaiKhoaHoc}
-
+          onClick={handleCourseItemClick}
         />)
     }
     // filter by  categories
@@ -245,7 +250,7 @@ const Courses = () => {
           background={item.background}
           id={item.id}
           maLoaiKhoaHoc={item.maLoaiKhoaHoc}
-
+          onClick={handleCourseItemClick}
         />)
     }
     // filter by both
@@ -274,7 +279,8 @@ const Courses = () => {
       </ul>
     )
   }
-  const CourseMainComponent = () => (
+
+  return (
     <div className={styles.container}>
       <Router>
         <div className={styles.menuChuDe}>
@@ -284,7 +290,7 @@ const Courses = () => {
             </ListGroup.Item>
             <ListGroup.Item as="li">
               <Link
-                onClick={() => { setMaLoaiKhoaHoc('') }}
+                onClick={() => { dispatch(coursesAction.GET_MA_LOAI_KHOA_HOC({ maLoaiKhoaHoc: 'all' })) }}
                 to="/courses"
                 key="all"
               >
@@ -321,16 +327,6 @@ const Courses = () => {
 
       </Router>
     </div>
-  )
-  return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/details/" component={CourseDetails} />
-          <Route path="/courses" component={CourseMainComponent} />
-        </Switch>
-      </div>
-    </Router>
   )
 }
 export default Courses

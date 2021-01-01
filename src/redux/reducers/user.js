@@ -19,7 +19,6 @@ const userReducer = (state = initState, action) => {
         token,
         name,
       }
-
     case userType.SET_IS_MODAL_SHOW:
       return {
         ...state,

@@ -19,6 +19,7 @@ import Cart from '../Cart/Cart'
 import styles from './MainPage.module.scss'
 import SignUpComponent from '../../components/Account/SignUp/SignUpComponent'
 import SignInComponent from '../../components/Account/SignIn/SignInComponent'
+import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 
 const accountStates = {
   SignIn: SignInComponent,
@@ -49,6 +50,8 @@ const MainPage = () => {
               <Route path="/authors" component={Authors} />
               <Route path="/cart" component={Cart} />
               <Route path="/account" component={Account} />
+              <Route path="/details" component={CourseDetails} />
+
               <Route path="/" component={Home} />
             </Switch>
           </div>

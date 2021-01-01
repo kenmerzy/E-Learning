@@ -1,0 +1,1 @@
+export const GET_MA_LOAI_KHOA_HOC = 'GET_MA_LOAI_KHOA_HOC'

@@ -1,0 +1,216 @@
+@import "../../../assets/styles/configs";
+
+.container
+{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+
+  .information
+  {
+    padding: 0px 100px 0px 20px;
+    .title{
+      font-family: SF Pro Display;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 45px;
+      line-height: 72px;
+      color: #FFFFFF;
+      mix-blend-mode: normal;
+      text-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+    }
+    .time{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 130%;
+/* or 19px */
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      mix-blend-mode: normal;
+      margin-top: 20px;
+
+    }
+    .description{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 140%;
+      color: #FFFFFF;
+      mix-blend-mode: normal;
+      margin-top: 20px;
+
+        }
+    .moreInfo{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 130%;
+      /* or 17px */
+      color: rgba(255, 255, 255, 0.7);
+      mix-blend-mode: normal;
+      margin-top: 20px;
+
+
+    }
+    .logo{
+      width:60px;
+      height:60px;
+    }
+    .avatarAuthor{
+      width:40px;
+      height:40px;
+    }
+  }
+  .topic{
+    width:460px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    margin-top: 90px;
+    .titleTopic{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 130%;
+      /* or 19px */
+
+      text-align: center;
+      text-transform: uppercase;
+
+      /* Text (dark) */
+
+      color: #FFFFFF;
+      mix-blend-mode: normal;
+    }
+    .contentTopic{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 130%;
+      /* or 17px */
+      text-align: center;
+      /* Text 2 (dark) */
+      color: rgba(255, 255, 255, 0.7);
+      mix-blend-mode: normal;
+      
+    }
+  }
+  .videos{
+    flex:1;
+    display: flex;
+    height: fit-content;
+    border-radius: 20px;
+    padding:20px 20px;
+
+    background: rgba(255, 255, 255, 0.5);
+    border: 0.5px solid rgba(255, 255, 255, 0.6);
+    box-sizing: border-box;
+    box-shadow: 0px 50px 100px rgba(34, 79, 169, 0.3);
+    backdrop-filter: blur(40px);
+
+      border-radius: 20px;
+
+    ul{
+      flex:1;
+      display: flex;
+      height: fit-content;
+      li{
+        width: 360px;
+        height: 109px;
+        color:white;
+        margin-top: 20px;
+        :hover{
+          background: rgba(59, 167, 104, 0.5);
+          background-blend-mode: overlay;
+          mix-blend-mode: normal;
+          box-shadow: inset 0px 0px 0px 0.5px rgba(68, 66, 178, 0.2);
+          border-radius: 10px;
+        }
+
+        .item{
+          display: flex;
+          flex-direction: row;
+        padding: 10px 10px;
+        cursor:pointer;
+        :hover{
+          background-color: transparent;
+          border: none;
+          box-shadow:none
+        }
+
+          .divContent{
+            display:flex;
+            flex-direction: column;
+            height: 73px;
+            margin-left:10px;
+            p{
+              margin:0px;
+            }
+            .rowTitle{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              margin-bottom: 10px;
+              p{
+                font-family: SF Pro Text;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 20px;
+              line-height: 18px;
+              color: #3913B8;
+              margin-right: 10px;
+              }
+              .time{
+                background: rgba(68, 66, 178, 0.1);
+                background-blend-mode: overlay;
+                border-radius: 10px;
+                padding:6px 10px 0px 10px;
+                font-family: SF Pro Text;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.7);
+              }
+            }
+            .contentDes{
+              font-family: SF Pro Text;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 15px;
+              line-height: 16px;
+              color: rgba(0, 0, 0, 0.7);   
+                  }
+         
+    }
+          .divCircle{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:63px;
+            height:42px;
+            border-radius: 21px;
+            background: rgba(68, 66, 178, 0.1);
+            background-blend-mode: overlay;
+              p{
+                margin:0px;
+                font-family: SF Pro Text;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 20px;
+                line-height: 24px;
+                color: #000000;
+              }
+        
+          }
+        }
+      }
+    }
+  }
+}
