@@ -10,12 +10,12 @@ const CourseItem = (props) => {
     avatar,
     logo,
     background,
-    maLoaiKhoaHoc,
     id,
+    maLoaiKhoaHoc,
   } = props
   return (
     <Link
-      to={`/courses/${!maLoaiKhoaHoc ? 'all' : maLoaiKhoaHoc}/${id}`}
+      to={`/details/${maLoaiKhoaHoc}/${id}`}
       className={styles.container}
       style={customStyles || { margin: 0 }}
     >

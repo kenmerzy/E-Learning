@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import CourseItem from '../../components/Courses/CourseItem/CourseItem'
 import LogoFlutter from '../../assets/images/LogoFlutter.svg'
+import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 import AvatarMeng from '../../assets/images/AvatarMeng.svg'
 import background1 from '../../assets/images/background1.svg'
 import background12 from '../../assets/images/background12.svg'
@@ -175,17 +176,24 @@ const Courses = () => {
     <Link
       onClick={() => { setMaLoaiKhoaHoc(item.maLoaiKhoaHoc) }}
       to={`/courses/${item.maLoaiKhoaHoc}`}
+      key={`${item.maLoaiKhoaHoc}`}
     >
       <div className={styles.MenuItem}>
         <p>{item.title}</p>
       </div>
     </Link>
   </ListGroup.Item>)
+
   const listAuthors = authors
     .map((item) => <option value={item.value}>{item.name}</option>)
 
-  const filterItems = () => {
-    if (!maLoaiKhoaHoc) {
+  const filterItems = (maLoaiKH) => {
+    console.log('===============================================')
+    console.log('listItems',)
+    console.log('maLoaiKH', maLoaiKH)
+    console.log('maLoai', maLoaiKhoaHoc)
+    console.log('===============================================')
+    if (!maLoaiKH) {
       if (!filterAuthor) {
         // All
         return arrayCourses.map((item) => <CourseItem
@@ -199,7 +207,7 @@ const Courses = () => {
           avatar={item.avatar}
           background={item.background}
           id={item.id}
-          maLoaiKhoaHoc={maLoaiKhoaHoc}
+          maLoaiKhoaHoc={item.maLoaiKhoaHoc}
 
         />)
       }
@@ -217,14 +225,14 @@ const Courses = () => {
           avatar={item.avatar}
           background={item.background}
           id={item.id}
-          maLoaiKhoaHoc={maLoaiKhoaHoc}
+          maLoaiKhoaHoc={item.maLoaiKhoaHoc}
 
         />)
     }
     // filter by  categories
     if (!filterAuthor) {
       return arrayCourses
-        .filter((i) => i.maLoaiKhoaHoc === maLoaiKhoaHoc)
+        .filter((i) => i.maLoaiKhoaHoc === maLoaiKH)
         .map((item) => <CourseItem
           title={item.title}
           description={item.description}
@@ -236,13 +244,14 @@ const Courses = () => {
           avatar={item.avatar}
           background={item.background}
           id={item.id}
-          maLoaiKhoaHoc={maLoaiKhoaHoc}
+          maLoaiKhoaHoc={item.maLoaiKhoaHoc}
 
         />)
     }
     // filter by both
     return arrayCourses
-      .filter((i) => i.maLoaiKhoaHoc === maLoaiKhoaHoc && i.author === filterAuthor)
+      .filter((i) => i.maLoaiKhoaHoc === maLoaiKH
+        && i.author === filterAuthor)
       .map((item) => <CourseItem
         title={item.title}
         description={item.description}
@@ -256,56 +265,72 @@ const Courses = () => {
       />)
   }
   // eslint-disable-next-line no-unused-vars
-  const listItems = filterItems()
-  const coursesComponentLink = () => (
-    <ul className="row">
-      { listItems}
-    </ul>
-  )
-  return (
+  const coursesComponentLink = (maLoaiKH) => {
+    const listItems = filterItems(maLoaiKH)
+
+    return (
+      <ul className="row">
+        { listItems}
+      </ul>
+    )
+  }
+  const CourseMainComponent = () => (
     <div className={styles.container}>
-      <div className={styles.menuChuDe}>
-        <ListGroup as="ul">
-          <ListGroup.Item as="li">
-            <p className={styles.categoryTitle}>Categories</p>
-          </ListGroup.Item>
-          <ListGroup.Item as="li">
-            <Link
-              onClick={() => { setMaLoaiKhoaHoc('') }}
-              to="/courses"
+      <Router>
+        <div className={styles.menuChuDe}>
+          <ListGroup as="ul">
+            <ListGroup.Item as="li">
+              <p className={styles.categoryTitle}>Categories</p>
+            </ListGroup.Item>
+            <ListGroup.Item as="li">
+              <Link
+                onClick={() => { setMaLoaiKhoaHoc('') }}
+                to="/courses"
+                key="all"
+              >
+                <div className={styles.MenuItem}>
+                  <p>All courses</p>
+                </div>
+              </Link>
+            </ListGroup.Item>
+            {listmaLoaiKhoaHoc}
+          </ListGroup>
+
+        </div>
+        <div className={styles.courses}>
+          <div className={styles.divFilter}>
+            <p>Filter by authors</p>
+            <select
+              value={filterAuthor}
+              onChange={handleFilterAuthorChange}
             >
-              <div className={styles.MenuItem}>
-                <p>All courses</p>
-              </div>
-            </Link>
-          </ListGroup.Item>
-          {listmaLoaiKhoaHoc}
-        </ListGroup>
+              <option value="">All</option>
+              {listAuthors}
 
-      </div>
-      <div className={styles.courses}>
-        <div className={styles.divFilter}>
-          <p>Filter by authors</p>
-          <select
-            value={filterAuthor}
-            onChange={handleFilterAuthorChange}
-          >
-            <option value="">All</option>
-            {listAuthors}
+            </select>
+          </div>
 
-          </select>
+          <Switch>
+            <Route path="/courses/react-native" component={() => coursesComponentLink('react-native')} />
+            <Route path="/courses/reactJS" component={() => coursesComponentLink('reactJS')} />
+            <Route path="/courses/flutter" component={() => coursesComponentLink('flutter')} />
+            <Route path="/courses/designer" component={() => coursesComponentLink('designer')} />
+            <Route path="/courses" component={() => coursesComponentLink('')} />
+          </Switch>
         </div>
 
-        <Router>
-          <Switch>
-            <Route path={`"/courses/"${maLoaiKhoaHoc}`} component={coursesComponentLink} />
-            <Route path="/" component={coursesComponentLink} />
-          </Switch>
-        </Router>
-      </div>
-
+      </Router>
     </div>
-
+  )
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/details/" component={CourseDetails} />
+          <Route path="/courses" component={CourseMainComponent} />
+        </Switch>
+      </div>
+    </Router>
   )
 }
 export default Courses
