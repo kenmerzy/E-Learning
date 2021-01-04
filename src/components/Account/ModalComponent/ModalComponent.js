@@ -3,10 +3,10 @@ import styles from './ModalComponent.module.scss'
 import deleteIcon from '../../../assets/images/delete.svg'
 
 const ModalComponent = (props) => {
-  const { handleModalComponentCloseClick, textModal } = props
+  const { handleModalComponentCloseClick, textModal, type } = props
   return (
     <div className={styles.container}>
-      <div className={styles.coverT}>
+      <div className={type === 'success' ? styles.coverTSuccess : styles.coverT}>
         <p className={styles.title}>{textModal}</p>
         <button
           className={styles.buttonClose}

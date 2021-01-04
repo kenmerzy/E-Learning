@@ -10,46 +10,32 @@ import addIcon from '../../../assets/images/addIcon.svg'
 import ModalCreateCourse from '../ModalCreateCourse/ModalCreateCourse'
 import CourseCard from '../../../assets/images/CourseCard.svg'
 
-const videosExample = [
-  {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
-  },
-  {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
-  },
-  {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
-  },
-  {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
-  },
-]
-
 const CreateNewCourse = (props) => {
-  const [maKH, setMaKH] = useState(10)
-  console.log('===============================================')
-  console.log('props', props)
-  console.log('===============================================')
+  const [maKH, setMaKH] = useState()
+  const { location } = props
   const history = useHistory()
 
   const [isModalShow, setModalShow] = useState(false)
-  // eslint-disable-next-line no-unused-vars
-  const arrVideosOfCourse = useSelector((value) => value?.coursesReducer?.arrVideosOfCourse)
+  const arrVideosOfCourse = useSelector((value) => value?.coursesReducer?.arrayVideosOfCourse)
   const handleShowModal = () => {
+    console.log('maKH', maKH)
+    console.log('===============================================')
     setModalShow(true)
   }
   const handleCloseModal = () => {
     setModalShow(false)
   }
-
+  useEffect(() => {
+    if (location?.state?.maKH !== undefined) {
+      setMaKH(location?.state?.maKH)
+      console.log('===============================================')
+      console.log('props', props)
+      console.log('location', location)
+      console.log('maKH', maKH)
+      console.log('arrVideosOfCourse', arrVideosOfCourse)
+      console.log('===============================================')
+    }
+  })
   return (
     <div className={styles.container}>
       {isModalShow && <Modal
@@ -111,7 +97,7 @@ const CreateNewCourse = (props) => {
               </div>
             </Link>
           </li>
-          {videosExample.map((item, index) => (
+          {arrVideosOfCourse.map((item, index) => (
             <li>
               <Link className={styles.item}>
                 <div className={styles.divCircle}>
@@ -121,10 +107,10 @@ const CreateNewCourse = (props) => {
                 </div>
                 <div className={styles.divContent}>
                   <div className={styles.rowTitle}>
-                    <p>{item.title}</p>
-                    <div className={styles.time}>{item.time}</div>
+                    <p>{item.tieuDe}</p>
+                    <div className={styles.time}>{`${item.thoiLuong.minute}:${item.thoiLuong.seconds}`}</div>
                   </div>
-                  <p className={styles.contentDes}>{item.description}</p>
+                  <p className={styles.contentDes}>{item.moTa}</p>
                 </div>
               </Link>
             </li>

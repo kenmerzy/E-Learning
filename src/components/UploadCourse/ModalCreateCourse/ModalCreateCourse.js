@@ -10,6 +10,7 @@ import deleteIcon from '../../../assets/images/delete.svg'
 import name from '../../../assets/images/name.png'
 import description from '../../../assets/images/description.png'
 import { coursesAction } from '../../../redux/actions'
+import LoadingComponent from '../../Loading/LoadingComponent'
 
 const ModalCreateCourse = (props) => {
   const { onCloseModalClick, maKH } = props
@@ -19,6 +20,8 @@ const ModalCreateCourse = (props) => {
   const [fileInput, setFileInput] = useState('')
   const token = useSelector((value) => value?.userReducer?.token)
   const [moTa, setMoTa] = useState('')
+  const [typeModal, setTypeModal] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -51,16 +54,27 @@ const ModalCreateCourse = (props) => {
       'videoUpload', fileInput, fileInput.name,
     )
     console.tron.log({ formData })
+    setIsLoading(true)
     dispatch(coursesAction.ADD_NEW_VIDEO(formData,
       (response) => {
         console.log('===============================================')
-        console.log('response', response)
+        console.log('responseInit', response)
         console.log('===============================================')
         if (response.success) {
           setTextModal('Add video successful !')
+          setTypeModal('success')
+          console.log('===============================================')
+          console.log('responseSuccess', response)
+          console.log('===============================================')
+          setIsLoading(false)
           setIsModalShow(true)
         } else {
           setTextModal('Add video fail !')
+          setTypeModal('fail')
+          console.log('===============================================')
+          console.log('responseFail', response)
+          console.log('===============================================')
+          setIsLoading(false)
           setIsModalShow(true)
         }
       }))
@@ -80,9 +94,9 @@ const ModalCreateCourse = (props) => {
         <ModalComponent
           textModal={textModal}
           handleModalComponentCloseClick={handleModalComponentCloseClick}
+          type={typeModal}
         />
       </Modal>}
-
       <div className={styles.coverT}>
         <p className={styles.title}>Add new video</p>
         <div className={styles.divInput}>
@@ -136,14 +150,14 @@ const ModalCreateCourse = (props) => {
             />
           </form>
         </div>
-
-        <button
+        {isLoading && <LoadingComponent label="Uploading..." />}
+        {!isLoading && <button
           className={styles.buttonSignUp}
           onClick={handleCreateCourseClick}
           type="button"
         >
           <p>Add video</p>
-        </button>
+        </button>}
 
         <button
           className={styles.buttonClose}

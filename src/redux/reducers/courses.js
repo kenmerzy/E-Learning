@@ -5,7 +5,7 @@ const initState = {
   maLoaiKhoaHoc: '',
   arrayAllCourse: [],
   arrayAllCategory: [],
-  arrayUploadedVideos: [],
+  arrayUploadedCourses: [],
   arrayAuthor: [],
   arrayVideosOfCourse: [],
 
@@ -35,25 +35,20 @@ const coursesReducer = (state = initState, action) => {
         ...state,
         arrayAuthor: data,
       }
-    case coursesTypes.GET_UPLOADED_VIDEOS_SUCCESS:
+    case coursesTypes.GET_UPLOADED_COURSES_SUCCESS:
       return {
         ...state,
-        arrayUploadedVideos: data,
+        arrayUploadedCourses: data,
       }
-    case coursesTypes.ADD_NEW_COURSE_SUCCESS:
-      return {
-        ...state,
-        arrayAllCourse: data,
-      }
+    // case coursesTypes.ADD_NEW_COURSE_SUCCESS:
+    //   return {
+    //     ...state,
+    //     arrayAllCourse: data,
+    //   }
     case coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS:
       return {
         ...state,
-        arrayVideosOfCourse: data,
-      }
-    case coursesTypes.ADD_NEW_VIDEO_SUCCESS:
-      return {
-        ...state,
-        arrayVideosOfCourse: data,
+        arrayVideosOfCourse: data === undefined ? null : data,
       }
 
     default:

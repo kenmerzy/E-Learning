@@ -9,6 +9,7 @@ import {
 
 import Modal from 'react-bootstrap/Modal'
 import { useSelector, useDispatch } from 'react-redux'
+import ReactLoading from 'react-loading'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import Home from '../Home/Home'
@@ -24,6 +25,7 @@ import SignInComponent from '../../components/Account/SignIn/SignInComponent'
 import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 import CreateNewCourse from '../../components/UploadCourse/CreateNewCourse/CreateNewCourse'
 import { coursesAction } from '../../redux/actions'
+import LoadingComponent from '../../components/Loading/LoadingComponent'
 
 const accountStates = {
   SignIn: SignInComponent,
@@ -33,6 +35,7 @@ const accountStates = {
 const MainPage = () => {
   const isModalShow = useSelector((value) => value?.userReducer?.isModalShow)
   const AccountComponent = accountStates[useSelector((value) => value?.userReducer?.accountState)]
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(coursesAction.GET_ALL_CATEGORY({},
@@ -56,7 +59,6 @@ const MainPage = () => {
       }))
   })
   return (
-
     <div className={styles.Container}>
       {isModalShow && <Modal
         show
@@ -65,6 +67,7 @@ const MainPage = () => {
       >
         <AccountComponent />
       </Modal>}
+
       <div className="container">
 
         <Router>
@@ -78,7 +81,7 @@ const MainPage = () => {
               <Route path="/cart" component={Cart} />
               <Route path="/account" component={Account} />
               <Route path="/details" component={CourseDetails} />
-              <Route path="/create-new-course" component={CreateNewCourse} />
+              <Route path="/create-new-course" component={(props) => <CreateNewCourse {...props} />} />
 
               <Route path="/" component={Home} />
             </Switch>

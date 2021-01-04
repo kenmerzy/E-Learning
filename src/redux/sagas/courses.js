@@ -18,10 +18,12 @@ function* getAllCourse(action) {
         maUser,
       })
     )
-    yield put({
-      type: coursesTypes.GET_ALL_COURSE_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_ALL_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
     callback(response?.data)
   } catch (error) {
     callback(error?.response?.data)
@@ -34,10 +36,12 @@ function* getAllCategory(action) {
     const response = yield call(
       () => axios.post(`${API_URL}/loaikhoahoc/`)
     )
-    yield put({
-      type: coursesTypes.GET_ALL_CATEGORY_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_ALL_CATEGORY_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
     callback(response?.data)
   } catch (error) {
     callback(error?.response?.data)
@@ -50,17 +54,19 @@ function* getAllAuthor(action) {
     const response = yield call(
       () => axios.post(`${API_URL}/auth/author/`)
     )
-    yield put({
-      type: coursesTypes.GET_ALL_AUTHOR_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_ALL_AUTHOR_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
     // callback(response?.data)
   } catch (error) {
     console.log(error?.response?.data)
   }
 }
 
-function* getUploadedVideos(action) {
+function* getUploadedCourses(action) {
   const { data } = action.payload
   const { token } = data
   try {
@@ -72,10 +78,12 @@ function* getUploadedVideos(action) {
     console.log('===============================================')
     console.log('tryGetVideo', response)
     console.log('===============================================')
-    yield put({
-      type: coursesTypes.GET_UPLOADED_VIDEOS_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_UPLOADED_COURSES_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
   } catch (error) {
     console.log(error?.response?.data)
   }
@@ -101,10 +109,12 @@ function* addNewCourse(action) {
         maLKH,
       })
     )
-    yield put({
-      type: coursesTypes.ADD_NEW_COURSE_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_UPLOADED_COURSES_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
     callback(response?.data)
   } catch (error) {
     callback(error?.response?.data)
@@ -112,22 +122,17 @@ function* addNewCourse(action) {
 }
 function* addNewVideo(action) {
   const { data, callback } = action.payload
-  // const {
-  //   token,
-  //   maKH,
-  //   tieuDe,
-  //   moTa,
-  //   videoUpload,
 
-  // } = data
   try {
     const response = yield call(
       () => axios.post(`${API_URL}/baigiang/add`, data)
     )
-    yield put({
-      type: coursesTypes.ADD_NEW_VIDEO_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
     callback(response?.data)
   } catch (error) {
     callback(error?.response?.data)
@@ -144,10 +149,15 @@ function* getArrVideoOfCourse(action) {
         maKH,
       })
     )
-    yield put({
-      type: coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS,
-      payload: { data: response?.data?.data },
-    })
+    if (response?.data?.success) {
+      console.log('===============================================')
+      console.log('successssssssssssssssssssssss',)
+      console.log('===============================================')
+      yield put({
+        type: coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
     callback(response?.data)
   } catch (error) {
     callback(error?.response?.data)
@@ -157,7 +167,7 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.GET_ALL_COURSE, getAllCourse)
   yield takeLatest(coursesTypes.GET_ALL_CATEGORY, getAllCategory)
   yield takeLatest(coursesTypes.GET_ALL_AUTHOR, getAllAuthor)
-  yield takeLatest(coursesTypes.GET_UPLOADED_VIDEOS, getUploadedVideos)
+  yield takeLatest(coursesTypes.GET_UPLOADED_COURSES, getUploadedCourses)
   yield takeLatest(coursesTypes.ADD_NEW_COURSE, addNewCourse)
   yield takeLatest(coursesTypes.ADD_NEW_VIDEO, addNewVideo)
   yield takeLatest(coursesTypes.GET_VIDEOS_OF_COURSE, getArrVideoOfCourse)

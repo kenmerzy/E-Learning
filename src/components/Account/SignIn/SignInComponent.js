@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
@@ -8,12 +7,14 @@ import phone from '../../../assets/images/phone.png'
 import deleteIcon from '../../../assets/images/delete.svg'
 import Password from '../../../assets/images/Password.svg'
 import ModalComponent from '../ModalComponent/ModalComponent'
+import LoadingComponent from '../../Loading/LoadingComponent'
 
 const SignInComponent = () => {
   const [valuePhoneNumber, setValuePhoneNumber] = useState('')
   const [valuePassword, setValuePassword] = useState('')
   const [isModalShow, setIsModalShow] = useState(false)
   const [textModal, setTextModal] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const dispatch = useDispatch()
   const setValuePhoneChange = (event) => {
@@ -23,6 +24,7 @@ const SignInComponent = () => {
     setValuePassword(event.target.value)
   }
   const handleSigninClick = () => {
+    setIsLoading(true)
     dispatch(userAction.LOGIN({
       sdt: valuePhoneNumber,
       password: valuePassword,
@@ -31,12 +33,14 @@ const SignInComponent = () => {
         const { data } = response
         const { accountType, token } = data
         if (accountType === 'AT') {
-          dispatch(coursesAction.GET_UPLOADED_VIDEOS({ token }))
+          dispatch(coursesAction.GET_UPLOADED_COURSES({ token }))
         }
         dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
+        setIsLoading(false)
       } else {
         setTextModal(response.message)
         setIsModalShow(true)
+        setIsLoading(false)
       }
     }))
   }
@@ -65,8 +69,10 @@ const SignInComponent = () => {
         <ModalComponent
           textModal={textModal}
           handleModalComponentCloseClick={handleModalComponentCloseClick}
+
         />
       </Modal>}
+
       <div className={styles.coverT}>
         <p className={styles.title}>Sign in</p>
         <p className={styles.description}>Access to 80+ hours of courses, tutorials and source files</p>
@@ -111,6 +117,7 @@ const SignInComponent = () => {
             />
           </form>
         </div>
+        {isLoading && <LoadingComponent />}
 
         <button
           className={styles.buttonSignin}

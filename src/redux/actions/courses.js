@@ -25,9 +25,9 @@ export const GET_ALL_AUTHOR = (data) => {
   }
 }
 
-export const GET_UPLOADED_VIDEOS = (data, callback) => {
+export const GET_UPLOADED_COURSES = (data, callback) => {
   return {
-    type: coursesTypes.GET_UPLOADED_VIDEOS,
+    type: coursesTypes.GET_UPLOADED_COURSES,
     payload: { data, callback },
   }
 }

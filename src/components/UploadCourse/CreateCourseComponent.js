@@ -16,6 +16,7 @@ const CreateCourseComponent = (props) => {
   const { onCloseModalClick } = props
   const [isModalShow, setIsModalShow] = useState('')
   const [textModal, setTextModal] = useState('')
+  const [typeModal, setTypeModal] = useState('')
   const [tenKhoaHoc, setTenKhoaHoc] = useState('')
   const [maLKH, setMaLKH] = useState(arrayAllCategory[0].id)
   const token = useSelector((value) => value?.userReducer?.token)
@@ -53,9 +54,11 @@ const CreateCourseComponent = (props) => {
       if (response.success) {
         setTextModal('Create course successful !')
         setIsModalShow(true)
+        setTypeModal('success')
       } else {
         setTextModal('Create course fail !')
         setIsModalShow(true)
+        setTypeModal('fail')
       }
     }))
   }
@@ -74,6 +77,7 @@ const CreateCourseComponent = (props) => {
         <ModalComponent
           textModal={textModal}
           handleModalComponentCloseClick={handleModalComponentCloseClick}
+          type={typeModal}
         />
       </Modal>}
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,7 +13,7 @@ import { coursesAction } from '../../redux/actions'
 
 const UploadCourse = () => {
   const [isModalShow, setModalShow] = useState(false)
-  const upLoadedVideos = useSelector((value) => value?.coursesReducer?.arrayUploadedVideos)
+  const arrayUploadedCourses = useSelector((value) => value?.coursesReducer?.arrayUploadedCourses)
   // eslint-disable-next-line no-unused-vars
   const dispatch = useDispatch()
   const history = useHistory()
@@ -30,7 +30,7 @@ const UploadCourse = () => {
         if (response.success) {
           history.push({
             pathname: 'create-new-course',
-            params:
+            state:
             {
               maKH: item.id,
             },
@@ -43,7 +43,7 @@ const UploadCourse = () => {
       }))
   }
 
-  const listItems = upLoadedVideos.map((item) => <CourseItem
+  const listItems = arrayUploadedCourses.map((item) => <CourseItem
     title={item.tenKhoaHoc}
     description={item.moTa}
     customStyles={{ margin: 20 }}
@@ -52,11 +52,15 @@ const UploadCourse = () => {
     background={background6}
     totalView={item.soLuongDaBan}
     gia={item.gia}
-    totalVideos={item.soLuongDaBan}
+    totalVideos={item.soLuongBaiGiang}
     totalTimes={item.tongThoiLuong}
     onClick={() => handleOnClick(item)}
 
   />)
+
+  useEffect(() => {
+
+  }, [arrayUploadedCourses])
   return (
     <div className={styles.container}>
       {isModalShow && <Modal

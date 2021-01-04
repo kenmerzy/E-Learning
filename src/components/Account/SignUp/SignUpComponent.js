@@ -17,6 +17,7 @@ const SignUpComponent = () => {
   const [accountType, setAccountType] = useState('student')
   const [isModalShow, setIsModalShow] = useState(false)
   const [textModal, setTextModal] = useState('Password and confirm password is incorrect !')
+  const [typeModal, setTypeModal] = useState('')
   const dispatch = useDispatch()
 
   const setValueNameChange = (event) => {
@@ -45,14 +46,17 @@ const SignUpComponent = () => {
         console.log('response', response)
 
         if (response.success) {
+          setTypeModal('success')
           setTextModal('Sign up successful !')
           setIsModalShow(true)
         } else {
+          setTypeModal('fail')
           setTextModal('Sign up fail !')
           setIsModalShow(true)
         }
       }))
     } else {
+      setTypeModal('fail')
       setTextModal('Password and confirm password is incorrect !')
       setIsModalShow(true)
     }
@@ -82,6 +86,7 @@ const SignUpComponent = () => {
         <ModalComponent
           textModal={textModal}
           handleModalComponentCloseClick={handleModalComponentCloseClick}
+          type={typeModal}
         />
       </Modal>}
 
