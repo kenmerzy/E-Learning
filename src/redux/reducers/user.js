@@ -5,7 +5,7 @@ const initState = {
   token: null,
   accountState: 'SignIn',
   isModalShow: false,
-
+  accountType: '',
 }
 
 const userReducer = (state = initState, action) => {
@@ -13,11 +13,12 @@ const userReducer = (state = initState, action) => {
 
   switch (action.type) {
     case userType.LOGIN_SUCCESS:
-      const { token, name } = data
+      const { token, name, accountType } = data
       return {
         ...state,
         token,
         name,
+        accountType,
       }
     case userType.SET_IS_MODAL_SHOW:
       return {

@@ -1,13 +1,18 @@
-/* eslint-disable indent */
 /* eslint-disable no-unused-vars */
+/* eslint-disable indent */
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styles from './Account.module.scss'
-import AvatarMeng from '../../assets/images/AvatarMeng.svg'
+import verified from '../../assets/images/verified.svg'
 import { userAction } from '../../redux/actions'
 import phone from '../../assets/images/phone.png'
-import user from '../../assets/images/user.png'
+import name from '../../assets/images/name.png'
+import bio from '../../assets/images/bio.png'
+import gender from '../../assets/images/gender.png'
+import address from '../../assets/images/address.png'
+import birthday from '../../assets/images/birthday.png'
+import occupation from '../../assets/images/occupation.png'
 import ProfileItem from '../../components/Account/ProfileItem/ProfileItem'
 
 const Account = () => {
@@ -164,7 +169,7 @@ const Account = () => {
         <p className={styles.description}>Manage your Design+Code profile and account</p>
         <div className={styles.divAvatar}>
           <img
-            src={AvatarMeng}
+            src={verified}
             alt="logo"
           />
           <button
@@ -178,21 +183,21 @@ const Account = () => {
           <div className="col-lg-6">
             <ProfileItem
               type={profileItemType}
-              image={user}
+              image={name}
               placeholder="Your name"
               value={valueName}
               onChange={setValueNameChange}
             />
             <ProfileItem
               type={profileItemType}
-              image={phone}
+              image={birthday}
               placeholder="Date of birth"
               value={valueDateOfBirth}
               onChange={setValueDateOfBirthChange}
             />
             <ProfileItem
               type={profileItemType}
-              image={user}
+              image={address}
               placeholder="Address"
               value={valueAddress}
               onChange={setValueAddressChange}
@@ -202,21 +207,21 @@ const Account = () => {
           <div className="col-lg-6">
             <ProfileItem
               type={profileItemType}
-              image={user}
+              image={gender}
               placeholder="Gender"
               value={valueGender}
               onChange={setValueGenderChange}
             />
             <ProfileItem
               type={profileItemType}
-              image={phone}
+              image={occupation}
               placeholder="Occupation"
               value={valueOccupation}
               onChange={setValueOccupationChange}
             />
             <ProfileItem
               type={profileItemType}
-              image={user}
+              image={bio}
               placeholder="Bio"
               value={valueBio}
               onChange={setValueBioChange}

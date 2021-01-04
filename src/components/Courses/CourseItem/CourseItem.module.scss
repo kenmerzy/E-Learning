@@ -1,48 +1,71 @@
 @import "../../../assets/styles/configs";
 .container{
   position: relative;
-  height: 330px;
+  height: 340px;
   width: 240px;
   border-radius:20px ;
-  background: linear-gradient(to bottom, rgba(8, 32, 62,1) 0%,rgba(116, 165, 193,1) 80%);
+  background: linear-gradient(to bottom, rgba(8, 32, 62,1) 0%,rgba(116, 165, 193,1) 90%);
   padding:20px;
   text-align: center;
   text-decoration: none !important;
  
-  .background{
-    
-  }
-  .logo{
-    position: absolute;
-    top:20px;
-    right:20px;
-    width:32px;
-    height:32px;
-  }
-  .author{
-    position: absolute;
-    top:72px;
-    right:20px;
-    width:32px;
-    height:32px;
-  }
-  .title{
-    color: $white;
-    font-family: SF Pro Display;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 25px;
-    line-height: 29px;
-    text-align: center;
+      .logo{
+        position: absolute;
+        top:20px;
+        right:20px;
+        width:32px;
+        height:32px;
+      }
+      .author{
+        position: absolute;
+        top:72px;
+        right:20px;
+        width:32px;
+        height:32px;
+      }
+      .title{
+        color: $white;
+        font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 29px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin:5px 0px 0px 0px;
 
-  }
-  .description{
-    font-family: SF Pro Text;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  text-align: center;
+      }
+      .description{
+        font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin:5px 0px 0px 0px;
+      color: rgba(255, 255, 255, 0.8);
+      }
+      .totalView{
+        font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      text-align: center;
+      margin:5px 0px 0px 0px;
+      color: rgba(255, 255, 255, 0.8);
+      }
+      .gia{
+        font-family: SF Pro Text;
+      font-style: normal;
+      font-weight:bold;
+      font-size: 21px;
+      text-align: right;
+      color: rgb(31, 5, 146);
+      margin:5px 0px 0px 0px;
 
-  color: rgba(255, 255, 255, 0.8);
-  }
+      }
 }

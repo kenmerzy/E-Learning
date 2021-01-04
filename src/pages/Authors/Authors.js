@@ -6,6 +6,7 @@ const Authors = () => {
     <div>
       <AuthorItem />
     </div>
+
   )
 }
 export default Authors

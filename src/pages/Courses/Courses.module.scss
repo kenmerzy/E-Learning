@@ -11,6 +11,7 @@
     flex-direction: column;
     width:150px;
     height:fit-content;
+    margin-right: 50px;
 
     ul{
       width:160px;
@@ -18,7 +19,8 @@
         width:160px;
         text-align: left;
         border: 1px solid rgba(0,0,0,.125);
-        padding: 5px 20px;
+        padding: 10px 20px;
+        
         .categoryTitle{
           color:darkred;
           font-family: 'SF Pro Display';

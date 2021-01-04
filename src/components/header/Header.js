@@ -11,6 +11,7 @@ import mycourses from '../../assets/images/mycourses.svg'
 import account from '../../assets/images/account.svg'
 import search from '../../assets/images/search.svg'
 import iconCart from '../../assets/images/iconCart.svg'
+import signout from '../../assets/images/signout.svg'
 import styles from './Header.module.scss'
 import { userAction } from '../../redux/actions'
 import verified from '../../assets/images/verified.svg'
@@ -18,6 +19,8 @@ import verified from '../../assets/images/verified.svg'
 const Header = () => {
   const token = useSelector((value) => value?.userReducer?.token)
   const name = useSelector((value) => value?.userReducer?.name)
+  const accountType = useSelector((value) => value?.userReducer?.accountType)
+
   const dispatch = useDispatch()
 
   const handleAccountClick = () => {
@@ -42,16 +45,6 @@ const Header = () => {
       link: '/authors',
       icon: author,
 
-    },
-
-    {
-      id: 4,
-      icon: iconCart,
-      link: '/cart',
-    },
-    {
-      id: 5,
-      icon: search,
     },
 
   ]
@@ -86,7 +79,44 @@ const Header = () => {
                   </Link>
                 </div>
               </li>)}
-              <li>
+              {accountType === 'AT' && <li key="Upload Course">
+                <div className="col-lg-2">
+                  <Link
+                    to="/uploadcourse"
+                    className={styles.link}
+                  >
+                    <div className={styles.MenuItem}>
+                      <img src={signout} className={styles.AppLogo} alt="logo" />
+                      <p>Upload Course</p>
+                    </div>
+                  </Link>
+                </div>
+              </li>}
+              <li key="cart">
+                <div className="col-lg-2">
+                  <Link
+                    to="/cart"
+                    className={styles.link}
+                  >
+                    <div className={styles.MenuItem}>
+                      <img src={iconCart} className={styles.AppLogo} alt="logo" />
+                    </div>
+                  </Link>
+                </div>
+              </li>
+              <li key="search">
+                <div className="col-lg-2">
+                  <Link
+                    onClick={() => { }}
+                    className={styles.link}
+                  >
+                    <div className={styles.MenuItem}>
+                      <img src={search} className={styles.AppLogo} alt="logo" />
+                    </div>
+                  </Link>
+                </div>
+              </li>
+              <li key="account">
                 <div>
                   {
                     !token

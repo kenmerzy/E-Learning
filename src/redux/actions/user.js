@@ -1,6 +1,9 @@
 import { userType } from '../types'
 
 export const LOGIN = (data, callback) => {
+  console.log('===============================================')
+  console.log('ActionLogin')
+  console.log('===============================================')
   return {
     type: userType.LOGIN,
     payload: { data, callback },

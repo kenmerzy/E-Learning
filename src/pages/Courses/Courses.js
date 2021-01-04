@@ -8,274 +8,104 @@ import {
   Route,
   useHistory,
 } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CourseItem from '../../components/Courses/CourseItem/CourseItem'
-import LogoFlutter from '../../assets/images/LogoFlutter.svg'
+import LogoWhite from '../../assets/images/LogoWhite.svg'
 // import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
-import AvatarMeng from '../../assets/images/AvatarMeng.svg'
 import background1 from '../../assets/images/background1.svg'
-import background12 from '../../assets/images/background12.svg'
-import background8 from '../../assets/images/background8.svg'
-import background9 from '../../assets/images/background9.svg'
-import background10 from '../../assets/images/background10.svg'
-import background11 from '../../assets/images/background11.svg'
 import styles from './Courses.module.scss'
 import { coursesAction } from '../../redux/actions'
 
-const arrayCourses = [
-  {
-    id: 1,
-    title: 'React Native for Designer',
-    description: '16 videos - 3.5 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background8,
-    maLoaiKhoaHoc: 'react-native',
-    author: 'mtl',
-
-  },
-  {
-    id: 2,
-    title: 'Build a full site in Webflow',
-    description: '12 videos - 4 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background9,
-    maLoaiKhoaHoc: 'react-native',
-    author: 'phm',
-
-  },
-  {
-    id: 3,
-    title: 'Motion Design in After Effects',
-    description: '10 videos - 1 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background10,
-    maLoaiKhoaHoc: 'react-native',
-    author: 'mtl',
-
-  },
-  {
-    id: 4,
-    title: 'Swift Advanced',
-    description: '2 videos - 1 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background11,
-    maLoaiKhoaHoc: 'lutter',
-    author: 'nna',
-
-  },
-  {
-    id: 5,
-    title: 'Learn Sketch',
-    description: '2 videos - 1 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background12,
-    maLoaiKhoaHoc: 'designer',
-    author: 'dvd',
-
-  },
-  {
-    id: 6,
-    title: 'Learn Swift',
-    description: '27 videos - 4 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background1,
-    maLoaiKhoaHoc: 'designer',
-    author: 'phm',
-
-  },
-  {
-    id: 7,
-    title: 'Learn Swift',
-    description: '27 videos - 4 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background1,
-    maLoaiKhoaHoc: 'designer',
-    author: 'mtl',
-
-  },
-  {
-    id: 8,
-    title: 'Learn Swift',
-    description: '27 videos - 4 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background1,
-    maLoaiKhoaHoc: 'designer',
-    author: 'nna',
-
-  },
-  {
-    id: 9,
-    title: 'Learn Swift',
-    description: '27 videos - 4 hours',
-    logo: LogoFlutter,
-    avatar: AvatarMeng,
-    background: background1,
-    maLoaiKhoaHoc: 'reactJS',
-    author: 'phm',
-
-  },
-]
-const categories = [
-  {
-    id: 1,
-    maLoaiKhoaHoc: 'react-native',
-    title: 'React Native',
-  },
-  {
-    id: 2,
-    maLoaiKhoaHoc: 'designer',
-    title: 'Designer',
-  },
-  {
-    id: 3,
-    maLoaiKhoaHoc: 'reactJS',
-    title: 'ReactJS',
-  },
-  {
-    id: 4,
-    maLoaiKhoaHoc: 'flutter',
-    title: 'Flutter',
-  },
-]
-const authors = [
-  {
-    id: 1,
-    value: 'mtl',
-    name: 'Mạnh Thiên Lý',
-  },
-  {
-    id: 2,
-    value: 'dvd',
-    name: 'David Dang',
-  },
-  {
-    id: 3,
-    value: 'nna',
-    name: 'Nguyễn Nhật Ánh',
-  },
-  {
-    id: 4,
-    value: 'phm',
-    name: 'Phạm Huy Mạnh',
-  },
-]
-
 const Courses = () => {
   const dispatch = useDispatch()
+  const arrayAllCourse = useSelector((value) => value?.coursesReducer?.arrayAllCourse)
+  const arrayAllCategory = useSelector((value) => value?.coursesReducer?.arrayAllCategory)
+  const arrayAuthor = useSelector((value) => value?.coursesReducer?.arrayAuthor)
   const history = useHistory()
   const [filterAuthor, setFilterAuthor] = useState('')
+  const [filterCourse, setFilterCourse] = useState('')
   const handleFilterAuthorChange = (event) => {
+    console.log('===============================================')
+    console.log('filterAuthorChangeeeeeeeeeeeeeeee',)
+    console.log('===============================================')
     setFilterAuthor(event.target.value)
+    dispatch(coursesAction.GET_ALL_COURSE({
+      maUser: event.target.value,
+      maLKH: filterCourse,
+    }, (response) => {
+      if (response.success) {
+        console.log('===============================================')
+        console.log('filter Author Success')
+        console.log('value', event.target.value)
+        console.log('===============================================')
+      } else {
+        console.log('===============================================')
+        console.log('filter Author Fail')
+        console.log('===============================================')
+      }
+    }))
   }
+
   const handleMenuItemClick = (item) => {
-    dispatch(coursesAction.GET_MA_LOAI_KHOA_HOC({ maLoaiKhoaHoc: item.maLoaiKhoaHoc }))
+    setFilterCourse(item.id)
+    dispatch(coursesAction.GET_ALL_COURSE({
+      maUser: filterAuthor,
+      maLKH: item.id,
+    }, (response) => {
+      if (response.success) {
+        console.log('filter Course Success')
+      } else {
+        console.log('filter Course Fail')
+      }
+    }))
   }
   const handleCourseItemClick = (item) => {
     history.push(`details/${item.maLoaiKhoaHoc}/${item.id}`)
   }
 
-  const listmaLoaiKhoaHoc = categories.map((item) => <ListGroup.Item as="li">
+  const listmaLoaiKhoaHoc = arrayAllCategory.map((item) => <ListGroup.Item as="li">
     <Link
       onClick={() => handleMenuItemClick(item)}
-      to={`/courses/${item.maLoaiKhoaHoc}`}
-      key={`${item.maLoaiKhoaHoc}`}
+      key={`${item.id}`}
     >
       <div className={styles.MenuItem}>
-        <p>{item.title}</p>
+        <p>{item.tenLoaiKhoaHoc}</p>
       </div>
     </Link>
   </ListGroup.Item>)
 
-  const listAuthors = authors
-    .map((item) => <option value={item.value}>{item.name}</option>)
+  const listAuthors = arrayAuthor
+    .map((item) => <option
+      value={`${item.id}`}
+      key={item.id}
+    >
+      {item.hoVaTen}
+    </option>)
 
-  const filterItems = (maLoaiKH) => {
-    if (!maLoaiKH) {
-      if (!filterAuthor) {
-        // All
-        return arrayCourses.map((item) => <CourseItem
-          title={item.title}
-          description={item.description}
-          customStyles={{
-            marginTop: 30,
-            marginLeft: 50,
-          }}
-          logo={item.logo}
-          avatar={item.avatar}
-          background={item.background}
-          id={item.id}
-          maLoaiKhoaHoc={item.maLoaiKhoaHoc}
-          onClick={handleCourseItemClick}
-        />)
-      }
-      // filter by authors
-      return arrayCourses
-        .filter((i) => i.author === filterAuthor)
-        .map((item) => <CourseItem
-          title={item.title}
-          description={item.description}
-          customStyles={{
-            marginTop: 30,
-            marginLeft: 50,
-          }}
-          logo={item.logo}
-          avatar={item.avatar}
-          background={item.background}
-          id={item.id}
-          maLoaiKhoaHoc={item.maLoaiKhoaHoc}
-          onClick={handleCourseItemClick}
-        />)
-    }
-    // filter by  categories
-    if (!filterAuthor) {
-      return arrayCourses
-        .filter((i) => i.maLoaiKhoaHoc === maLoaiKH)
-        .map((item) => <CourseItem
-          title={item.title}
-          description={item.description}
-          customStyles={{
-            marginTop: 30,
-            marginLeft: 50,
-          }}
-          logo={item.logo}
-          avatar={item.avatar}
-          background={item.background}
-          id={item.id}
-          maLoaiKhoaHoc={item.maLoaiKhoaHoc}
-          onClick={handleCourseItemClick}
-        />)
-    }
-    // filter by both
-    return arrayCourses
-      .filter((i) => i.maLoaiKhoaHoc === maLoaiKH
-        && i.author === filterAuthor)
-      .map((item) => <CourseItem
-        title={item.title}
-        description={item.description}
-        customStyles={{
-          marginTop: 30,
-          marginLeft: 50,
-        }}
-        logo={item.logo}
-        avatar={item.avatar}
-        background={item.background}
-      />)
-  }
   // eslint-disable-next-line no-unused-vars
   const coursesComponentLink = (maLoaiKH) => {
-    const listItems = filterItems(maLoaiKH)
-
     return (
       <ul className="row">
-        { listItems}
+        { arrayAllCourse.map((item) => <CourseItem
+          key={item.id}
+          title={item.tenKhoaHoc}
+          description={item.moTa}
+          customStyles={{
+            marginTop: 30,
+            marginLeft: 50,
+          }}
+          gia={item.gia}
+          logo={LogoWhite}
+          avatar={LogoWhite}
+          background={background1}
+          id={item.id}
+          maLoaiKhoaHoc={item.maLKH}
+          onClick={handleCourseItemClick}
+          totalTimes={item.tongThoiLuong}
+          totalVideos={item.soLuongBaiGiang}
+          totalView={item.soLuongDaBan}
+
+        />)}
       </ul>
     )
   }
@@ -290,8 +120,19 @@ const Courses = () => {
             </ListGroup.Item>
             <ListGroup.Item as="li">
               <Link
-                onClick={() => { dispatch(coursesAction.GET_MA_LOAI_KHOA_HOC({ maLoaiKhoaHoc: 'all' })) }}
-                to="/courses"
+                onClick={() => {
+                  setFilterCourse(undefined)
+                  dispatch(coursesAction.GET_ALL_COURSE({
+                    maUser: filterAuthor,
+                    maLKH: undefined,
+                  }, (response) => {
+                    if (response.success) {
+                      console.log('filter Course Success')
+                    } else {
+                      console.log('filter Course Fail')
+                    }
+                  }))
+                }}
                 key="all"
               >
                 <div className={styles.MenuItem}>

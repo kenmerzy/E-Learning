@@ -4,7 +4,11 @@ import axios from 'axios'
 import { userType } from '../types'
 import { API_URL } from '../../configs'
 
-// watcher saga: watches for actions dispatched to the store, starts worker saga
+export default function* userSagas() {
+  yield takeLatest(userType.LOGIN, loginUser)
+  yield takeLatest(userType.REGISTER, registerUser)
+  yield takeLatest(userType.GET_PROFILE, getProfileUser)
+}
 function* loginUser(action) {
   const { data, callback } = action.payload
   const { sdt, password } = data
@@ -79,9 +83,4 @@ function* registerUser(action) {
   } catch (error) {
     callback(error?.response?.data)
   }
-}
-export default function* userSagas() {
-  yield takeLatest(userType.LOGIN, loginUser)
-  yield takeLatest(userType.REGISTER, registerUser)
-  yield takeLatest(userType.GET_PROFILE, getProfileUser)
 }
