@@ -1,74 +1,151 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import Modal from 'react-bootstrap/Modal'
 import styles from './CourseDetails.module.scss'
 import LogoFlutter from '../../../assets/images/LogoFlutter.svg'
 import AvatarMeng from '../../../assets/images/AvatarMeng.svg'
+import VideoDetailComponent from '../VideoDetailComponent/VideoDetailComponent'
 
 const videosExample = [
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction ',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction to Visual Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction  Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Visual ',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction to Visual Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Visual Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction to Visual Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction Ta',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction to Visual Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction  Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
   {
-    title: 'Introduction to Visual Design',
-    description: 'Learn the foundations of UI design and start designing an app with me.',
-    time: '42:16',
+    tieuDe: 'Introduction Visual Design',
+    moTa: 'Learn the foundations of UI design and start designing an app with me.',
+    thoiLuong: {
+      hours: 3,
+      minute: 12,
+      seconds: 36,
+    },
   },
 ]
 
 const CourseDetails = () => {
+  const history = useHistory()
+  const [isModalShow, setModalShow] = useState(false)
+
+  const handleVideoClick = () => {
+    history.push({
+      pathname: 'video',
+      state:
+      {
+        src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
+      },
+    })
+  }
+  const handleCloseClick = () => {
+    setModalShow(false)
+  }
   return (
     <div className={styles.container}>
+      {isModalShow && <Modal
+        show
+        backdrop
+        bsPrefix="modal"
+      >
+        <VideoDetailComponent
+          src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+          handleCloseClick={handleCloseClick}
+        />
+      </Modal>}
       <div className="row">
         <div className="col-lg-5">
           <img src={LogoFlutter} className={styles.logo} alt="logo" />
@@ -100,7 +177,12 @@ const CourseDetails = () => {
         <ul className="row">
           {videosExample.map((item, index) => (
             <li>
-              <div className={styles.item}>
+              <a
+                className={styles.item}
+                href="https://www.w3schools.com"
+                rel="noreferrer"
+                target="_blank"
+              >
                 <div className={styles.divCircle}>
                   <p>
                     {index + 1}
@@ -108,12 +190,12 @@ const CourseDetails = () => {
                 </div>
                 <div className={styles.divContent}>
                   <div className={styles.rowTitle}>
-                    <p>{item.title}</p>
-                    <div className={styles.time}>{item.time}</div>
+                    <p>{item.tieuDe}</p>
+                    <div className={styles.time}>{`${item.thoiLuong.minute}:${item.thoiLuong.seconds}`}</div>
                   </div>
-                  <p className={styles.contentDes}>{item.description}</p>
+                  <p className={styles.contentDes}>{item.moTa}</p>
                 </div>
-              </div>
+              </a>
             </li>
           ))}
         </ul>

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
@@ -26,6 +27,7 @@ import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 import CreateNewCourse from '../../components/UploadCourse/CreateNewCourse/CreateNewCourse'
 import { coursesAction } from '../../redux/actions'
 import LoadingComponent from '../../components/Loading/LoadingComponent'
+import VideoDetailComponent from '../../components/Courses/VideoDetailComponent/VideoDetailComponent'
 
 const accountStates = {
   SignIn: SignInComponent,
@@ -82,6 +84,7 @@ const MainPage = () => {
               <Route path="/account" component={Account} />
               <Route path="/details" component={CourseDetails} />
               <Route path="/create-new-course" component={(props) => <CreateNewCourse {...props} />} />
+              <Route path="/video" component={VideoDetailComponent} />
 
               <Route path="/" component={Home} />
             </Switch>

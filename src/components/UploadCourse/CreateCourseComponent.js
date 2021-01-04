@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,16 +14,17 @@ import { coursesAction } from '../../redux/actions'
 
 const CreateCourseComponent = (props) => {
   const arrayAllCategory = useSelector((value) => value?.coursesReducer?.arrayAllCategory)
+  const token = useSelector((value) => value?.userReducer?.token)
   const { onCloseModalClick } = props
   const [isModalShow, setIsModalShow] = useState('')
   const [textModal, setTextModal] = useState('')
   const [typeModal, setTypeModal] = useState('')
   const [tenKhoaHoc, setTenKhoaHoc] = useState('')
   const [maLKH, setMaLKH] = useState(arrayAllCategory[0].id)
-  const token = useSelector((value) => value?.userReducer?.token)
   const [moTa, setMoTa] = useState('')
   const [gia, setGia] = useState('')
   const [thoiHan, setThoiHan] = useState('')
+  const [fileInput, setFileInput] = useState('')
 
   const dispatch = useDispatch()
 
@@ -40,6 +42,10 @@ const CreateCourseComponent = (props) => {
   }
   const handleThoiHanChange = (event) => {
     setThoiHan(event.target.value)
+  }
+  const handleFileInputChange = (e) => {
+    const { files } = e.target
+    setFileInput(files[0])
   }
 
   const handleCreateCourseClick = () => {
@@ -80,7 +86,6 @@ const CreateCourseComponent = (props) => {
           type={typeModal}
         />
       </Modal>}
-
       <div className={styles.coverT}>
         <p className={styles.title}>Create new course</p>
         <p className={styles.description}> Your course will be vetify as soon as possible</p>
@@ -173,6 +178,20 @@ const CreateCourseComponent = (props) => {
               formNoValidate
               value={gia}
               onChange={handleGiaChange}
+            />
+          </form>
+        </div>
+        <div className={styles.divInput}>
+
+          <form
+            className={styles.formInput}
+            onSubmit={(e) => { e.preventDefault() }}
+          >
+            <input
+              className={styles.input}
+              placeholder="PDF File"
+              type="file"
+              onChange={handleFileInputChange}
             />
           </form>
         </div>

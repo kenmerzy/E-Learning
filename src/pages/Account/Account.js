@@ -103,7 +103,6 @@ const Account = () => {
 
   const handleSignOutClick = () => {
     dispatch({ type: 'LOGOUT' })
-    history.push('/')
   }
   const handleSaveClick = () => {
     setProfileItemType('text')

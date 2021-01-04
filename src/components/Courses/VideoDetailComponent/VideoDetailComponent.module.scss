@@ -1,0 +1,32 @@
+@import '~video-react/styles/scss/video-react'; // or import scss
+.container{
+  display:flex;
+  flex:1;
+  width:100%;
+  margin:0px;
+
+  .buttonClose{
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+    width:36px;
+    height:36px;
+    right:-15px;
+    top:-15px;
+    border-radius: 18px;
+    background-color: #b2b2b2;
+    border : solid 2px #FFFFFF ;
+    align-items: center;
+    outline: none;
+    justify-content: center;
+
+    :focus{
+      outline: none;
+    }
+    img{
+      width:18px;
+      height:18px;
+    
+    }
+  }
+}
