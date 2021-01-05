@@ -19,19 +19,22 @@
       margin-top: 20px;
       color:white;
 
+      input[type=checkbox] {
+        transform: scale(1.4);
+      }
+        .checkBox{
+          width:30px;
+          margin-top: 5px;
+        }
         .tenKhoaHoc{
           width:200px;
-          
         }
         .ma{
           width:110px;
           text-align: center;
-
-          
         }
         .moTa{
           width:200px;
-          
         }
         .thoiHan{
           text-align: center;
@@ -39,13 +42,16 @@
         }
         .soLuongDaBan{
           width:80px;
-
         }
         .gia{
           width:70px;
         }
 
 
+        .checkBoxHeader{
+          margin-top:10px;
+          width:30px;
+        }
         .tenKhoaHocHeader{
           width:200px;
           font-size: 25px;
@@ -117,12 +123,15 @@
       height: 60px;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(91.4deg, #2FB8FF 0%, #9EECD9 100%);
-      box-shadow: 0px 20px 40px rgba(147, 231, 221, 0.3);
+      background: linear-gradient(91.4deg, #f7b131 0%, #bb8624 100%);
+      box-shadow: 0px 20px 40px rgba(240, 226, 104, 0.25);
       border-radius: 30px;
       outline: none;
+      color: black;
+      font-size: 18px;
+      font-weight:normal;
       :focus{
-        outline: none;
+        outline: none; 
       }
     }
   }

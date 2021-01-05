@@ -16,16 +16,17 @@ import occupation from '../../assets/images/occupation.png'
 import ProfileItem from '../../components/Account/ProfileItem/ProfileItem'
 
 const Account = () => {
-  const [valueName, setValueName] = useState(useSelector((value) => value?.userReducer?.name))
+  const informationUser = useSelector((value) => value?.userReducer?.informationUser)
   const token = useSelector((value) => value?.userReducer?.token)
-  const [valueAddress, setValueAddress] = useState('')
-  const [valueDateOfBirth, setValueDateOfBirth] = useState('')
-  const [valueOccupation, setValueOccupation] = useState('')
-  const [valueGender, setValueGender] = useState('')
-  const [valueBio, setValueBio] = useState('')
-  const [valueAccountType, setValueAccountType] = useState('')
-  const [valueMoney, setValueMoney] = useState('')
-  const [valuePhoneNumber, setValuePhoneNumber] = useState('058131886')
+  const [valueName, setValueName] = useState(useSelector((value) => value?.userReducer?.name))
+  const [valueAddress, setValueAddress] = useState(informationUser.diaChi)
+  const [valueDateOfBirth, setValueDateOfBirth] = useState(informationUser.ngaySinh)
+  const [valueOccupation, setValueOccupation] = useState(informationUser.ngheNghiep)
+  const [valueGender, setValueGender] = useState(informationUser.gioiTinh)
+  const [valueBio, setValueBio] = useState(informationUser.gioiThieu)
+  const [valueAccountType, setValueAccountType] = useState(informationUser.ma)
+  const [valueMoney, setValueMoney] = useState(informationUser.soDu)
+  const [valuePhoneNumber, setValuePhoneNumber] = useState(informationUser.sdt)
   const [profileItemType, setProfileItemType] = useState('text')
   const [buttonType, setButtonType] = useState('edit')
   const [isButtonCancelVisible, setIsButtonCancelVisible] = useState(false)
@@ -54,6 +55,8 @@ const Account = () => {
             console.log('===============================================')
           }
         }))
+    } else {
+      history.push('/')
     }
   }, [token])
   const setValueNameChange = (event) => {
@@ -103,6 +106,7 @@ const Account = () => {
 
   const handleSignOutClick = () => {
     dispatch({ type: 'LOGOUT' })
+    history.push('/')
   }
   const handleSaveClick = () => {
     setProfileItemType('text')
@@ -176,6 +180,12 @@ const Account = () => {
           >
             CHANGE AVATAR
           </button>
+          <p className={styles.money}>
+            Số dư:
+            <span>
+              {`  $${valueMoney}`}
+            </span>
+          </p>
         </div>
         <p className={styles.title}>PROFILE SETTINGS</p>
         <div className="row">

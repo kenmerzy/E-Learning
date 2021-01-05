@@ -2,6 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './CourseItem.module.scss'
+import ButtonCourseItem from '../ButtonCourseItem/ButtonCourseItem'
 
 const CourseItem = (props) => {
   const {
@@ -17,6 +18,8 @@ const CourseItem = (props) => {
     to,
     totalTimes,
     description,
+    active,
+    expired,
   } = props
   const parseTimeToString = (time) => {
     if (time) {
@@ -49,7 +52,21 @@ const CourseItem = (props) => {
     }
     return <p className={styles.description}>{' '}</p>
   }
+  const getTypeButton = () => {
+    if (!active) {
+      return 'addToCart'
+    }
 
+    if (expired) {
+      return 'extend'
+    }
+
+    return 'learnNow'
+  }
+  const type = getTypeButton()
+  console.log('===============================================')
+  console.log('type', type)
+  console.log('===============================================')
   return (
     to
       ? <Link
@@ -66,6 +83,7 @@ const CourseItem = (props) => {
         <TotalVideosComponent />
         <TotalViewComponent />
         <GiaComponent />
+        <ButtonCourseItem type={type} />
       </Link>
       : <Link
         className={styles.container}
@@ -80,6 +98,7 @@ const CourseItem = (props) => {
         <TotalVideosComponent />
         <TotalViewComponent />
         <GiaComponent />
+        <ButtonCourseItem type={type} />
       </Link>
 
   )

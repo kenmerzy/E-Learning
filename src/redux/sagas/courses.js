@@ -7,15 +7,10 @@ import { API_URL } from '../../configs'
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 function* getAllCourse(action) {
   const { data, callback } = action.payload
-  const {
-    maLKH,
-    maUser,
-  } = data
   try {
     const response = yield call(
       () => axios.post(`${API_URL}/khoahoc/`, {
-        maLKH,
-        maUser,
+        ...data,
       })
     )
     if (response?.data?.success) {
@@ -142,11 +137,12 @@ function* getArrVideoOfCourse(action) {
   const { data, callback } = action.payload
   const {
     maKH,
+    token,
   } = data
   try {
     const response = yield call(
       () => axios.post(`${API_URL}/baigiang/`, {
-        maKH,
+        maKH, token,
       })
     )
     if (response?.data?.success) {
@@ -163,6 +159,26 @@ function* getArrVideoOfCourse(action) {
     callback(error?.response?.data)
   }
 }
+function* getMyCourse(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+  } = data
+  try {
+    const response = yield call(
+      ({ token })
+    )
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_MY_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
 export default function* courseSagas() {
   yield takeLatest(coursesTypes.GET_ALL_COURSE, getAllCourse)
   yield takeLatest(coursesTypes.GET_ALL_CATEGORY, getAllCategory)
@@ -171,4 +187,5 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.ADD_NEW_COURSE, addNewCourse)
   yield takeLatest(coursesTypes.ADD_NEW_VIDEO, addNewVideo)
   yield takeLatest(coursesTypes.GET_VIDEOS_OF_COURSE, getArrVideoOfCourse)
+  yield takeLatest(coursesTypes.GET_MY_COURSE, getMyCourse)
 }

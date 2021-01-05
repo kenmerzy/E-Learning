@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
@@ -34,8 +35,22 @@ const SignInComponent = () => {
         const { accountType, token } = data
         if (accountType === 'AT') {
           dispatch(coursesAction.GET_UPLOADED_COURSES({ token }))
+          dispatch(userAction.GET_PROFILE({
+            token,
+          },
+            (responseGetData) => {
+              if (responseGetData.success) {
+                console.log('Get information when login success !',)
+              } else {
+                console.log('===============================================')
+                console.log('Get information when login fail !')
+                console.log('===============================================')
+              }
+            }))
         }
+
         dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
+
         setIsLoading(false)
       } else {
         setTextModal(response.message)
@@ -93,6 +108,7 @@ const SignInComponent = () => {
               formNoValidate
               value={valuePhoneNumber}
               onChange={setValuePhoneChange}
+
             />
           </form>
         </div>

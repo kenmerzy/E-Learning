@@ -39,10 +39,10 @@ function* getProfileUser(action) {
         ...data,
       })
     )
-    // yield put({
-    //   type: userType.GET_PROFILE_SUCCESS,
-    //   payload: { data: response?.data?.data },
-    // })
+    yield put({
+      type: userType.GET_PROFILE_SUCCESS,
+      payload: { data: response?.data?.data },
+    })
     callback(response?.data)
   } catch (error) {
     callback(error?.response?.data)

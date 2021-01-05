@@ -1,161 +1,85 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import Modal from 'react-bootstrap/Modal'
+import React, { useEffect, useState } from 'react'
+import { Player } from 'video-react'
+import { useSelector } from 'react-redux'
 import styles from './CourseDetails.module.scss'
 import LogoFlutter from '../../../assets/images/LogoFlutter.svg'
 import AvatarMeng from '../../../assets/images/AvatarMeng.svg'
-import VideoDetailComponent from '../VideoDetailComponent/VideoDetailComponent'
+import { URL } from '../../../configs'
+// eslint-disable-next-line no-unused-vars
+import { ParseTimeToMinuteAndSecond, GetHourOfTime } from '../../../utils'
 
-const videosExample = [
-  {
-    tieuDe: 'Introduction ',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction to Visual Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction  Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Visual ',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction to Visual Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Visual Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction to Visual Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction Ta',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction to Visual Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction  Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-  {
-    tieuDe: 'Introduction Visual Design',
-    moTa: 'Learn the foundations of UI design and start designing an app with me.',
-    thoiLuong: {
-      hours: 3,
-      minute: 12,
-      seconds: 36,
-    },
-  },
-]
+import Next from '../../../assets/images/Next.svg'
+import Back from '../../../assets/images/Back.svg'
 
-const CourseDetails = () => {
-  const history = useHistory()
-  const [isModalShow, setModalShow] = useState(false)
-
-  const handleVideoClick = () => {
-    history.push({
-      pathname: 'video',
-      state:
-      {
-        src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
-      },
-    })
+const CourseDetails = (props) => {
+  const { location } = props
+  const { params, data } = location?.state
+  const { active, expired } = data
+  console.log('===============================================')
+  console.log('params', params)
+  console.log('data', data)
+  console.log('===============================================')
+  // const token = useSelector((value) => value?.userReducer?.token)
+  const [videoPath, setVideoPath] = useState('/publish/videos/01.UIDesignforDevelopers.mp4')
+  const [videoTitle, setVideoTitle] = useState('')
+  const [isVideoShow, setIsVideoShow] = useState(false)
+  const [videoIndex, setVideoIndex] = useState(0)
+  const [timeCourse, setTimeCourse] = useState(0)
+  const arrVideos = useSelector((value) => value?.coursesReducer?.arrayVideosOfCourse)
+  const handleVideoItemClick = (item, index) => {
+    setIsVideoShow(true)
+    setVideoPath(item.video)
+    setVideoTitle(item.tieuDe)
+    setVideoIndex(index)
+    if (isVideoShow) {
+      const elmnt = document.getElementById('video')
+      elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    } else {
+      const timeout = setTimeout(() => {
+        const elmnt = document.getElementById('video')
+        elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        clearTimeout(timeout)
+      }, 50)
+    }
   }
-  const handleCloseClick = () => {
-    setModalShow(false)
+  const handleVideoBackClick = () => {
+    setVideoPath(arrVideos[videoIndex - 1].video)
+    setVideoTitle(arrVideos[videoIndex - 1].tieuDe)
+    setVideoIndex(videoIndex - 1)
   }
+  const handleVideoNextClick = () => {
+    setVideoPath(arrVideos[videoIndex + 1].video)
+    setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
+    setVideoIndex(videoIndex + 1)
+  }
+  useEffect(() => {
+    setTimeCourse(GetHourOfTime(params.tongThoiLuong))
+  })
+
   return (
     <div className={styles.container}>
-      {isModalShow && <Modal
-        show
-        backdrop
-        bsPrefix="modal"
-      >
-        <VideoDetailComponent
-          src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-          handleCloseClick={handleCloseClick}
-        />
-      </Modal>}
       <div className="row">
-        <div className="col-lg-5">
+        <div className="col-lg-4">
           <img src={LogoFlutter} className={styles.logo} alt="logo" />
         </div>
-        <div className="col-lg-7">
+        <div className="col-lg-8">
           <div className={styles.information}>
             <img src={LogoFlutter} className={styles.logo} alt="logo" />
-            <p className={styles.title}>Build a SwiftUI app for iOS 14</p>
-            <p className={styles.time}>20 sections - 3 hours of video</p>
-            <p className={styles.description}>Build a multi-platform app for iOS, iPadOS and Big Sur</p>
+            <p className={styles.title}>{params.tenKhoaHoc}</p>
+            <p className={styles.time}>
+              <span className={styles.number}>
+                {`${params.soLuongBaiGiang}`}
+              </span>
+              {' '}
+              <span>sections - </span>
+
+              <span className={styles.number}>
+                {`${timeCourse}`}
+              </span>
+
+              <span> hours of video</span>
+            </p>
+            <p className={styles.description}>{`${params.moTa}`}</p>
             <img src={AvatarMeng} className={styles.avatarAuthor} alt="logo" />
             <p className={styles.moreInfo}>
               Purchase includes access to 30 courses.
@@ -166,22 +90,24 @@ const CourseDetails = () => {
         </div>
       </div>
       <div className={styles.topic}>
-        <p className={styles.titleTopic}>20 topics</p>
+        <p className={styles.titleTopic}>
+          {`${params.soLuongBaiGiang} topics`}
+        </p>
         <p className={styles.contentTopic}>
           All techniques are explained step-by-step,
           in a beginner-friendly format so that you
           can easily follow in a cohesive way.
         </p>
       </div>
-      <div className={styles.videos}>
+      <div className={active && !expired ? styles.videos : styles.videosNoAccess}>
         <ul className="row">
-          {videosExample.map((item, index) => (
+          {arrVideos.map((item, index) => (
             <li>
               <a
                 className={styles.item}
-                href="https://www.w3schools.com"
                 rel="noreferrer"
-                target="_blank"
+                onClick={active && !expired ? () => handleVideoItemClick(item, index) : null}
+                href
               >
                 <div className={styles.divCircle}>
                   <p>
@@ -200,6 +126,34 @@ const CourseDetails = () => {
           ))}
         </ul>
       </div>
+      {isVideoShow && <div
+        id="video"
+        className={styles.divVideo}
+      >
+        <p>{videoTitle}</p>
+        <Player
+          src={`${URL}${videoPath}`}
+          className={styles.Player}
+          preload="auto"
+        />
+        {videoIndex !== 0 && <a
+          className={styles.logoBack}
+          rel="noreferrer"
+          onClick={handleVideoBackClick}
+          href
+        >
+          <img src={Back} alt="logo" />
+        </a>}
+        {videoIndex !== arrVideos.length - 1 && <a
+          a
+          className={styles.logoNext}
+          rel="noreferrer"
+          onClick={handleVideoNextClick}
+          href
+        >
+          <img src={Next} alt="logo" />
+        </a>}
+      </div>}
     </div>
   )
 }

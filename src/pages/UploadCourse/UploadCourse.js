@@ -12,7 +12,7 @@ import styles from './UploadCourse.module.scss'
 import { coursesAction } from '../../redux/actions'
 
 const UploadCourse = () => {
-  const [isModalShow, setModalShow] = useState(true)
+  const [isModalShow, setModalShow] = useState(false)
   const arrayUploadedCourses = useSelector((value) => value?.coursesReducer?.arrayUploadedCourses)
   // eslint-disable-next-line no-unused-vars
   const dispatch = useDispatch()

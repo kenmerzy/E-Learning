@@ -37,13 +37,14 @@ const accountStates = {
 const MainPage = () => {
   const isModalShow = useSelector((value) => value?.userReducer?.isModalShow)
   const AccountComponent = accountStates[useSelector((value) => value?.userReducer?.accountState)]
+  const token = useSelector((value) => value?.userReducer?.token)
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(coursesAction.GET_ALL_CATEGORY({},
       (response) => {
         if (response.success) {
-          dispatch(coursesAction.GET_ALL_COURSE({},
+          dispatch(coursesAction.GET_ALL_COURSE({ token },
             (responseGetCourse) => {
               if (responseGetCourse.success) {
                 dispatch(coursesAction.GET_ALL_AUTHOR())
@@ -84,7 +85,6 @@ const MainPage = () => {
               <Route path="/account" component={Account} />
               <Route path="/details" component={CourseDetails} />
               <Route path="/create-new-course" component={(props) => <CreateNewCourse {...props} />} />
-              <Route path="/video" component={VideoDetailComponent} />
 
               <Route path="/" component={Home} />
             </Switch>

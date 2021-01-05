@@ -21,6 +21,7 @@ const Courses = () => {
   const arrayAllCourse = useSelector((value) => value?.coursesReducer?.arrayAllCourse)
   const arrayAllCategory = useSelector((value) => value?.coursesReducer?.arrayAllCategory)
   const arrayAuthor = useSelector((value) => value?.coursesReducer?.arrayAuthor)
+  const token = useSelector((value) => value?.userReducer?.token)
   const history = useHistory()
   const [filterAuthor, setFilterAuthor] = useState('')
   const [filterCourse, setFilterCourse] = useState('')
@@ -32,6 +33,7 @@ const Courses = () => {
     dispatch(coursesAction.GET_ALL_COURSE({
       maUser: event.target.value,
       maLKH: filterCourse,
+      token,
     }, (response) => {
       if (response.success) {
         console.log('===============================================')
@@ -51,6 +53,7 @@ const Courses = () => {
     dispatch(coursesAction.GET_ALL_COURSE({
       maUser: filterAuthor,
       maLKH: item.id,
+      token,
     }, (response) => {
       if (response.success) {
         console.log('filter Course Success')
@@ -60,7 +63,25 @@ const Courses = () => {
     }))
   }
   const handleCourseItemClick = (item) => {
-    history.push(`details/${item.maLoaiKhoaHoc}/${item.id}`)
+    dispatch(coursesAction.GET_VIDEOS_OF_COURSE({
+      maKH: item.id,
+      token,
+    }, (response) => {
+      if (response.success) {
+        history.push({
+          pathname: `details/${item.id}`,
+          state:
+          {
+            params: item,
+            data: response.data,
+          },
+        })
+      } else {
+        console.log('===============================================')
+        console.log('Get videos fail')
+        console.log('===============================================')
+      }
+    }))
   }
 
   const listmaLoaiKhoaHoc = arrayAllCategory.map((item) => <ListGroup.Item as="li">
@@ -81,9 +102,12 @@ const Courses = () => {
     >
       {item.hoVaTen}
     </option>)
-
+  console.log('===============================================')
+  console.log('arrayAllCourse', arrayAllCourse)
+  console.log('===============================================')
   // eslint-disable-next-line no-unused-vars
-  const coursesComponentLink = (maLoaiKH) => {
+
+  const coursesComponentLink = () => {
     return (
       <ul className="row">
         { arrayAllCourse.map((item) => <CourseItem
@@ -100,11 +124,12 @@ const Courses = () => {
           background={background1}
           id={item.id}
           maLoaiKhoaHoc={item.maLKH}
-          onClick={handleCourseItemClick}
+          onClick={() => handleCourseItemClick(item)}
           totalTimes={item.tongThoiLuong}
           totalVideos={item.soLuongBaiGiang}
           totalView={item.soLuongDaBan}
-
+          active={item.active}
+          expired={item.expired}
         />)}
       </ul>
     )
@@ -125,6 +150,7 @@ const Courses = () => {
                   dispatch(coursesAction.GET_ALL_COURSE({
                     maUser: filterAuthor,
                     maLKH: undefined,
+                    token,
                   }, (response) => {
                     if (response.success) {
                       console.log('filter Course Success')

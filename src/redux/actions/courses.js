@@ -49,3 +49,9 @@ export const GET_VIDEOS_OF_COURSE = (data, callback) => {
     payload: { data, callback },
   }
 }
+export const GET_MY_COURSE = (data, callback) => {
+  return {
+    type: coursesTypes.GET_VIDEOS_OF_COURSE,
+    payload: { data, callback },
+  }
+}

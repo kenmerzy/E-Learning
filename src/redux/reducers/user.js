@@ -2,10 +2,13 @@
 import { userType } from '../types'
 
 const initState = {
-  token: null,
+  token: undefined,
   accountState: 'SignIn',
   isModalShow: false,
   accountType: '',
+  informationUser: {
+
+  },
 }
 
 const userReducer = (state = initState, action) => {
@@ -19,6 +22,11 @@ const userReducer = (state = initState, action) => {
         token,
         name,
         accountType,
+      }
+    case userType.GET_PROFILE_SUCCESS:
+      return {
+        ...state,
+        informationUser: data,
       }
     case userType.SET_IS_MODAL_SHOW:
       return {

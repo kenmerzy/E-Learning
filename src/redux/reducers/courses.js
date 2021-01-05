@@ -8,6 +8,7 @@ const initState = {
   arrayUploadedCourses: [],
   arrayAuthor: [],
   arrayVideosOfCourse: [],
+  arrayMyCourse: [],
 
 }
 
@@ -48,9 +49,14 @@ const coursesReducer = (state = initState, action) => {
     case coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS:
       return {
         ...state,
-        arrayVideosOfCourse: data === undefined ? null : data,
+        arrayVideosOfCourse: data.arrayVideo === undefined ? null : data.arrayVideo,
       }
 
+    case coursesTypes.GET_MY_COURSE_SUCCESS:
+      return {
+        ...state,
+        arrayMyCourse: data,
+      }
     default:
       return state
   }

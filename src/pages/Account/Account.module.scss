@@ -23,7 +23,7 @@
         font-family: 'SF Pro Text';
         font-style: normal;
         font-weight: 600;
-        font-size: 15px;
+        font-size: 18px;
         line-height: 130%;
         margin: 20px 0px 0px 0px;
       }
@@ -146,6 +146,17 @@
         font-size: 15px;
         line-height: 130%;
         text-align: center;
+      }
+      .money{
+        margin-top: 10px;
+        padding-left: 10px;
+
+        span{
+          font-weight: bold;
+          font-size: 18px;
+          ;
+
+        }
       }
 
     }
