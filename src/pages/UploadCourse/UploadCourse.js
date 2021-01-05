@@ -79,6 +79,7 @@ const UploadCourse = () => {
           customStyles={{ margin: 20 }}
           background={backgroundUpload}
           onClick={handleShowModal}
+          hideButton
         />
         {listItems}
       </ul>

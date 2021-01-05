@@ -20,6 +20,7 @@ const CourseItem = (props) => {
     description,
     active,
     expired,
+    hideButton,
   } = props
   const parseTimeToString = (time) => {
     if (time) {
@@ -83,7 +84,7 @@ const CourseItem = (props) => {
         <TotalVideosComponent />
         <TotalViewComponent />
         <GiaComponent />
-        <ButtonCourseItem type={type} />
+        {!hideButton && <ButtonCourseItem type={type} />}
       </Link>
       : <Link
         className={styles.container}
@@ -98,7 +99,8 @@ const CourseItem = (props) => {
         <TotalVideosComponent />
         <TotalViewComponent />
         <GiaComponent />
-        <ButtonCourseItem type={type} />
+        {!hideButton && <ButtonCourseItem type={type} />}
+
       </Link>
 
   )

@@ -99,7 +99,7 @@ const CourseDetails = (props) => {
           can easily follow in a cohesive way.
         </p>
       </div>
-      <div className={active && !expired ? styles.videos : styles.videosNoAccess}>
+      <div className={active ? !expired ? styles.videosNoAccess : styles.videos : styles.videosNoAccess}>
         <ul className="row">
           {arrVideos.map((item, index) => (
             <li>
