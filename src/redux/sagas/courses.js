@@ -146,9 +146,6 @@ function* getArrVideoOfCourse(action) {
       })
     )
     if (response?.data?.success) {
-      console.log('===============================================')
-      console.log('successssssssssssssssssssssss',)
-      console.log('===============================================')
       yield put({
         type: coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS,
         payload: { data: response?.data?.data },
@@ -166,11 +163,106 @@ function* getMyCourse(action) {
   } = data
   try {
     const response = yield call(
-      ({ token })
+      () => axios.post(`${API_URL}/khoahoc/bought`, {
+        token,
+      })
     )
     if (response?.data?.success) {
       yield put({
         type: coursesTypes.GET_MY_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* addToCart(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    maKH,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/giohang/add`, {
+        maKH, token,
+      })
+    )
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_CART_ITEM_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* getCartItem(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/giohang/`, {
+        token,
+      })
+    )
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_CART_ITEM_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* deleleCartItem(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    arrayCourse,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/giohang/delete`, {
+        token,
+        arrayCourse,
+      })
+    )
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_CART_ITEM_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* purchase(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    arrayCourse,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/thanhtoan/`, {
+        token,
+        arrayCourse,
+      })
+    )
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_CART_ITEM_SUCCESS,
         payload: { data: response?.data?.data },
       })
     }
@@ -187,5 +279,9 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.ADD_NEW_COURSE, addNewCourse)
   yield takeLatest(coursesTypes.ADD_NEW_VIDEO, addNewVideo)
   yield takeLatest(coursesTypes.GET_VIDEOS_OF_COURSE, getArrVideoOfCourse)
+  yield takeLatest(coursesTypes.ADD_TO_CART, addToCart)
+  yield takeLatest(coursesTypes.GET_CART_ITEM, getCartItem)
   yield takeLatest(coursesTypes.GET_MY_COURSE, getMyCourse)
+  yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleleCartItem)
+  yield takeLatest(coursesTypes.PURCHASE, purchase)
 }

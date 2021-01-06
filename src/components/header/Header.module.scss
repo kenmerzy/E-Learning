@@ -72,6 +72,7 @@
             }
               .MenuItem{
                 display: flex;
+                position: relative;
                 height: 100%;
                 flex-direction: row;
                 align-items: center;
@@ -95,6 +96,28 @@
                   margin-bottom: 0;
                   text-decoration: none;
                   white-space: nowrap
+                }
+              }
+              .notifyIcon{
+                position:absolute;
+                background-color: rgb(255,255,255,0.8);
+                width:22px;
+                height:22px;
+                top:2px;
+                right:-8px;
+                border-radius: 20px;
+                justify-items: center;
+                align-items: center;
+                text-align: center;
+                :hover{
+                  background: none;
+                }
+                p{
+                  color:red;
+                  font-size:14px;
+                  font-family: "SF Pro Text";
+                  font-weight: bold;
+                  margin:0px 0px 0px 0px;
                 }
               }
            }

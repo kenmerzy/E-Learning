@@ -20,6 +20,7 @@ const Header = () => {
   const token = useSelector((value) => value?.userReducer?.token)
   const name = useSelector((value) => value?.userReducer?.name)
   const accountType = useSelector((value) => value?.userReducer?.accountType)
+  const arrayCart = useSelector((value) => value?.coursesReducer?.arrayCart)
 
   const dispatch = useDispatch()
 
@@ -101,6 +102,10 @@ const Header = () => {
                     <div className={styles.MenuItem}>
                       <img src={iconCart} className={styles.AppLogo} alt="logo" />
                     </div>
+
+                    {arrayCart.length > 0 && <div className={styles.notifyIcon}>
+                      <p>{arrayCart.length}</p>
+                    </div>}
                   </Link>
                 </div>
               </li>

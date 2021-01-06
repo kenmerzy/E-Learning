@@ -98,7 +98,7 @@ const CreateNewCourse = (props) => {
               </div>
             </Link>
           </li>
-          {arrVideosOfCourse.map((item, index) => (
+          {arrVideosOfCourse && arrVideosOfCourse.map((item, index) => (
             <li>
               <Link className={styles.item}>
                 <div className={styles.divCircle}>

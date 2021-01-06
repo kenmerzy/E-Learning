@@ -51,7 +51,7 @@ const SignUpComponent = () => {
           setIsModalShow(true)
         } else {
           setTypeModal('fail')
-          setTextModal('Sign up fail !')
+          setTextModal(response.message)
           setIsModalShow(true)
         }
       }))

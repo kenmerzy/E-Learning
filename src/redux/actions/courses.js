@@ -51,7 +51,31 @@ export const GET_VIDEOS_OF_COURSE = (data, callback) => {
 }
 export const GET_MY_COURSE = (data, callback) => {
   return {
-    type: coursesTypes.GET_VIDEOS_OF_COURSE,
+    type: coursesTypes.GET_MY_COURSE,
+    payload: { data, callback },
+  }
+}
+export const ADD_TO_CART = (data, callback) => {
+  return {
+    type: coursesTypes.ADD_TO_CART,
+    payload: { data, callback },
+  }
+}
+export const GET_CART_ITEM = (data, callback) => {
+  return {
+    type: coursesTypes.GET_CART_ITEM,
+    payload: { data, callback },
+  }
+}
+export const DELETE_CART_ITEM = (data, callback) => {
+  return {
+    type: coursesTypes.DELETE_CART_ITEM,
+    payload: { data, callback },
+  }
+}
+export const PURCHASE = (data, callback) => {
+  return {
+    type: coursesTypes.PURCHASE,
     payload: { data, callback },
   }
 }

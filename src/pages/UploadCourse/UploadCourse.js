@@ -24,6 +24,10 @@ const UploadCourse = () => {
   const handleShowModal = () => {
     setModalShow(true)
   }
+
+  const onClickLearnNow = () => {
+  }
+
   const handleOnClick = (item) => {
     dispatch(coursesAction.GET_VIDEOS_OF_COURSE({ maKH: item.id },
       (response) => {
@@ -44,23 +48,33 @@ const UploadCourse = () => {
   }
 
   const listItems = arrayUploadedCourses.map((item) => <CourseItem
+    key={item.id}
     title={item.tenKhoaHoc}
     description={item.moTa}
-    customStyles={{ margin: 20 }}
+    customStyles={{
+      marginTop: 30,
+      marginLeft: 50,
+    }}
+    gia={item.gia}
     logo={LogoWhite}
     avatar={AvatarMeng}
     background={background6}
-    totalView={item.soLuongDaBan}
-    gia={item.gia}
-    totalVideos={item.soLuongBaiGiang}
-    totalTimes={item.tongThoiLuong}
+    id={item.id}
+    maLoaiKhoaHoc={item.maLKH}
     onClick={() => handleOnClick(item)}
-
+    totalTimes={item.tongThoiLuong}
+    totalVideos={item.soLuongBaiGiang}
+    totalView={item.soLuongDaBan}
+    active
+    expired={false}
+    hideButton
+    onClickLearnNow={onClickLearnNow}
   />)
 
   useEffect(() => {
 
   }, [arrayUploadedCourses])
+
   return (
     <div className={styles.container}>
       {isModalShow && <Modal

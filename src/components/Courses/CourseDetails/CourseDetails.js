@@ -15,10 +15,7 @@ const CourseDetails = (props) => {
   const { location } = props
   const { params, data } = location?.state
   const { active, expired } = data
-  console.log('===============================================')
-  console.log('params', params)
-  console.log('data', data)
-  console.log('===============================================')
+
   // const token = useSelector((value) => value?.userReducer?.token)
   const [videoPath, setVideoPath] = useState('/publish/videos/01.UIDesignforDevelopers.mp4')
   const [videoTitle, setVideoTitle] = useState('')
@@ -55,7 +52,10 @@ const CourseDetails = (props) => {
   useEffect(() => {
     setTimeCourse(GetHourOfTime(params.tongThoiLuong))
   })
-
+  // console.log('===============================================')
+  // console.log('params.tenKhoaHoc', params.tenKhoaHoc)
+  // console.log('data', data)
+  // console.log('===============================================')
   return (
     <div className={styles.container}>
       <div className="row">
@@ -99,7 +99,7 @@ const CourseDetails = (props) => {
           can easily follow in a cohesive way.
         </p>
       </div>
-      <div className={active ? !expired ? styles.videosNoAccess : styles.videos : styles.videosNoAccess}>
+      <div className={active && !expired ? styles.videos : styles.videosNoAccess}>
         <ul className="row">
           {arrVideos.map((item, index) => (
             <li>

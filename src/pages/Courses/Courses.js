@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-indent-props */
 import React, { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
@@ -9,12 +10,14 @@ import {
   useHistory,
 } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import Modal from 'react-bootstrap/Modal'
 import CourseItem from '../../components/Courses/CourseItem/CourseItem'
 import LogoWhite from '../../assets/images/LogoWhite.svg'
 // import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 import background1 from '../../assets/images/background1.svg'
 import styles from './Courses.module.scss'
 import { coursesAction } from '../../redux/actions'
+import ModalComponent from '../../components/Account/ModalComponent/ModalComponent'
 
 const Courses = () => {
   const dispatch = useDispatch()
@@ -25,10 +28,10 @@ const Courses = () => {
   const history = useHistory()
   const [filterAuthor, setFilterAuthor] = useState('')
   const [filterCourse, setFilterCourse] = useState('')
+  const [isModalShow, setIsModalShow] = useState('')
+  const [textModal, setTextModal] = useState('')
+  const [typeModal, setTypeModal] = useState('')
   const handleFilterAuthorChange = (event) => {
-    console.log('===============================================')
-    console.log('filterAuthorChangeeeeeeeeeeeeeeee',)
-    console.log('===============================================')
     setFilterAuthor(event.target.value)
     dispatch(coursesAction.GET_ALL_COURSE({
       maUser: event.target.value,
@@ -77,13 +80,67 @@ const Courses = () => {
           },
         })
       } else {
-        console.log('===============================================')
         console.log('Get videos fail')
+      }
+    }))
+  }
+  const onClickAddToCart = (e, item) => {
+    dispatch(coursesAction.ADD_TO_CART({
+      token,
+      maKH: item.id,
+    }, (response) => {
+      if (response.success) {
+        console.log('Add to cart success')
+      } else {
+        console.log('Add to cart fail')
+      }
+    }))
+  }
+  const onClickBuyNow = (item) => {
+    dispatch(coursesAction.PURCHASE({
+      token,
+      arrayCourse: [item],
+    }, (response) => {
+      if (response.success) {
+        dispatch(coursesAction.GET_MY_COURSE({
+          token,
+        }, (responseGetMyCourse) => {
+          if (responseGetMyCourse.success) {
+            console.log('Get my course success')
+          } else {
+            console.log('Get my course fail')
+          }
+        }))
+        dispatch(coursesAction.GET_ALL_COURSE({
+        }, (responseGetMyCourse) => {
+          if (responseGetMyCourse.success) {
+            console.log('Get all course success')
+          } else {
+            console.log('Get all course fail')
+          }
+        }))
+        console.log('===============================================')
+        console.log('response purchase now success', response)
+        console.log('===============================================')
+      } else {
+        setTypeModal('fail')
+        setTextModal('Purchase fail')
+        setIsModalShow(true)
+        console.log('===============================================')
+        console.log('response purchase now fail', response)
         console.log('===============================================')
       }
     }))
   }
-
+  const onClickLearnNow = (e) => {
+    e.stopPropagation()
+  }
+  const onClickExtend = (e) => {
+    e.stopPropagation()
+  }
+  const handleModalComponentCloseClick = () => {
+    setIsModalShow(false)
+  }
   const listmaLoaiKhoaHoc = arrayAllCategory.map((item) => <ListGroup.Item as="li">
     <Link
       onClick={() => handleMenuItemClick(item)}
@@ -102,36 +159,52 @@ const Courses = () => {
     >
       {item.hoVaTen}
     </option>)
-  console.log('===============================================')
-  console.log('arrayAllCourse', arrayAllCourse)
-  console.log('===============================================')
+
   // eslint-disable-next-line no-unused-vars
 
   const coursesComponentLink = () => {
     return (
-      <ul className="row">
-        { arrayAllCourse.map((item) => <CourseItem
-          key={item.id}
-          title={item.tenKhoaHoc}
-          description={item.moTa}
-          customStyles={{
-            marginTop: 30,
-            marginLeft: 50,
-          }}
-          gia={item.gia}
-          logo={LogoWhite}
-          avatar={LogoWhite}
-          background={background1}
-          id={item.id}
-          maLoaiKhoaHoc={item.maLKH}
-          onClick={() => handleCourseItemClick(item)}
-          totalTimes={item.tongThoiLuong}
-          totalVideos={item.soLuongBaiGiang}
-          totalView={item.soLuongDaBan}
-          active={item.active}
-          expired={item.expired}
-        />)}
-      </ul>
+      <div>
+        {isModalShow && <Modal
+          show
+          centered
+          backdrop
+          bsPrefix="modal"
+        >
+          <ModalComponent
+            textModal={textModal}
+            handleModalComponentCloseClick={handleModalComponentCloseClick}
+            type={typeModal}
+          />
+        </Modal>}
+        <ul className="row">
+          {arrayAllCourse.map((item) => <CourseItem
+            key={item.id}
+            title={item.tenKhoaHoc}
+            description={item.moTa}
+            customStyles={{
+              marginTop: 30,
+              marginLeft: 50,
+            }}
+            gia={item.gia}
+            logo={LogoWhite}
+            avatar={LogoWhite}
+            background={background1}
+            id={item.id}
+            maLoaiKhoaHoc={item.maLKH}
+            onClick={() => handleCourseItemClick(item)}
+            totalTimes={item.tongThoiLuong}
+            totalVideos={item.soLuongBaiGiang}
+            totalView={item.soLuongDaBan}
+            active={item.active}
+            expired={item.expired}
+            onClickAddToCart={(e) => onClickAddToCart(e, item)}
+            onClickBuyNow={() => onClickBuyNow(item)}
+            onClickLearnNow={onClickLearnNow}
+            onClickExtend={onClickExtend}
+          />)}
+        </ul>
+      </div>
     )
   }
 

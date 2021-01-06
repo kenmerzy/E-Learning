@@ -2,7 +2,9 @@ import React from 'react'
 import styles from './ButtonCourseItem.module.scss'
 
 const ButtonCourseItem = (props) => {
-  const { type, onClick } = props
+  const {
+    type, onClickAddToCart, onClickBuyNow, onClickLearnNow, onClickExtend,
+  } = props
 
   const ButtonTypeCase = () => {
     switch (type) {
@@ -10,14 +12,14 @@ const ButtonCourseItem = (props) => {
         return <div className={styles.container}>
           <button
             className={styles.buttonAddToCart}
-            onClick={onClick}
+            onClick={onClickAddToCart}
             type="button"
           >
             Add to cart
           </button>
           <button
             className={styles.buttonBuyNow}
-            onClick={onClick}
+            onClick={onClickBuyNow}
             type="button"
           >
             Purchase
@@ -27,8 +29,8 @@ const ButtonCourseItem = (props) => {
       case 'learnNow':
         return <div className={styles.container}>
           <button
-            className={styles.buttonBuyNow}
-            onClick={onClick}
+            className={styles.buttonAddToCart}
+            onClick={onClickLearnNow}
             type="button"
           >
             Learn now
@@ -39,7 +41,7 @@ const ButtonCourseItem = (props) => {
         return <div className={styles.container}>
           <button
             className={styles.buttonAddToCart}
-            onClick={onClick}
+            onClick={onClickExtend}
             type="button"
           >
             Extend
@@ -49,14 +51,14 @@ const ButtonCourseItem = (props) => {
         return <div className={styles.container}>
           <button
             className={styles.buttonAddToCart}
-            onClick={onClick}
+            onClick={onClickAddToCart}
             type="button"
           >
             Add to cart
           </button>
           <button
             className={styles.buttonAddToCart}
-            onClick={onClick}
+            onClick={onClickBuyNow}
             type="button"
           >
             Purchase

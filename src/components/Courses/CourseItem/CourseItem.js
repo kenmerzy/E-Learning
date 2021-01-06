@@ -21,6 +21,11 @@ const CourseItem = (props) => {
     active,
     expired,
     hideButton,
+    onClickAddToCart,
+    onClickBuyNow,
+    onClickLearnNow,
+    onClickExtend,
+
   } = props
   const parseTimeToString = (time) => {
     if (time) {
@@ -58,16 +63,24 @@ const CourseItem = (props) => {
       return 'addToCart'
     }
 
-    if (expired) {
-      return 'extend'
+    if (!expired) {
+      return 'learnNow'
     }
 
-    return 'learnNow'
+    return 'extend'
   }
   const type = getTypeButton()
-  console.log('===============================================')
-  console.log('type', type)
-  console.log('===============================================')
+
+  // const timeout = setTimeout(() => {
+  //   console.log('===============================================')
+  //   console.log('title', title)
+  //   console.log('active', active)
+  //   console.log('expired', expired)
+  //   console.log('type', type)
+  //   console.log('===============================================')
+  //   clearTimeout(timeout)
+  // }, 50)
+
   return (
     to
       ? <Link
@@ -84,7 +97,13 @@ const CourseItem = (props) => {
         <TotalVideosComponent />
         <TotalViewComponent />
         <GiaComponent />
-        {!hideButton && <ButtonCourseItem type={type} />}
+        {!hideButton && <ButtonCourseItem
+          type={type}
+          onClickAddToCart={onClickAddToCart && onClickAddToCart}
+          onClickBuyNow={onClickBuyNow && onClickBuyNow}
+          onClickLearnNow={onClickLearnNow && onClickLearnNow}
+          onClickExtend={onClickExtend && onClickExtend}
+        />}
       </Link>
       : <Link
         className={styles.container}
@@ -99,7 +118,13 @@ const CourseItem = (props) => {
         <TotalVideosComponent />
         <TotalViewComponent />
         <GiaComponent />
-        {!hideButton && <ButtonCourseItem type={type} />}
+        {!hideButton && <ButtonCourseItem
+          type={type}
+          onClickAddToCart={onClickAddToCart && onClickAddToCart}
+          onClickBuyNow={onClickBuyNow && onClickBuyNow}
+          onClickLearnNow={onClickLearnNow && onClickLearnNow}
+          onClickExtend={onClickExtend && onClickExtend}
+        />}
 
       </Link>
 

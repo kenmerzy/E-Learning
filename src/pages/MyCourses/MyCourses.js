@@ -1,120 +1,69 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import CourseItem from '../../components/Courses/CourseItem/CourseItem'
-import itemCourseImage from '../../assets/images/itemCourseImage.svg'
-import LogoFlutter from '../../assets/images/LogoFlutter.svg'
 import AvatarMeng from '../../assets/images/AvatarMeng.svg'
+import LogoWhite from '../../assets/images/LogoWhite.svg'
 import background1 from '../../assets/images/background1.svg'
-import background12 from '../../assets/images/background12.svg'
-import background3 from '../../assets/images/background3.svg'
-import background4 from '../../assets/images/background4.svg'
-import background5 from '../../assets/images/background5.svg'
-import background6 from '../../assets/images/background6.svg'
-import background7 from '../../assets/images/background7.svg'
-import background8 from '../../assets/images/background8.svg'
-import background9 from '../../assets/images/background9.svg'
-import background10 from '../../assets/images/background10.svg'
-import background11 from '../../assets/images/background11.svg'
+import styles from './MyCourses.module.scss'
+import { coursesAction } from '../../redux/actions'
 
 const MyCourses = () => {
-  const numbers = [
-    {
-      title: 'Flutter for Designers',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: itemCourseImage,
-    },
-    {
-      title: 'SwiftUI Livestreams',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background3,
-    },
-    {
-      title: 'Design System in Figma',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background4,
-    },
-    {
-      title: 'UI Design for Developers',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background5,
-    },
-    {
-      title: 'React for Designers',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background6,
-    },
-    {
-      title: 'Advanced Prototyping in Protopie',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background7,
-    },
-    {
-      title: 'React Native for Designer',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background8,
-    },
-    {
-      title: 'Build a full site in Webflow',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background9,
-    },
-    {
-      title: 'Motion Design in After Effects',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background10,
-    },
-    {
-      title: 'Swift Advanced',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background11,
-    },
-    {
-      title: 'Learn Sketch',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background12,
-    },
-    {
-      title: 'Learn Swift',
-      description: '20 videos - 3 hours',
-      logo: LogoFlutter,
-      avatar: AvatarMeng,
-      background: background1,
-    },
+  const myCourse = useSelector((value) => value?.coursesReducer?.arrayMyCourse)
+  const history = useHistory()
+  const token = useSelector((value) => value?.userReducer?.token)
+  const dispatch = useDispatch()
+  const onClickLearnNow = () => {
 
-  ]
-  const listItems = numbers.map((item) => <CourseItem
-    title={item.title}
-    description={item.description}
-    customStyles={{ margin: 20 }}
-    logo={item.logo}
-    avatar={item.avatar}
-    background={item.background}
+  }
+  const handleCourseItemClick = (item) => {
+    dispatch(coursesAction.GET_VIDEOS_OF_COURSE({
+      maKH: item.id,
+      token,
+    }, (response) => {
+      if (response.success) {
+        history.push({
+          pathname: `details/${item.id}`,
+          state:
+          {
+            params: item,
+            data: response.data,
+          },
+        })
+      } else {
+        console.log('Get videos fail')
+      }
+    }))
+  }
+  const listItems = myCourse.map((item) => <CourseItem
+    key={item.id}
+    title={item.tenKhoaHoc}
+    description={item.moTa}
+    customStyles={{
+      marginTop: 30,
+      marginLeft: 50,
+    }}
+    gia={item.gia}
+    logo={LogoWhite}
+    avatar={AvatarMeng}
+    background={background1}
+    id={item.id}
+    maLoaiKhoaHoc={item.maLKH}
+    onClick={() => handleCourseItemClick(item)}
+    totalTimes={item.tongThoiLuong}
+    totalVideos={item.soLuongBaiGiang}
+    totalView={item.soLuongDaBan}
+    active={item.active}
+    expired={item.expired}
+    onClickLearnNow={(e) => onClickLearnNow(e, item)}
+    onClickExtend={(e) => onClickLearnNow(e, item)}
   />)
   return (
-    <ul className="row">
-      {listItems}
-    </ul>
+    <div className={styles.container}>
+      <ul className="row">
+        {listItems && listItems}
+      </ul>
+    </div>
   )
 }
 export default MyCourses

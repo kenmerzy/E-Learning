@@ -35,20 +35,45 @@ const SignInComponent = () => {
         const { accountType, token } = data
         if (accountType === 'AT') {
           dispatch(coursesAction.GET_UPLOADED_COURSES({ token }))
-          dispatch(userAction.GET_PROFILE({
-            token,
-          },
-            (responseGetData) => {
-              if (responseGetData.success) {
-                console.log('Get information when login success !',)
-              } else {
-                console.log('===============================================')
-                console.log('Get information when login fail !')
-                console.log('===============================================')
-              }
-            }))
         }
-
+        dispatch(userAction.GET_PROFILE({
+          token,
+        },
+          (responseGetData) => {
+            if (responseGetData.success) {
+              console.log('Get information when login success !',)
+            } else {
+              console.log('===============================================')
+              console.log('Get information when login fail !')
+              console.log('===============================================')
+            }
+          }))
+        dispatch(coursesAction.GET_CART_ITEM({
+          token,
+        }, (responseGetCartItem) => {
+          if (responseGetCartItem.success) {
+            console.log('Get cart item success')
+          } else {
+            console.log('Get cart item fail')
+          }
+        }))
+        dispatch(coursesAction.GET_MY_COURSE({
+          token,
+        }, (responseGetMyCourse) => {
+          if (responseGetMyCourse.success) {
+            console.log('Get my course success')
+          } else {
+            console.log('Get my course fail')
+          }
+        }))
+        dispatch(coursesAction.GET_ALL_COURSE({
+        }, (responseGetMyCourse) => {
+          if (responseGetMyCourse.success) {
+            console.log('Get all course success')
+          } else {
+            console.log('Get all course fail')
+          }
+        }))
         dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
 
         setIsLoading(false)

@@ -9,6 +9,8 @@ const initState = {
   arrayAuthor: [],
   arrayVideosOfCourse: [],
   arrayMyCourse: [],
+  arrayCart: [],
+  totalCostCart: 0,
 
 }
 
@@ -57,6 +59,14 @@ const coursesReducer = (state = initState, action) => {
         ...state,
         arrayMyCourse: data,
       }
+
+    case coursesTypes.GET_CART_ITEM_SUCCESS:
+      return {
+        ...state,
+        arrayCart: data.arraydetailscart,
+        totalCostCart: data.tongTien,
+      }
+
     default:
       return state
   }

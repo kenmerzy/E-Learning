@@ -69,7 +69,7 @@ const ModalCreateCourse = (props) => {
           setIsLoading(false)
           setIsModalShow(true)
         } else {
-          setTextModal('Add video fail !')
+          setTextModal(response.message)
           setTypeModal('fail')
           console.log('===============================================')
           console.log('responseFail', response)
