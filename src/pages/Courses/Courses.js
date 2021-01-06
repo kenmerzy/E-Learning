@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-indent-props */
 import React, { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
@@ -16,8 +15,8 @@ import LogoWhite from '../../assets/images/LogoWhite.svg'
 // import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
 import background1 from '../../assets/images/background1.svg'
 import styles from './Courses.module.scss'
-import { coursesAction } from '../../redux/actions'
-import ModalComponent from '../../components/Account/ModalComponent/ModalComponent'
+import { coursesAction, userAction } from '../../redux/actions'
+import ConfirmModal from '../../components/Courses/ConfirmModal/ConfirmModal'
 
 const Courses = () => {
   const dispatch = useDispatch()
@@ -25,12 +24,11 @@ const Courses = () => {
   const arrayAllCategory = useSelector((value) => value?.coursesReducer?.arrayAllCategory)
   const arrayAuthor = useSelector((value) => value?.coursesReducer?.arrayAuthor)
   const token = useSelector((value) => value?.userReducer?.token)
+  const [itemBuy, setItemBuy] = useState()
   const history = useHistory()
   const [filterAuthor, setFilterAuthor] = useState('')
   const [filterCourse, setFilterCourse] = useState('')
   const [isModalShow, setIsModalShow] = useState('')
-  const [textModal, setTextModal] = useState('')
-  const [typeModal, setTypeModal] = useState('')
   const handleFilterAuthorChange = (event) => {
     setFilterAuthor(event.target.value)
     dispatch(coursesAction.GET_ALL_COURSE({
@@ -84,59 +82,41 @@ const Courses = () => {
       }
     }))
   }
-  const onClickAddToCart = (e, item) => {
-    dispatch(coursesAction.ADD_TO_CART({
-      token,
-      maKH: item.id,
-    }, (response) => {
-      if (response.success) {
-        console.log('Add to cart success')
-      } else {
-        console.log('Add to cart fail')
-      }
-    }))
+  const onClickAddToCart = (event, item) => {
+    if (token) {
+      dispatch(coursesAction.ADD_TO_CART({
+        token,
+        maKH: item.id,
+      }, (response) => {
+        if (response.success) {
+          console.log('Add to cart success')
+        } else {
+          console.log('Add to cart fail')
+        }
+      }))
+    } else {
+      dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: true }))
+    }
+    event.preventDefault()
+    event.stopPropagation()
   }
-  const onClickBuyNow = (item) => {
-    dispatch(coursesAction.PURCHASE({
-      token,
-      arrayCourse: [item],
-    }, (response) => {
-      if (response.success) {
-        dispatch(coursesAction.GET_MY_COURSE({
-          token,
-        }, (responseGetMyCourse) => {
-          if (responseGetMyCourse.success) {
-            console.log('Get my course success')
-          } else {
-            console.log('Get my course fail')
-          }
-        }))
-        dispatch(coursesAction.GET_ALL_COURSE({
-        }, (responseGetMyCourse) => {
-          if (responseGetMyCourse.success) {
-            console.log('Get all course success')
-          } else {
-            console.log('Get all course fail')
-          }
-        }))
-        console.log('===============================================')
-        console.log('response purchase now success', response)
-        console.log('===============================================')
-      } else {
-        setTypeModal('fail')
-        setTextModal('Purchase fail')
-        setIsModalShow(true)
-        console.log('===============================================')
-        console.log('response purchase now fail', response)
-        console.log('===============================================')
-      }
-    }))
+  const onClickBuyNow = (event, item) => {
+    if (token) {
+      setItemBuy(item)
+      setIsModalShow(true)
+    } else {
+      dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: true }))
+    }
+
+    event.preventDefault()
+    event.stopPropagation()
   }
-  const onClickLearnNow = (e) => {
-    e.stopPropagation()
+  const onClickLearnNow = () => {
+
   }
-  const onClickExtend = (e) => {
-    e.stopPropagation()
+  const onClickExtend = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
   }
   const handleModalComponentCloseClick = () => {
     setIsModalShow(false)
@@ -171,10 +151,14 @@ const Courses = () => {
           backdrop
           bsPrefix="modal"
         >
-          <ModalComponent
-            textModal={textModal}
-            handleModalComponentCloseClick={handleModalComponentCloseClick}
-            type={typeModal}
+          <ConfirmModal
+            onCloseModalClick={handleModalComponentCloseClick}
+            loadingLabel="Purchasing..."
+            titleModal="Confirm purchase course"
+            contentModal="Do you want to buy this course ?"
+            titleNegativeButton="No"
+            titlePositiveButton="Yes"
+            item={itemBuy}
           />
         </Modal>}
         <ul className="row">
@@ -198,8 +182,8 @@ const Courses = () => {
             totalView={item.soLuongDaBan}
             active={item.active}
             expired={item.expired}
-            onClickAddToCart={(e) => onClickAddToCart(e, item)}
-            onClickBuyNow={() => onClickBuyNow(item)}
+            onClickAddToCart={(event) => onClickAddToCart(event, item)}
+            onClickBuyNow={(event) => onClickBuyNow(event, item)}
             onClickLearnNow={onClickLearnNow}
             onClickExtend={onClickExtend}
           />)}

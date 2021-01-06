@@ -126,9 +126,7 @@ const Header = () => {
                   {
                     !token
                       ? <Link
-                        // eslint-disable-next-line react/jsx-indent-props
                         to="/"
-                        // eslint-disable-next-line react/jsx-indent-props
                         onClick={handleAccountClick}
                         className={styles.link}
                       >
@@ -137,7 +135,6 @@ const Header = () => {
                         </div>
                       </Link>
                       : <Link
-                        // eslint-disable-next-line react/jsx-indent-props
                         to="/account"
                         className={styles.link}
                       >

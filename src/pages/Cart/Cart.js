@@ -22,6 +22,9 @@ const Cart = () => {
     setModalShow(true)
   }
   const handleDeleteClick = () => {
+    console.log('===============================================')
+    console.log('listBuy', listBuy)
+    console.log('===============================================')
     dispatch(coursesAction.DELETE_CART_ITEM({
       token,
       arrayCourse: listBuy,
@@ -29,10 +32,12 @@ const Cart = () => {
       if (response.success) {
         console.log('===============================================')
         console.log('Deltete cart item success',)
+        console.log('response', response)
         console.log('===============================================')
       } else {
         console.log('===============================================')
         console.log('Deltete cart item fail',)
+        console.log('response', response)
         console.log('===============================================')
       }
     }))

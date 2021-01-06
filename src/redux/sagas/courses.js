@@ -223,7 +223,7 @@ function* getCartItem(action) {
     callback(error?.response?.data)
   }
 }
-function* deleleCartItem(action) {
+function* deleteCartItem(action) {
   const { data, callback } = action.payload
   const {
     token,
@@ -237,6 +237,9 @@ function* deleleCartItem(action) {
       })
     )
     if (response?.data?.success) {
+      console.log('===============================================')
+      console.log('response deleteCartItem', response)
+      console.log('===============================================')
       yield put({
         type: coursesTypes.GET_CART_ITEM_SUCCESS,
         payload: { data: response?.data?.data },
@@ -282,6 +285,6 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.ADD_TO_CART, addToCart)
   yield takeLatest(coursesTypes.GET_CART_ITEM, getCartItem)
   yield takeLatest(coursesTypes.GET_MY_COURSE, getMyCourse)
-  yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleleCartItem)
+  yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleteCartItem)
   yield takeLatest(coursesTypes.PURCHASE, purchase)
 }

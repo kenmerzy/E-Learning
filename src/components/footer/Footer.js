@@ -20,7 +20,7 @@ const Footer = () => {
       image: NgocLong,
       position: 'Chủ tịch hội đồng quản trị',
       link: 'https://www.facebook.com/KenMerzy',
-      description: 'Với niềm đam mê Công nghệ thông tin anh đã khởi nghiệp từ khi còn rất trẻ. Sau bao nhiêu nỗ lực và cố gắng, năm 20 tuổi anh sở hữu 2 công ty với tổng tài sản lên đến 5 tỷ USD.',
+      description: 'Bắt đầu học CNTT từ năm 15 tuổi. Có niềm đam mê và hứng thú với công nghệ. Thích khám phá và tìm hiểu những thứ mới mẻ.',
     },
     {
       id: 2,
