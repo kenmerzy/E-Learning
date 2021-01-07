@@ -37,6 +37,8 @@ const UploadCourse = () => {
             state:
             {
               maKH: item?.id,
+              params: item,
+              data: response.data,
             },
           })
         } else {

@@ -1,10 +1,98 @@
 @import "../../../assets/styles/configs";
-
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 0, 0, 1);
+}
 .container
 {
   width:100%;
   display:flex;
   flex-direction: column;
+  
+  
+  
+  .divQuestion{
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+        .divInput{
+          display:flex;
+          flex-direction: row;
+          margin-top: 20px;
+          span{
+          font-family: 'SF Pro Display';
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+          color:white;
+          margin-right: 10px;
+
+
+        }
+        input{
+          width:300px;
+          outline: none;
+          border-radius: 20px;
+          padding:5px 10px;
+        }
+        
+        
+      }
+        .divInputQuestion{
+          display:flex;
+          flex-direction: row;
+          align-items: center;
+        span{
+          font-family: 'SF Pro Display';
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+          color:white;
+          margin-right: 58px;
+
+        }
+        input{
+          width:300px;
+          outline: none;
+          border-radius: 20px;
+          padding:5px 10px;
+        }
+      }
+        .divInputRightAns{
+          display:flex;
+          flex-direction: row;
+          align-items: center;
+          margin-top: 20px;
+
+        span{
+          font-family: 'SF Pro Display';
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+          color:white;
+          margin-right: 22px;
+
+        }
+        input{
+          width:300px;
+          outline: none;
+          border-radius: 20px;
+          padding:5px 10px;
+        }
+      }
+    }
+  .taiLieu{
+    margin-top: 20px;
+    font-family: 'SF Pro Display';
+   font-style: normal;
+   font-weight: bold;
+   font-size: 25px;
+   text-align: center;
+   color:white;
+   a{
+     text-decoration: none;
+   }
+}
   .information
   {
     padding: 0px 100px 0px 20px;

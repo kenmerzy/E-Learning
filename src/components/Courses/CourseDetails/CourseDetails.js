@@ -6,8 +6,7 @@ import LogoFlutter from '../../../assets/images/LogoFlutter.svg'
 import AvatarMeng from '../../../assets/images/AvatarMeng.svg'
 import { URL } from '../../../configs'
 // eslint-disable-next-line no-unused-vars
-import { ParseTimeToMinuteAndSecond, GetHourOfTime } from '../../../utils'
-
+import { ParseTimeToMinuteAndSecond, GetHourOfTime, truncateString } from '../../../utils'
 import Next from '../../../assets/images/Next.svg'
 import Back from '../../../assets/images/Back.svg'
 
@@ -19,6 +18,7 @@ const CourseDetails = (props) => {
   // const token = useSelector((value) => value?.userReducer?.token)
   const [videoPath, setVideoPath] = useState('/publish/videos/01.UIDesignforDevelopers.mp4')
   const [videoTitle, setVideoTitle] = useState('')
+  const [videoDescription, setVideoDescription] = useState('')
   const [isVideoShow, setIsVideoShow] = useState(false)
   const [videoIndex, setVideoIndex] = useState(0)
   const [timeCourse, setTimeCourse] = useState(0)
@@ -27,6 +27,7 @@ const CourseDetails = (props) => {
     setIsVideoShow(true)
     setVideoPath(item.video)
     setVideoTitle(item.tieuDe)
+    setVideoDescription(item.moTa)
     setVideoIndex(index)
     if (isVideoShow) {
       const elmnt = document.getElementById('video')
@@ -42,20 +43,23 @@ const CourseDetails = (props) => {
   const handleVideoBackClick = () => {
     setVideoPath(arrVideos[videoIndex - 1].video)
     setVideoTitle(arrVideos[videoIndex - 1].tieuDe)
+    setVideoDescription(arrVideos[videoIndex - 1].moTa)
+
     setVideoIndex(videoIndex - 1)
   }
   const handleVideoNextClick = () => {
     setVideoPath(arrVideos[videoIndex + 1].video)
     setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
+    setVideoTitle(arrVideos[videoIndex + 1].moTa)
     setVideoIndex(videoIndex + 1)
   }
   useEffect(() => {
     setTimeCourse(GetHourOfTime(params.tongThoiLuong))
   })
-  // console.log('===============================================')
-  // console.log('params.tenKhoaHoc', params.tenKhoaHoc)
-  // console.log('data', data)
-  // console.log('===============================================')
+  console.log('===============================================')
+  console.log('params', params)
+  console.log('data', data)
+  console.log('===============================================')
   return (
     <div className={styles.container}>
       <div className="row">
@@ -89,6 +93,16 @@ const CourseDetails = (props) => {
           </div>
         </div>
       </div>
+      {active && !expired && <div className={styles.taiLieu}>
+        <span>Tài liệu đính kèm tại </span>
+        <a
+          href={`${URL}${params.taiLieu}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          đây
+        </a>
+      </div>}
       <div className={styles.topic}>
         <p className={styles.titleTopic}>
           {`${params.soLuongBaiGiang} topics`}
@@ -99,6 +113,7 @@ const CourseDetails = (props) => {
           can easily follow in a cohesive way.
         </p>
       </div>
+
       <div className={active && !expired ? styles.videos : styles.videosNoAccess}>
         <ul className="row">
           {arrVideos.map((item, index) => (
@@ -119,7 +134,7 @@ const CourseDetails = (props) => {
                     <p>{item.tieuDe}</p>
                     <div className={styles.time}>{`${item.thoiLuong.minute}:${item.thoiLuong.seconds}`}</div>
                   </div>
-                  <p className={styles.contentDes}>{item.moTa}</p>
+                  <p className={styles.contentDes}>{truncateString(item.moTa, 85)}</p>
                 </div>
               </a>
             </li>
@@ -136,6 +151,14 @@ const CourseDetails = (props) => {
           className={styles.Player}
           preload="auto"
         />
+        <div className={styles.moTaVideo}>
+
+          <p>
+            {videoDescription}
+
+          </p>
+        </div>
+
         {videoIndex !== 0 && <a
           className={styles.logoBack}
           rel="noreferrer"

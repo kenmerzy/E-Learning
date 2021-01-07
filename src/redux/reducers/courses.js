@@ -49,6 +49,7 @@ const coursesReducer = (state = initState, action) => {
     //     arrayAllCourse: data,
     //   }
     case coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS:
+
       return {
         ...state,
         arrayVideosOfCourse: data.arrayVideo === undefined ? null : data.arrayVideo,

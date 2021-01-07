@@ -35,10 +35,11 @@ function* getProfileUser(action) {
 
   try {
     const response = yield call(
-      () => axios.post(`${API_URL}/auth`, {
-        ...data,
-      })
+      () => axios.post(`${API_URL}/auth/`, data)
     )
+    console.log('===============================================')
+    console.log('response', response?.data)
+    console.log('===============================================')
     yield put({
       type: userType.GET_PROFILE_SUCCESS,
       payload: { data: response?.data?.data },

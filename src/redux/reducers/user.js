@@ -24,6 +24,9 @@ const userReducer = (state = initState, action) => {
         accountType,
       }
     case userType.GET_PROFILE_SUCCESS:
+      console.log('===============================================')
+      console.log('data', data)
+      console.log('===============================================')
       return {
         ...state,
         informationUser: data,

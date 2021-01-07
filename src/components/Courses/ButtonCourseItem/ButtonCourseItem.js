@@ -22,7 +22,7 @@ const ButtonCourseItem = (props) => {
             onClick={onClickBuyNow}
             type="button"
           >
-            Purchase
+            Buy now
           </button>
         </div>
 

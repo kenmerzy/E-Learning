@@ -4,7 +4,7 @@ import styles from './ProfileItem.module.scss'
 
 const ProfileItem = (props) => {
   const {
-    image, placeholder, value, onChange, type,
+    image, placeholder, value, onChange, type, textValue,
   } = props
   return (
     <div className={styles.divInput}>
@@ -28,7 +28,7 @@ const ProfileItem = (props) => {
             onChange={onChange}
           />
         </form>
-        : <div className={styles.textP}><p>{value}</p></div>}
+        : <div className={styles.textP}><p>{textValue}</p></div>}
     </div>
 
   )

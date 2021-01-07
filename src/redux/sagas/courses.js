@@ -122,6 +122,9 @@ function* addNewVideo(action) {
     const response = yield call(
       () => axios.post(`${API_URL}/baigiang/add`, data)
     )
+    console.log('===============================================')
+    console.log('dataGetVideoWhenCreateNEw', response.data)
+    console.log('===============================================')
     if (response?.data?.success) {
       yield put({
         type: coursesTypes.GET_VIDEOS_OF_COURSE_SUCCESS,

@@ -10,3 +10,9 @@ export const GetHourOfTime = ({ hours, minute }) => {
   }
   return `${minute} `
 }
+export const truncateString = (input, l) => {
+  if (input.length > l) {
+    return `${input.substring(0, l)}...`
+  }
+  return input
+}

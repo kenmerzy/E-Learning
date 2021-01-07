@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
+
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
@@ -24,7 +24,7 @@ const CreateCourseComponent = (props) => {
   const [moTa, setMoTa] = useState('')
   const [gia, setGia] = useState('')
   const [thoiHan, setThoiHan] = useState('')
-  const [fileInput, setFileInput] = useState('')
+  const [fileUpload, setFileUpload] = useState()
 
   const dispatch = useDispatch()
 
@@ -43,9 +43,9 @@ const CreateCourseComponent = (props) => {
   const handleThoiHanChange = (event) => {
     setThoiHan(event.target.value)
   }
-  const handleFileInputChange = (e) => {
+  const handleFileUploadChange = (e) => {
     const { files } = e.target
-    setFileInput(files[0])
+    setFileUpload(files[0])
   }
 
   const handleCreateCourseClick = () => {
@@ -56,12 +56,19 @@ const CreateCourseComponent = (props) => {
       gia,
       thoiHan,
       maLKH,
+      fileUpload,
     }, (response) => {
       if (response.success) {
+        console.log('===============================================')
+        console.log('response', response)
+        console.log('===============================================')
         setTextModal('Create course successful !')
         setIsModalShow(true)
         setTypeModal('success')
       } else {
+        console.log('===============================================')
+        console.log('response', response)
+        console.log('===============================================')
         setTextModal('Create course fail !')
         setIsModalShow(true)
         setTypeModal('fail')
@@ -189,9 +196,8 @@ const CreateCourseComponent = (props) => {
           >
             <input
               className={styles.input}
-              placeholder="PDF File"
               type="file"
-              onChange={handleFileInputChange}
+              onChange={handleFileUploadChange}
             />
           </form>
         </div>

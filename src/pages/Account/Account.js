@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import styles from './Account.module.scss'
 import verified from '../../assets/images/verified.svg'
 import { userAction } from '../../redux/actions'
-import phone from '../../assets/images/phone.png'
 import name from '../../assets/images/name.png'
 import bio from '../../assets/images/bio.png'
 import gender from '../../assets/images/gender.png'
@@ -16,8 +14,10 @@ import occupation from '../../assets/images/occupation.png'
 import ProfileItem from '../../components/Account/ProfileItem/ProfileItem'
 
 const Account = () => {
-  const informationUser = useSelector((value) => value?.userReducer?.informationUser)
+  const [informationUser, setInformationUser] = useState(useSelector((value) => value?.userReducer?.informationUser))
   const token = useSelector((value) => value?.userReducer?.token)
+  // eslint-disable-next-line no-unused-vars
+  const [isSave, setIsSave] = useState(false)
   const [valueName, setValueName] = useState(useSelector((value) => value?.userReducer?.name))
   const [valueAddress, setValueAddress] = useState(informationUser.diaChi)
   const [valueDateOfBirth, setValueDateOfBirth] = useState(informationUser.ngaySinh)
@@ -26,6 +26,7 @@ const Account = () => {
   const [valueBio, setValueBio] = useState(informationUser.gioiThieu)
   const [valueAccountType, setValueAccountType] = useState(informationUser.ma)
   const [valueMoney, setValueMoney] = useState(informationUser.soDu)
+  // eslint-disable-next-line no-unused-vars
   const [valuePhoneNumber, setValuePhoneNumber] = useState(informationUser.sdt)
   const [profileItemType, setProfileItemType] = useState('text')
   const [buttonType, setButtonType] = useState('edit')
@@ -37,7 +38,7 @@ const Account = () => {
         token,
       },
         (response) => {
-          console.log('responseGet', response)
+          console.log('response UseEffect', response)
           if (response.success) {
             const { data } = response
             setValueName(data.hoVaTen)
@@ -49,6 +50,7 @@ const Account = () => {
             setValueMoney(data.soDu)
             setValueAccountType(data.ma)
             setValueOccupation(data.ngheNghiep)
+            setInformationUser(data)
           } else {
             console.log('===============================================')
             console.log('get Profile fail')
@@ -59,6 +61,7 @@ const Account = () => {
       history.push('/')
     }
   }, [token])
+
   const setValueNameChange = (event) => {
     setValueName(event.target.value)
   }
@@ -109,9 +112,17 @@ const Account = () => {
     history.push('/')
   }
   const handleSaveClick = () => {
-    setProfileItemType('text')
-    setButtonType('edit')
-    setIsButtonCancelVisible(false)
+    setIsSave(true)
+
+    console.log('===============================================')
+    console.log('token', token)
+    console.log('informationUser', informationUser)
+    console.log('valueName', valueName)
+    console.log('valueAddress', valueAddress)
+    console.log('valueOccupation', valueOccupation)
+    console.log('valueGender', valueGender)
+    console.log('valueBio', valueBio)
+    console.log('===============================================')
     dispatch(userAction.GET_PROFILE({
       token,
       hoVaTen: valueName,
@@ -122,8 +133,10 @@ const Account = () => {
 
     },
       (response) => {
-        console.log('responseChange', response)
         if (response.success) {
+          setProfileItemType('text')
+          setButtonType('edit')
+          setIsButtonCancelVisible(false)
           const { data } = response
           setValueName(data.hoVaTen)
           setValueDateOfBirth(data.ngaySinh)
@@ -134,6 +147,11 @@ const Account = () => {
           setValueMoney(data.soDu)
           setValueAccountType(data.ma)
           setValueOccupation(data.ngheNghiep)
+          setInformationUser(data)
+        } else {
+          console.log('===============================================')
+          console.log('get Profile fail')
+          console.log('===============================================')
         }
       }))
   }
@@ -141,6 +159,7 @@ const Account = () => {
     setProfileItemType('input')
     setButtonType('save')
     setIsButtonCancelVisible(true)
+    setIsSave(false)
   }
   const handleCancelClick = () => {
     setProfileItemType('text')
@@ -164,7 +183,9 @@ const Account = () => {
           setValueOccupation(data.ngheNghiep)
         }
       }))
+    setIsSave(false)
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.divProfile}>
@@ -181,10 +202,19 @@ const Account = () => {
             CHANGE AVATAR
           </button>
           <p className={styles.money}>
-            Số dư:
+            You have:
             <span>
               {`  $${valueMoney}`}
             </span>
+          </p>
+          <p className={styles.money}>
+            Account type:
+            {valueAccountType === 'AT' ? <span>
+              {' Student'}
+            </span>
+              : <span>
+                {'  Author'}
+              </span>}
           </p>
         </div>
         <p className={styles.title}>PROFILE SETTINGS</p>
@@ -195,6 +225,7 @@ const Account = () => {
               image={name}
               placeholder="Your name"
               value={valueName}
+              textValue={informationUser.hoVaTen}
               onChange={setValueNameChange}
             />
             <ProfileItem
@@ -202,6 +233,7 @@ const Account = () => {
               image={birthday}
               placeholder="Date of birth"
               value={valueDateOfBirth}
+              textValue={informationUser.ngaySinh}
               onChange={setValueDateOfBirthChange}
             />
             <ProfileItem
@@ -209,6 +241,7 @@ const Account = () => {
               image={address}
               placeholder="Address"
               value={valueAddress}
+              textValue={informationUser.diaChi}
               onChange={setValueAddressChange}
             />
 
@@ -219,6 +252,7 @@ const Account = () => {
               image={gender}
               placeholder="Gender"
               value={valueGender}
+              textValue={informationUser.gioiTinh}
               onChange={setValueGenderChange}
             />
             <ProfileItem
@@ -226,6 +260,7 @@ const Account = () => {
               image={occupation}
               placeholder="Occupation"
               value={valueOccupation}
+              textValue={informationUser.ngheNghiep}
               onChange={setValueOccupationChange}
             />
             <ProfileItem
@@ -233,6 +268,7 @@ const Account = () => {
               image={bio}
               placeholder="Bio"
               value={valueBio}
+              textValue={informationUser.gioiThieu}
               onChange={setValueBioChange}
             />
 
