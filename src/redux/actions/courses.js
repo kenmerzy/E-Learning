@@ -79,3 +79,15 @@ export const PURCHASE = (data, callback) => {
     payload: { data, callback },
   }
 }
+export const GET_LIST_QUESTION = (data, callback) => {
+  return {
+    type: coursesTypes.GET_LIST_QUESTION,
+    payload: { data, callback },
+  }
+}
+export const ADD_QUESTION = (data, callback) => {
+  return {
+    type: coursesTypes.ADD_QUESTION,
+    payload: { data, callback },
+  }
+}

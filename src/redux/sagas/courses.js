@@ -277,6 +277,56 @@ function* purchase(action) {
     callback(error?.response?.data)
   }
 }
+function* getListQuestion(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    maBG,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/cauhoi/`, {
+        token,
+        maBG,
+      })
+    )
+
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_LIST_QUESTION_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+
+function* addQuestion(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    noiDung,
+    maBG,
+    arrayAnswer,
+  } = data
+
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/cauhoi/add`, {
+        token,
+        noiDung,
+        maBG,
+        arrayAnswer,
+      })
+    )
+
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
 export default function* courseSagas() {
   yield takeLatest(coursesTypes.GET_ALL_COURSE, getAllCourse)
   yield takeLatest(coursesTypes.GET_ALL_CATEGORY, getAllCategory)
@@ -289,5 +339,6 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.GET_CART_ITEM, getCartItem)
   yield takeLatest(coursesTypes.GET_MY_COURSE, getMyCourse)
   yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleteCartItem)
-  yield takeLatest(coursesTypes.PURCHASE, purchase)
+  yield takeLatest(coursesTypes.GET_LIST_QUESTION, getListQuestion)
+  yield takeLatest(coursesTypes.ADD_QUESTION, addQuestion)
 }

@@ -114,15 +114,6 @@ const Account = () => {
   const handleSaveClick = () => {
     setIsSave(true)
 
-    console.log('===============================================')
-    console.log('token', token)
-    console.log('informationUser', informationUser)
-    console.log('valueName', valueName)
-    console.log('valueAddress', valueAddress)
-    console.log('valueOccupation', valueOccupation)
-    console.log('valueGender', valueGender)
-    console.log('valueBio', valueBio)
-    console.log('===============================================')
     dispatch(userAction.GET_PROFILE({
       token,
       hoVaTen: valueName,
@@ -134,9 +125,6 @@ const Account = () => {
     },
       (response) => {
         if (response.success) {
-          setProfileItemType('text')
-          setButtonType('edit')
-          setIsButtonCancelVisible(false)
           const { data } = response
           setValueName(data.hoVaTen)
           setValueDateOfBirth(data.ngaySinh)
@@ -148,6 +136,10 @@ const Account = () => {
           setValueAccountType(data.ma)
           setValueOccupation(data.ngheNghiep)
           setInformationUser(data)
+
+          setProfileItemType('text')
+          setButtonType('edit')
+          setIsButtonCancelVisible(false)
         } else {
           console.log('===============================================')
           console.log('get Profile fail')
@@ -204,7 +196,7 @@ const Account = () => {
           <p className={styles.money}>
             You have:
             <span>
-              {`  $${valueMoney}`}
+              {valueMoney ? `  $${valueMoney}` : ' $0'}
             </span>
           </p>
           <p className={styles.money}>

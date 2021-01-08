@@ -11,6 +11,7 @@ const initState = {
   arrayMyCourse: [],
   arrayCart: [],
   totalCostCart: 0,
+  arrQuestion: [],
 
 }
 
@@ -66,6 +67,11 @@ const coursesReducer = (state = initState, action) => {
         ...state,
         arrayCart: data.arraydetailscart,
         totalCostCart: data.tongTien,
+      }
+    case coursesTypes.GET_LIST_QUESTION_SUCCESS:
+      return {
+        ...state,
+        arrQuestion: data,
       }
 
     default:

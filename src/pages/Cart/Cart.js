@@ -96,7 +96,7 @@ const Cart = () => {
       {token
         ? <div>
           <div className={styles.Information}>
-            <p>{`You have: $${money}`}</p>
+            <p>{money ? `You have: $${money}` : 'You have: $0'}</p>
           </div>
           <div className={styles.listCartItem}>
             {arrCart.length > 0 ? <ul className="row">
