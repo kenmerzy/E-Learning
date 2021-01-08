@@ -81,7 +81,7 @@ const CourseDetails = (props) => {
                 {`${timeCourse}`}
               </span>
 
-              <span> hours of video</span>
+              <span> minutes of video</span>
             </p>
             <p className={styles.description}>{`${params.moTa}`}</p>
             <img src={AvatarMeng} className={styles.avatarAuthor} alt="logo" />
@@ -93,14 +93,14 @@ const CourseDetails = (props) => {
           </div>
         </div>
       </div>
-      {active && !expired && <div className={styles.taiLieu}>
-        <span>Tài liệu đính kèm tại </span>
+      {params.taiLieus && <div className={styles.taiLieu}>
+        <span>Read more </span>
         <a
           href={`${URL}${params.taiLieu}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          đây
+          document
         </a>
       </div>}
       <div className={styles.topic}>

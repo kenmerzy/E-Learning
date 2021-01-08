@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import Modal from 'react-bootstrap/Modal'
 import styles from './Account.module.scss'
 import verified from '../../assets/images/verified.svg'
 import { userAction } from '../../redux/actions'
@@ -12,6 +13,8 @@ import address from '../../assets/images/address.png'
 import birthday from '../../assets/images/birthday.png'
 import occupation from '../../assets/images/occupation.png'
 import ProfileItem from '../../components/Account/ProfileItem/ProfileItem'
+import plusIcon from '../../assets/images/plusIcon.svg'
+import RechargeModal from '../../components/Account/RechargeModal/RechargeModal'
 
 const Account = () => {
   const [informationUser, setInformationUser] = useState(useSelector((value) => value?.userReducer?.informationUser))
@@ -25,12 +28,13 @@ const Account = () => {
   const [valueGender, setValueGender] = useState(informationUser.gioiTinh)
   const [valueBio, setValueBio] = useState(informationUser.gioiThieu)
   const [valueAccountType, setValueAccountType] = useState(informationUser.ma)
-  const [valueMoney, setValueMoney] = useState(informationUser.soDu)
+  const valueMoney = useSelector((value) => value?.userReducer?.informationUser.soDu)
   // eslint-disable-next-line no-unused-vars
   const [valuePhoneNumber, setValuePhoneNumber] = useState(informationUser.sdt)
   const [profileItemType, setProfileItemType] = useState('text')
   const [buttonType, setButtonType] = useState('edit')
   const [isButtonCancelVisible, setIsButtonCancelVisible] = useState(false)
+  const [isModalShow, setModalShow] = useState(false)
   const dispatch = useDispatch()
   useEffect(() => {
     if (token) {
@@ -47,7 +51,6 @@ const Account = () => {
             setValuePhoneNumber(data.sdt)
             setValueGender(data.gioiTinh)
             setValueBio(data.gioiThieu)
-            setValueMoney(data.soDu)
             setValueAccountType(data.ma)
             setValueOccupation(data.ngheNghiep)
             setInformationUser(data)
@@ -80,7 +83,12 @@ const Account = () => {
   const setValueBioChange = (event) => {
     setValueBio(event.target.value)
   }
-
+  const handleAddMoneyClick = () => {
+    setModalShow(true)
+  }
+  const handleCloseModal = () => {
+    setModalShow(false)
+  }
   const buttonEditProfile = () => (
     <button
       className={styles.buttonEditProfile}
@@ -132,7 +140,6 @@ const Account = () => {
           setValuePhoneNumber(data.sdt)
           setValueGender(data.gioiTinh)
           setValueBio(data.gioiThieu)
-          setValueMoney(data.soDu)
           setValueAccountType(data.ma)
           setValueOccupation(data.ngheNghiep)
           setInformationUser(data)
@@ -170,7 +177,6 @@ const Account = () => {
           setValuePhoneNumber(data.sdt)
           setValueGender(data.gioiTinh)
           setValueBio(data.gioiThieu)
-          setValueMoney(data.soDu)
           setValueAccountType(data.ma)
           setValueOccupation(data.ngheNghiep)
         }
@@ -180,6 +186,17 @@ const Account = () => {
 
   return (
     <div className={styles.container}>
+      {isModalShow && <Modal
+        show
+        backdrop
+        bsPrefix="modal"
+      >
+        <RechargeModal
+          onCloseModalClick={handleCloseModal}
+          loadingLabel="Recharging..."
+
+        />
+      </Modal>}
       <div className={styles.divProfile}>
         <p className={styles.title}>PROFILE</p>
         <p className={styles.description}>Manage your Design+Code profile and account</p>
@@ -193,19 +210,31 @@ const Account = () => {
           >
             CHANGE AVATAR
           </button>
-          <p className={styles.money}>
-            You have:
-            <span>
-              {valueMoney ? `  $${valueMoney}` : ' $0'}
-            </span>
-          </p>
+          <div className={styles.divMoney}>
+            <p>
+              You have:
+              <span>
+                {valueMoney ? `  $${valueMoney}` : ' $0'}
+              </span>
+            </p>
+            <a
+              href
+              rel="noreferrer"
+              onClick={handleAddMoneyClick}
+            >
+              <img
+                src={plusIcon}
+                alt="logo"
+              />
+            </a>
+          </div>
           <p className={styles.money}>
             Account type:
             {valueAccountType === 'AT' ? <span>
-              {' Student'}
+              {' Author'}
             </span>
               : <span>
-                {'  Author'}
+                {'  Student'}
               </span>}
           </p>
         </div>

@@ -226,6 +226,31 @@
         line-height: 130%;
         text-align: center;
       }
+      .divMoney{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        a{
+          margin-left: 15px;
+          margin-bottom: 6px;
+         cursor: pointer;
+          img{
+            width:20px;
+            height:20px;
+          }
+        }
+          p{
+            margin-top: 10px;
+          padding-left: 10px;
+
+          span{
+            font-weight: bold;
+            font-size: 18px;
+            ;
+
+          }
+        }
+      }
       .money{
         margin-top: 10px;
         padding-left: 10px;

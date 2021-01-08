@@ -34,3 +34,10 @@ export const SET_ACCOUNT_STATE = (data, callback) => {
     payload: { data, callback },
   }
 }
+
+export const RECHARGE = (data, callback) => {
+  return {
+    type: userType.RECHARGE,
+    payload: { data, callback },
+  }
+}

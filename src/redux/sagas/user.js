@@ -8,6 +8,7 @@ export default function* userSagas() {
   yield takeLatest(userType.LOGIN, loginUser)
   yield takeLatest(userType.REGISTER, registerUser)
   yield takeLatest(userType.GET_PROFILE, getProfileUser)
+  yield takeLatest(userType.RECHARGE, recharge)
 }
 function* loginUser(action) {
   const { data, callback } = action.payload
@@ -40,6 +41,25 @@ function* getProfileUser(action) {
     console.log('===============================================')
     console.log('response', response?.data)
     console.log('===============================================')
+    yield put({
+      type: userType.GET_PROFILE_SUCCESS,
+      payload: { data: response?.data?.data },
+    })
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* recharge(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+  } = data
+
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/recharge/charge`, data)
+    )
     yield put({
       type: userType.GET_PROFILE_SUCCESS,
       payload: { data: response?.data?.data },

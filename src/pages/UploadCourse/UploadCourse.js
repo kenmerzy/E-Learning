@@ -92,7 +92,10 @@ const UploadCourse = () => {
         <CourseItem
           title="Create a new course"
           description="Long time no see. Create a new course now. "
-          customStyles={{ margin: 20 }}
+          customStyles={{
+            marginTop: 30,
+            marginLeft: 50,
+          }}
           background={backgroundUpload}
           onClick={handleShowModal}
           hideButton
