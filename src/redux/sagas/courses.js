@@ -4,6 +4,24 @@ import axios from 'axios'
 import { coursesTypes } from '../types'
 import { API_URL } from '../../configs'
 
+export default function* courseSagas() {
+  yield takeLatest(coursesTypes.GET_ALL_COURSE, getAllCourse)
+  yield takeLatest(coursesTypes.GET_ALL_CATEGORY, getAllCategory)
+  yield takeLatest(coursesTypes.GET_ALL_AUTHOR, getAllAuthor)
+  yield takeLatest(coursesTypes.GET_UPLOADED_COURSES, getUploadedCourses)
+  yield takeLatest(coursesTypes.ADD_NEW_COURSE, addNewCourse)
+  yield takeLatest(coursesTypes.ADD_NEW_VIDEO, addNewVideo)
+  yield takeLatest(coursesTypes.GET_VIDEOS_OF_COURSE, getArrVideoOfCourse)
+  yield takeLatest(coursesTypes.ADD_TO_CART, addToCart)
+  yield takeLatest(coursesTypes.GET_CART_ITEM, getCartItem)
+  yield takeLatest(coursesTypes.GET_MY_COURSE, getMyCourse)
+  yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleteCartItem)
+  yield takeLatest(coursesTypes.GET_LIST_QUESTION, getListQuestion)
+  yield takeLatest(coursesTypes.ADD_QUESTION, addQuestion)
+  yield takeLatest(coursesTypes.CHECK_POINT, checkPoint)
+  yield takeLatest(coursesTypes.GET_UNCENSORED_COURSE, getUncensoredCourses)
+}
+
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 function* getAllCourse(action) {
   const { data, callback } = action.payload
@@ -376,79 +394,4 @@ function* getUncensoredCourses(action) {
   } catch (error) {
     callback(error?.response?.data)
   }
-}
-function* censorCourse(action) {
-  const { data, callback } = action.payload
-  const {
-    token,
-    maKH,
-  } = data
-  try {
-    const response = yield call(
-      () => axios.post(`${API_URL}/khoahoc/verify`, {
-        token, maKH,
-      })
-    )
-    console.log('==saga course =====================')
-
-    if (response?.data?.success) {
-      yield put({
-        type: coursesTypes.GET_ALL_COURSE_SUCCESS,
-        payload: { data: response?.data?.data },
-      })
-      yield put({
-        type: coursesTypes.GET_UNCENSORED_COURSE_SUCCESS,
-        payload: { data: response?.data?.data },
-      })
-    }
-    callback(response?.data)
-  } catch (error) {
-    callback(error?.response?.data)
-  }
-}
-function* deleteCourse(action) {
-  const { data, callback } = action.payload
-  const {
-    token, maKH,
-  } = data
-  try {
-    const response = yield call(
-      () => axios.post(`${API_URL}/khoahoc/delete`, {
-        token, maKH,
-      })
-    )
-
-    if (response?.data?.success) {
-      yield put({
-        type: coursesTypes.GET_ALL_COURSE_SUCCESS,
-        payload: { data: response?.data?.data },
-      })
-      yield put({
-        type: coursesTypes.GET_UNCENSORED_COURSE_SUCCESS,
-        payload: { data: response?.data?.data },
-      })
-    }
-    callback(response?.data)
-  } catch (error) {
-    callback(error?.response?.data)
-  }
-}
-export default function* courseSagas() {
-  yield takeLatest(coursesTypes.GET_ALL_COURSE, getAllCourse)
-  yield takeLatest(coursesTypes.GET_ALL_CATEGORY, getAllCategory)
-  yield takeLatest(coursesTypes.GET_ALL_AUTHOR, getAllAuthor)
-  yield takeLatest(coursesTypes.GET_UPLOADED_COURSES, getUploadedCourses)
-  yield takeLatest(coursesTypes.ADD_NEW_COURSE, addNewCourse)
-  yield takeLatest(coursesTypes.ADD_NEW_VIDEO, addNewVideo)
-  yield takeLatest(coursesTypes.GET_VIDEOS_OF_COURSE, getArrVideoOfCourse)
-  yield takeLatest(coursesTypes.ADD_TO_CART, addToCart)
-  yield takeLatest(coursesTypes.GET_CART_ITEM, getCartItem)
-  yield takeLatest(coursesTypes.GET_MY_COURSE, getMyCourse)
-  yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleteCartItem)
-  yield takeLatest(coursesTypes.GET_LIST_QUESTION, getListQuestion)
-  yield takeLatest(coursesTypes.ADD_QUESTION, addQuestion)
-  yield takeLatest(coursesTypes.CHECK_POINT, checkPoint)
-  yield takeLatest(coursesTypes.GET_UNCENSORED_COURSE, getUncensoredCourses)
-  yield takeLatest(coursesTypes.CENSOR_COURSES, censorCourse)
-  yield takeLatest(coursesTypes.DELETE_COURSES, deleteCourse)
 }

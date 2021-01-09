@@ -103,15 +103,3 @@ export const GET_UNCENSORED_COURSE = (data, callback) => {
     payload: { data, callback },
   }
 }
-export const CENSOR_COURSES = (data, callback) => {
-  return {
-    type: coursesTypes.CENSOR_COURSES,
-    payload: { data, callback },
-  }
-}
-export const DELETE_COURSES = (data, callback) => {
-  return {
-    type: coursesTypes.DELETE_COURSES,
-    payload: { data, callback },
-  }
-}

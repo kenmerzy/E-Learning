@@ -6,7 +6,7 @@ import trash from '../../../assets/images/trash.svg'
 import eye from '../../../assets/images/eye.png'
 import checkMark from '../../../assets/images/checkMark.png'
 
-import { coursesAction } from '../../../redux/actions'
+import { adminAction } from '../../../redux/actions'
 
 const AdminCourses = () => {
   const token = useSelector((value) => value?.userReducer?.token)
@@ -27,7 +27,7 @@ const AdminCourses = () => {
   const handleDeleteClick = (item) => {
     console.log('==Click=====================')
 
-    dispatch(coursesAction.DELETE_COURSES({
+    dispatch(adminAction.DELETE_COURSES({
       token,
       maKH: item.id,
     }, (response) => {
@@ -46,8 +46,8 @@ const AdminCourses = () => {
 
   }
   const handleCensorClick = (item) => {
-    console.log('==Click=====================')
-    dispatch(coursesAction.CENSOR_COURSES({
+    console.log('==handleCensorClick=====================', item)
+    dispatch(adminAction.CENSOR_COURSES({
       token,
       maKH: item.id,
     }, (response) => {
@@ -86,7 +86,7 @@ const AdminCourses = () => {
             <p className={styles.giaHeader}>Price</p>
             <p className={styles.trashHeader}> </p>
             <p className={styles.trashHeader}> </p>
-            <p className={styles.trashHeader}> </p>
+            {valueFilter === 'uncensored' && <p className={styles.trashHeader}> </p>}
 
           </li>
           {arrCourses.map((item) => (
@@ -117,15 +117,16 @@ const AdminCourses = () => {
                   alt="logo"
                 />
               </a>
-              <a
-                href
-                onClick={() => handleCensorClick(item)}
-              >
-                <img
-                  src={checkMark}
-                  alt="logo"
-                />
-              </a>
+              {valueFilter === 'uncensored'
+                && <a
+                  href
+                  onClick={() => handleCensorClick(item)}
+                >
+                  <img
+                    src={checkMark}
+                    alt="logo"
+                  />
+                </a>}
             </li>
           ))}
         </ul>
