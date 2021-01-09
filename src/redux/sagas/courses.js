@@ -97,6 +97,9 @@ function* getUploadedCourses(action) {
         payload: { data: response?.data?.data },
       })
     }
+    console.log('===============================================')
+    console.log('2',)
+    console.log('===============================================')
   } catch (error) {
     console.log(error?.response?.data)
   }
@@ -377,6 +380,9 @@ function* getUncensoredCourses(action) {
   const {
     token,
   } = data
+  console.log('===============================================')
+  console.log('2 data', data)
+  console.log('===============================================')
   try {
     const response = yield call(
       () => axios.post(`${API_URL}/khoahoc/unverify`, {

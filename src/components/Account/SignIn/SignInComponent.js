@@ -75,7 +75,23 @@ const SignInComponent = () => {
           dispatch(coursesAction.GET_UPLOADED_COURSES({ token }))
         }
         if (accountType === 'AD') {
-          dispatch(coursesAction.GET_UNCENSORED_COURSE({ token }))
+          dispatch(coursesAction.GET_UNCENSORED_COURSE({ token }, (res) => {
+            console.log('===============================================')
+            console.log('res', res)
+            console.log('===============================================')
+          }))
+          dispatch(coursesAction.GET_ALL_CATEGORY({},
+            (responseGetCategories) => {
+              if (responseGetCategories.success) {
+                console.log('===============================================')
+                console.log('GET_ALL_CATEGORY success')
+                console.log('===============================================')
+              } else {
+                console.log('===============================================')
+                console.log('GET_ALL_CATEGORY Fail')
+                console.log('===============================================')
+              }
+            }))
         }
         dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
         setIsLoading(false)

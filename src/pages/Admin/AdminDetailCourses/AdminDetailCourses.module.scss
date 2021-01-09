@@ -1,0 +1,223 @@
+@import "../../../assets/styles/configs";
+
+.container{
+  display: flex;
+  flex:1;
+  flex-direction: column;
+
+  .information{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    .title{
+      width:100%;
+      color:white;
+      text-align: center;
+      font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        line-height: 2 9px;
+    }
+    .description{
+      width:100%;
+      color:rgba(255, 255, 255, 0.7);
+      font-family: SF Pro Display;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 29px;
+    }
+  }
+  .divExam{
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+
+    .divButton{
+      display:flex;
+      justify-content: flex-end;
+      .buttonDoneExam{
+        display: flex;
+        width: 200px;
+        height: 60px;
+        margin: 30px 0px 0px 0px;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(91.4deg, #2FB8FF 0%, #9EECD9 100%);
+        box-shadow: 0px 20px 40px rgba(147, 231, 221, 0.3);
+        border-radius: 30px;
+        outline: none;
+  
+        :focus{
+          outline: none;
+        }
+        p{
+          display: flex;
+          font-family: SF Pro Text;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 25px;
+          line-height: 20px;
+          color: #0E435C;
+          margin: 0px 0px 0px 0px;
+  
+        }
+      }
+    }
+    
+    p{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 24px;
+    }
+    .titleQues{
+      font-family: SF Pro Text;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 25px;
+      line-height: 24px;
+      color:#14c240
+    }
+    .coverItemExam{
+      margin-top: 50px;
+      .question{
+        p{
+          text-align: left;
+          font-family: SF Pro Text;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 24px;
+        color:white
+        }
+      }
+      .divAnswer{
+        display: flex;
+        flex-direction: row;
+        .answerItem{
+          cursor:pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width:50%;
+          margin:20px 10px;
+
+          input{
+            width:20px;
+            height:20px;
+            cursor:pointer;
+
+          }
+          p{
+            color: rgba(255,255,255,0.8);
+            text-align: left;
+            font-family: SF Pro Text;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 20px;
+          line-height: 24px;
+          margin:0px 0px 0px 20px;
+          }
+        }
+      }
+    }
+  }
+  .listLesson{
+    margin-top: 50px;
+    .notiEmptyCart
+        {
+          color:white;
+          text-align: center;
+          font-size: 30px;
+          font-weight: bold;
+        }
+    ul{
+      list-style-type: none;
+      padding: 0;
+      border: 1px solid #ddd;
+      li{
+        margin-top: 20px;
+        color:white;
+        padding: 8px 16px;
+        border-bottom: 1px solid #ddd;
+        height:auto;
+
+        :last-child{
+          border-bottom: none;
+        }
+
+        .lessonNameHeader
+        {
+          width:250px;
+          font-size: 23px;
+          font-weight: bold;
+          color:forestgreen;
+        }
+        .moTaHeader
+        {
+          width:250px;
+          font-size: 23px;
+          font-weight: bold;
+          color:forestgreen;
+        }
+        .showQuesHeader
+        {
+          width:250px;
+          text-align: center;
+          font-size: 23px;
+          font-weight: bold;
+          color:forestgreen;
+        }
+        .linkVideoHeader
+        {
+          width:250px;
+          text-align: center;
+          font-size: 23px;
+          font-weight: bold;
+          color:forestgreen;
+        }
+        .lessonName{
+          width:250px;
+           font-size:18px;
+          font-weight: normal;
+          color:rgba(255,255,255,0.7);
+        }
+        
+        .moTa{
+          width:250px;
+           font-size:18px;
+          font-weight: normal;
+          color:rgba(255,255,255,0.7);
+        }
+        
+        .linkVideo{
+          text-decoration: none;
+           font-size:18px;
+          font-weight: bold;
+          color:$secondary;
+          width:250px;
+          cursor:pointer;
+          :hover{
+            text-decoration: none;
+          }
+        }
+        
+        .showQues{
+          text-decoration: none;
+           font-size:18px;
+          font-weight: bold;
+          color:$secondary;
+          width:250px;
+          :hover{
+            text-decoration: none;
+          }
+        }
+        
+      }
+    }
+  }
+}

@@ -31,6 +31,8 @@ import FooterAdmin from '../FooterAdmin/FooterAdmin'
 import AdminCourses from '../Admin/AdminCourses/AdminCourses'
 import AdminAuthors from '../Admin/AdminAuthors/AdminAuthors'
 import AdminStudents from '../Admin/AdminStudents/AdminStudents'
+import AdminCategories from '../Admin/AdminCategories/AdminCategories'
+import AdminDetailCourses from '../Admin/AdminDetailCourses/AdminDetailCourses'
 import CreateNewCourse from '../../components/UploadCourse/CreateNewCourse/CreateNewCourse'
 import { coursesAction } from '../../redux/actions'
 import LoadingComponent from '../../components/Loading/LoadingComponent'
@@ -94,6 +96,8 @@ const MainPage = () => {
               <Route path="/admincourses" component={AdminCourses} />
               <Route path="/adminauthors" component={AdminAuthors} />
               <Route path="/adminstudent" component={AdminStudents} />
+              <Route path="/admincategories" component={AdminCategories} />
+              <Route path="/admincoursesdetail" component={AdminDetailCourses} />
               <Route path="/create-new-course" component={(props) => <CreateNewCourse {...props} />} />
 
               {accountType !== 'AD' ? <Route path="/" component={Home} /> : <Route path="/admin" component={Admin} />}

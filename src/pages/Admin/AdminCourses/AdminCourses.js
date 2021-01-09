@@ -1,27 +1,36 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import styles from './AdminCourses.module.scss'
 import trash from '../../../assets/images/trash.svg'
 import eye from '../../../assets/images/eye.png'
 import checkMark from '../../../assets/images/checkMark.png'
 
-import { adminAction } from '../../../redux/actions'
+import { adminAction, coursesAction } from '../../../redux/actions'
 
 const AdminCourses = () => {
   const token = useSelector((value) => value?.userReducer?.token)
   const [valueFilter, setValueFilter] = useState('')
+  const [isFilter, setIsFilter] = useState(true)
   const [arrCourses, setArrCourse] = useState(useSelector((value) => value.coursesReducer.arrayAllCourse))
   const arrCensoredCourses = useSelector((value) => value.coursesReducer.arrayAllCourse)
   const arrUncensoredCourses = useSelector((value) => value.coursesReducer.arrayUncensoredCourse)
   const dispatch = useDispatch()
-
-  const handleFilterAuthorChange = (event) => {
-    setValueFilter(event.target.value)
-    if (event.target.value === 'censored') {
+  const history = useHistory()
+  useEffect(() => {
+    if (isFilter) {
       setArrCourse(arrCensoredCourses)
     } else {
       setArrCourse(arrUncensoredCourses)
+    }
+  }, [arrCensoredCourses, arrUncensoredCourses, isFilter])
+  const handleFilterAuthorChange = (event) => {
+    setValueFilter(event.target.value)
+    if (event.target.value === 'censored') {
+      setIsFilter(true)
+    } else {
+      setIsFilter(false)
     }
   }
   const handleDeleteClick = (item) => {
@@ -32,18 +41,46 @@ const AdminCourses = () => {
       maKH: item.id,
     }, (response) => {
       if (response.success) {
-        console.log('===============================================')
         console.log('delete success', response)
-        console.log('===============================================')
+        dispatch(coursesAction.GET_ALL_COURSE({
+        }, (responseGet) => {
+          if (responseGet.success) {
+            console.log('delete success', responseGet)
+          } else {
+            console.log('delete fail', responseGet)
+          }
+        }))
+        dispatch(coursesAction.GET_UNCENSORED_COURSE({
+          token,
+        }, (responseGetUn) => {
+          if (responseGetUn.success) {
+            console.log('delete success', responseGetUn)
+          } else {
+            console.log('delete fail', responseGetUn)
+          }
+        }))
       } else {
-        console.log('===============================================')
         console.log('delete fail', response)
-        console.log('===============================================')
       }
     }))
   }
-  const handleSeeDetailClick = () => {
-
+  const handleSeeDetailClick = (item) => {
+    dispatch(coursesAction.GET_VIDEOS_OF_COURSE({
+      maKH: item.id,
+      token,
+    }, (response) => {
+      if (response.success) {
+        history.push({
+          pathname: 'admincoursesdetail',
+          state:
+          {
+            params: item,
+          },
+        })
+      } else {
+        console.log('Get videos fail')
+      }
+    }))
   }
   const handleCensorClick = (item) => {
     console.log('==handleCensorClick=====================', item)
@@ -52,13 +89,9 @@ const AdminCourses = () => {
       maKH: item.id,
     }, (response) => {
       if (response.success) {
-        console.log('===============================================')
         console.log('censor success', response)
-        console.log('===============================================')
       } else {
-        console.log('===============================================')
         console.log('censor fail', response)
-        console.log('===============================================')
       }
     }))
   }

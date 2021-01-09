@@ -1,7 +1,7 @@
 import * as userType from './user'
 import * as coursesTypes from './courses'
-import * as adminCourses from './admin'
+import * as adminTypes from './admin'
 
 export {
-  userType, coursesTypes, adminCourses,
+  userType, coursesTypes, adminTypes,
 }

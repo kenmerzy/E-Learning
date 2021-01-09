@@ -41,6 +41,9 @@ const coursesReducer = (state = initState, action) => {
         arrayAuthor: data,
       }
     case coursesTypes.GET_UPLOADED_COURSES_SUCCESS:
+      console.log('===============================================')
+      console.log('3',)
+      console.log('===============================================')
       return {
         ...state,
         arrayUploadedCourses: data,
@@ -75,6 +78,9 @@ const coursesReducer = (state = initState, action) => {
         arrQuestion: data,
       }
     case coursesTypes.GET_UNCENSORED_COURSE_SUCCESS:
+      console.log('===============================================')
+      console.log('3 data', data)
+      console.log('===============================================')
       return {
         ...state,
         arrayUncensoredCourse: data,

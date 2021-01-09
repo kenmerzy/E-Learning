@@ -8,6 +8,7 @@ import logo from '../../assets/images/Logo.svg'
 import courses from '../../assets/images/courses.svg'
 import author from '../../assets/images/author.svg'
 import account from '../../assets/images/account.svg'
+import categories from '../../assets/images/categories.png'
 import styles from './HeaderAdmin.module.scss'
 import { userAction } from '../../redux/actions'
 import verified from '../../assets/images/verified.svg'
@@ -39,6 +40,13 @@ const HeaderAdmin = () => {
       title: 'Students',
       link: '/adminstudent',
       icon: account,
+
+    },
+    {
+      id: 4,
+      title: 'Categories',
+      link: '/admincategories',
+      icon: categories,
 
     },
   ]
