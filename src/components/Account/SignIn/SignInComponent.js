@@ -16,7 +16,6 @@ const SignInComponent = () => {
   const [isModalShow, setIsModalShow] = useState(false)
   const [textModal, setTextModal] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-
   const dispatch = useDispatch()
   const setValuePhoneChange = (event) => {
     setValuePhoneNumber(event.target.value)
@@ -33,9 +32,7 @@ const SignInComponent = () => {
       if (response.success) {
         const { data } = response
         const { accountType, token } = data
-        if (accountType === 'AT') {
-          dispatch(coursesAction.GET_UPLOADED_COURSES({ token }))
-        }
+
         dispatch(userAction.GET_PROFILE({
           token,
         },
@@ -74,8 +71,13 @@ const SignInComponent = () => {
             console.log('Get all course fail')
           }
         }))
+        if (accountType === 'AT') {
+          dispatch(coursesAction.GET_UPLOADED_COURSES({ token }))
+        }
+        if (accountType === 'AD') {
+          dispatch(coursesAction.GET_UNCENSORED_COURSE({ token }))
+        }
         dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
-
         setIsLoading(false)
       } else {
         setTextModal(response.message)
@@ -158,6 +160,7 @@ const SignInComponent = () => {
             />
           </form>
         </div>
+
         {isLoading && <LoadingComponent />}
 
         <button

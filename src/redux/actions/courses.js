@@ -91,3 +91,27 @@ export const ADD_QUESTION = (data, callback) => {
     payload: { data, callback },
   }
 }
+export const CHECK_POINT = (data, callback) => {
+  return {
+    type: coursesTypes.CHECK_POINT,
+    payload: { data, callback },
+  }
+}
+export const GET_UNCENSORED_COURSE = (data, callback) => {
+  return {
+    type: coursesTypes.GET_UNCENSORED_COURSE,
+    payload: { data, callback },
+  }
+}
+export const CENSOR_COURSES = (data, callback) => {
+  return {
+    type: coursesTypes.CENSOR_COURSES,
+    payload: { data, callback },
+  }
+}
+export const DELETE_COURSES = (data, callback) => {
+  return {
+    type: coursesTypes.DELETE_COURSES,
+    payload: { data, callback },
+  }
+}

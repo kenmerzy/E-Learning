@@ -12,6 +12,7 @@ const initState = {
   arrayCart: [],
   totalCostCart: 0,
   arrQuestion: [],
+  arrayUncensoredCourse: [],
 
 }
 
@@ -72,6 +73,11 @@ const coursesReducer = (state = initState, action) => {
       return {
         ...state,
         arrQuestion: data,
+      }
+    case coursesTypes.GET_UNCENSORED_COURSE_SUCCESS:
+      return {
+        ...state,
+        arrayUncensoredCourse: data,
       }
 
     default:

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
@@ -24,6 +25,12 @@ import styles from './MainPage.module.scss'
 import SignUpComponent from '../../components/Account/SignUp/SignUpComponent'
 import SignInComponent from '../../components/Account/SignIn/SignInComponent'
 import CourseDetails from '../../components/Courses/CourseDetails/CourseDetails'
+import Admin from '../Admin/Admin'
+import HeaderAdmin from '../HeaderAdmin/HeaderAdmin'
+import FooterAdmin from '../FooterAdmin/FooterAdmin'
+import AdminCourses from '../Admin/AdminCourses/AdminCourses'
+import AdminAuthors from '../Admin/AdminAuthors/AdminAuthors'
+import AdminStudents from '../Admin/AdminStudents/AdminStudents'
 import CreateNewCourse from '../../components/UploadCourse/CreateNewCourse/CreateNewCourse'
 import { coursesAction } from '../../redux/actions'
 import LoadingComponent from '../../components/Loading/LoadingComponent'
@@ -38,6 +45,7 @@ const MainPage = () => {
   const isModalShow = useSelector((value) => value?.userReducer?.isModalShow)
   const AccountComponent = accountStates[useSelector((value) => value?.userReducer?.accountState)]
   const token = useSelector((value) => value?.userReducer?.token)
+  const accountType = useSelector((value) => value?.userReducer?.accountType)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -70,11 +78,9 @@ const MainPage = () => {
       >
         <AccountComponent />
       </Modal>}
-
       <div className="container">
-
         <Router>
-          <Header />
+          {accountType !== 'AD' ? <Header /> : <HeaderAdmin />}
           <div className={styles.Main}>
             <Switch>
               <Route path="/courses" component={Courses} />
@@ -84,12 +90,17 @@ const MainPage = () => {
               <Route path="/cart" component={Cart} />
               <Route path="/account" component={Account} />
               <Route path="/details" component={CourseDetails} />
+
+              <Route path="/admincourses" component={AdminCourses} />
+              <Route path="/adminauthors" component={AdminAuthors} />
+              <Route path="/adminstudent" component={AdminStudents} />
               <Route path="/create-new-course" component={(props) => <CreateNewCourse {...props} />} />
 
-              <Route path="/" component={Home} />
+              {accountType !== 'AD' ? <Route path="/" component={Home} /> : <Route path="/admin" component={Admin} />}
             </Switch>
           </div>
-          <Footer />
+
+          {accountType !== 'AD' ? <Footer /> : <FooterAdmin />}
         </Router>
       </div>
     </div>

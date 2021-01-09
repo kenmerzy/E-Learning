@@ -29,6 +29,7 @@ const Account = () => {
   const [valueBio, setValueBio] = useState(informationUser.gioiThieu)
   const [valueAccountType, setValueAccountType] = useState(informationUser.ma)
   const valueMoney = useSelector((value) => value?.userReducer?.informationUser.soDu)
+  const email = useSelector((value) => value?.userReducer?.informationUser.email)
   // eslint-disable-next-line no-unused-vars
   const [valuePhoneNumber, setValuePhoneNumber] = useState(informationUser.sdt)
   const [profileItemType, setProfileItemType] = useState('text')
@@ -236,6 +237,13 @@ const Account = () => {
               : <span>
                 {'  Student'}
               </span>}
+          </p>
+          <p className={styles.money}>
+            Email :
+            <span>
+              {email}
+            </span>
+
           </p>
         </div>
         <p className={styles.title}>PROFILE SETTINGS</p>

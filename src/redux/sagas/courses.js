@@ -327,6 +327,112 @@ function* addQuestion(action) {
     callback(error?.response?.data)
   }
 }
+function* checkPoint(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    maBG,
+    arrayResult,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/cauhoi/check`, {
+        token,
+        maBG,
+        arrayResult,
+      })
+    )
+
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.CHECK_POINT_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* getUncensoredCourses(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/khoahoc/unverify`, {
+        token,
+      })
+    )
+
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_UNCENSORED_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* censorCourse(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    maKH,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/khoahoc/verify`, {
+        token, maKH,
+      })
+    )
+    console.log('==saga course =====================')
+
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_ALL_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+      yield put({
+        type: coursesTypes.GET_UNCENSORED_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+function* deleteCourse(action) {
+  const { data, callback } = action.payload
+  const {
+    token, maKH,
+  } = data
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/khoahoc/delete`, {
+        token, maKH,
+      })
+    )
+
+    if (response?.data?.success) {
+      yield put({
+        type: coursesTypes.GET_ALL_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+      yield put({
+        type: coursesTypes.GET_UNCENSORED_COURSE_SUCCESS,
+        payload: { data: response?.data?.data },
+      })
+    }
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
 export default function* courseSagas() {
   yield takeLatest(coursesTypes.GET_ALL_COURSE, getAllCourse)
   yield takeLatest(coursesTypes.GET_ALL_CATEGORY, getAllCategory)
@@ -341,4 +447,8 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.DELETE_CART_ITEM, deleteCartItem)
   yield takeLatest(coursesTypes.GET_LIST_QUESTION, getListQuestion)
   yield takeLatest(coursesTypes.ADD_QUESTION, addQuestion)
+  yield takeLatest(coursesTypes.CHECK_POINT, checkPoint)
+  yield takeLatest(coursesTypes.GET_UNCENSORED_COURSE, getUncensoredCourses)
+  yield takeLatest(coursesTypes.CENSOR_COURSES, censorCourse)
+  yield takeLatest(coursesTypes.DELETE_COURSES, deleteCourse)
 }

@@ -7,11 +7,13 @@ import phone from '../../../assets/images/phone.png'
 import Password from '../../../assets/images/Password.svg'
 import deleteIcon from '../../../assets/images/delete.svg'
 import user from '../../../assets/images/user.png'
+import email from '../../../assets/images/gmail.png'
 import ModalComponent from '../ModalComponent/ModalComponent'
 
 const SignUpComponent = () => {
   const [valueName, setValueName] = useState('')
   const [valuePhoneNumber, setValuePhoneNumber] = useState('')
+  const [valueEmail, setValueEmail] = useState('')
   const [valuePassword, setValuePassword] = useState('')
   const [valueConfirmPassword, setValueConfirmPassword] = useState('')
   const [accountType, setAccountType] = useState('student')
@@ -25,6 +27,9 @@ const SignUpComponent = () => {
   }
   const setValuePhoneChange = (event) => {
     setValuePhoneNumber(event.target.value)
+  }
+  const setValueEmailChange = (event) => {
+    setValueEmail(event.target.value)
   }
   const setValuePasswordChange = (event) => {
     setValuePassword(event.target.value)
@@ -130,6 +135,26 @@ const SignUpComponent = () => {
               formNoValidate
               value={valuePhoneNumber}
               onChange={setValuePhoneChange}
+            />
+          </form>
+        </div>
+        <div className={styles.divInput}>
+          <div className={styles.coverImage}>
+            <img
+              src={email}
+              alt="logo"
+            />
+          </div>
+          <form
+            className={styles.formInput}
+            onSubmit={(e) => { e.preventDefault() }}
+          >
+            <input
+              className={styles.input}
+              placeholder="Email"
+              formNoValidate
+              value={valueEmail}
+              onChange={setValueEmailChange}
             />
           </form>
         </div>

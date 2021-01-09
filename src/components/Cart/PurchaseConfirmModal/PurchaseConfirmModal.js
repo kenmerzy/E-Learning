@@ -11,7 +11,7 @@ import { coursesAction } from '../../../redux/actions'
 const PurchaseConfirmModal = (props) => {
   const { onCloseModalClick, arrayPurchase, totalCost } = props
   const token = useSelector((value) => value?.userReducer?.token)
-  const [isModalShow, setIsModalShow] = useState('')
+  const [isModalShow, setIsModalShow] = useState(false)
   const [textModal, setTextModal] = useState('')
   const [typeModal, setTypeModal] = useState('')
   const [isLoading, setIsLoading] = useState(false)
