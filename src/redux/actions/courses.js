@@ -26,9 +26,6 @@ export const GET_ALL_AUTHOR = (data) => {
 }
 
 export const GET_UPLOADED_COURSES = (data, callback) => {
-  console.log('===============================================')
-  console.log('1',)
-  console.log('===============================================')
   return {
     type: coursesTypes.GET_UPLOADED_COURSES,
     payload: { data, callback },
@@ -101,11 +98,14 @@ export const CHECK_POINT = (data, callback) => {
   }
 }
 export const GET_UNCENSORED_COURSE = (data, callback) => {
-  console.log('===============================================')
-  console.log('1 data ', data)
-  console.log('===============================================')
   return {
     type: coursesTypes.GET_UNCENSORED_COURSE,
+    payload: { data, callback },
+  }
+}
+export const ADD_PROGRESS = (data, callback) => {
+  return {
+    type: coursesTypes.ADD_PROGRESS,
     payload: { data, callback },
   }
 }

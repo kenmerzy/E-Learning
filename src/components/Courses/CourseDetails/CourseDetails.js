@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react'
 import { Player } from 'video-react'
@@ -7,7 +8,6 @@ import styles from './CourseDetails.module.scss'
 import LogoFlutter from '../../../assets/images/LogoFlutter.svg'
 import AvatarMeng from '../../../assets/images/AvatarMeng.svg'
 import { URL } from '../../../configs'
-// eslint-disable-next-line no-unused-vars
 import {
   GetHourOfTime, truncateString,
 } from '../../../utils'
@@ -29,31 +29,113 @@ const CourseDetails = (props) => {
   const [videoIndex, setVideoIndex] = useState(0)
   const [timeCourse, setTimeCourse] = useState(0)
   const [maBG, setMaBG] = useState('')
+  const [maKH, setmaKH] = useState('')
   const arrVideos = useSelector((value) => value?.coursesReducer?.arrayVideosOfCourse)
   const arrQuestion = useSelector((value) => value.coursesReducer.arrQuestion)
   const [isModalShow, setIsModalShow] = useState(false)
   const [textModal, setTextModal] = useState('')
   const [typeModal, setTypeModal] = useState('')
+  const [enableView, setEnableView] = useState(data?.enableView)
   const [arrayAnswersExam, setArrayAnswersExam] = useState(Array(useSelector((value) => value?.coursesReducer?.arrQuestion?.length)).fill())
   const handleVideoItemClick = (item, index) => {
-    setMaBG(item.id)
+    if (index < enableView) {
+      setMaBG(item.id)
+      dispatch(coursesAction.GET_LIST_QUESTION({
+        token,
+        maBG: item.id,
+      }, (response) => {
+        if (response.success) {
+          setIsVideoShow(true)
+          setVideoPath(item.video)
+          setVideoTitle(item.tieuDe)
+          setVideoDescription(item.moTa)
+          setVideoIndex(index)
+          if (isVideoShow) {
+            const elmnt = document.getElementById('video')
+            elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          } else {
+            const timeout = setTimeout(() => {
+              const elmnt = document.getElementById('video')
+              elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              clearTimeout(timeout)
+            }, 50)
+          }
+        } else {
+          console.log('===============================================')
+          console.log('get List Question fail')
+          console.log('===============================================')
+        }
+      }))
+    } else if (index === enableView) {
+      dispatch(coursesAction.GET_LIST_QUESTION({
+        token,
+        maBG: item.id,
+      }, (response) => {
+        if (response.success) {
+          setIsVideoShow(true)
+          setVideoPath(item.video)
+          setVideoTitle(item.tieuDe)
+          setVideoDescription(item.moTa)
+          setVideoIndex(index)
+
+          if (arrQuestion.length === 0) {
+            dispatch(coursesAction.ADD_PROGRESS({
+              token,
+              maKH,
+              maBG: item.id,
+            }, (responseAddProgress) => {
+              console.log('responseAddProgress init', responseAddProgress)
+              if (responseAddProgress.success) {
+                setEnableView(enableView + 1)
+                console.log('responseAddProgress success', responseAddProgress)
+              } else {
+                setTypeModal('fail')
+                setTextModal('Add Progress fail !!')
+                setIsModalShow(true)
+              }
+            }))
+          }
+          if (isVideoShow) {
+            const elmnt = document.getElementById('video')
+            elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          } else {
+            const timeout = setTimeout(() => {
+              const elmnt = document.getElementById('video')
+              elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              clearTimeout(timeout)
+            }, 50)
+          }
+        } else {
+          console.log('===============================================')
+          console.log('get List Question fail')
+          console.log('===============================================')
+        }
+      }))
+    } else {
+      setTypeModal('fail')
+      setTextModal('You need to watch the previous video and do an exam first')
+      setIsModalShow(true)
+    }
+  }
+  const handleVideoBackClick = () => {
+    setMaBG(arrVideos[videoIndex - 1].id)
     dispatch(coursesAction.GET_LIST_QUESTION({
       token,
-      maBG: item.id,
+      maBG: arrVideos[videoIndex - 1].id,
     }, (response) => {
       if (response.success) {
         setIsVideoShow(true)
-        setVideoPath(item.video)
-        setVideoTitle(item.tieuDe)
-        setVideoDescription(item.moTa)
-        setVideoIndex(index)
+        setVideoPath(arrVideos[videoIndex - 1].video)
+        setVideoTitle(arrVideos[videoIndex - 1].tieuDe)
+        setVideoDescription(arrVideos[videoIndex - 1].moTa)
+        setVideoIndex(videoIndex - 1)
         if (isVideoShow) {
           const elmnt = document.getElementById('video')
-          elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' })
         } else {
           const timeout = setTimeout(() => {
             const elmnt = document.getElementById('video')
-            elmnt.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            elmnt.scrollIntoView({ behavior: 'smooth', block: 'start' })
             clearTimeout(timeout)
           }, 50)
         }
@@ -64,18 +146,89 @@ const CourseDetails = (props) => {
       }
     }))
   }
-  const handleVideoBackClick = () => {
-    setVideoPath(arrVideos[videoIndex - 1].video)
-    setVideoTitle(arrVideos[videoIndex - 1].tieuDe)
-    setVideoDescription(arrVideos[videoIndex - 1].moTa)
-
-    setVideoIndex(videoIndex - 1)
-  }
   const handleVideoNextClick = () => {
-    setVideoPath(arrVideos[videoIndex + 1].video)
-    setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
-    setVideoTitle(arrVideos[videoIndex + 1].moTa)
-    setVideoIndex(videoIndex + 1)
+    console.log('===============================================')
+    console.log('VIDEO INDEX', videoIndex)
+    console.log('===============================================')
+    if ((videoIndex) === enableView) {
+      if (arrQuestion.length === 0) {
+        setMaBG(arrVideos[videoIndex + 1].id)
+        dispatch(coursesAction.GET_LIST_QUESTION({
+          token,
+          maBG: arrVideos[videoIndex + 1].id,
+        }, (response) => {
+          if (response.success) {
+            console.log('===============================================')
+            console.log('res if', response)
+            console.log('===============================================')
+            setIsVideoShow(true)
+            setVideoPath(arrVideos[videoIndex + 1].video)
+            setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
+            setVideoDescription(arrVideos[videoIndex + 1].moTa)
+            setVideoIndex(videoIndex + 1)
+            dispatch(coursesAction.ADD_PROGRESS({
+              token,
+              maKH,
+              maBG,
+            }, (responseAddProgress) => {
+              console.log('responseAddProgress init', responseAddProgress)
+              if (responseAddProgress.success) {
+                setEnableView(enableView + 1)
+                console.log('responseAddProgress success', responseAddProgress)
+              } else {
+                setTypeModal('fail')
+                setTextModal('Add Progress fail !!')
+                setIsModalShow(true)
+              }
+            }))
+          } else {
+            console.log('===============================================')
+            console.log('get List Question fail')
+            console.log('===============================================')
+          }
+        }))
+      } else {
+        setTypeModal('fail')
+        setTextModal('You need to watch this video and do an exam first')
+        setIsModalShow(true)
+      }
+    } else {
+      setMaBG(arrVideos[videoIndex + 1].id)
+      dispatch(coursesAction.GET_LIST_QUESTION({
+        token,
+        maBG: arrVideos[videoIndex + 1].id,
+      }, (response) => {
+        if (response.success) {
+          console.log('===============================================')
+          console.log('res else', response)
+          console.log('===============================================')
+          setIsVideoShow(true)
+          setVideoPath(arrVideos[videoIndex + 1].video)
+          setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
+          setVideoDescription(arrVideos[videoIndex + 1].moTa)
+          setVideoIndex(videoIndex + 1)
+          dispatch(coursesAction.ADD_PROGRESS({
+            token,
+            maKH,
+            maBG: arrVideos[videoIndex + 1].id,
+          }, (responseAddProgress) => {
+            console.log('responseAddProgress init', responseAddProgress)
+            if (responseAddProgress.success) {
+              setEnableView(enableView + 1)
+              console.log('responseAddProgress success', responseAddProgress)
+            } else {
+              setTypeModal('fail')
+              setTextModal('Add Progress fail !!')
+              setIsModalShow(true)
+            }
+          }))
+        } else {
+          console.log('===============================================')
+          console.log('get List Question fail')
+          console.log('===============================================')
+        }
+      }))
+    }
   }
   const handleDoneExamClick = () => {
     console.log('===============================================')
@@ -87,10 +240,30 @@ const CourseDetails = (props) => {
       arrayResult: arrayAnswersExam,
     }, (response) => {
       if (response.success) {
-        setIsModalShow(true)
-        setTypeModal('success')
-        setTextModal(`Your point is: ${response.data.point}`)
         console.log('success', response)
+        console.log('===============================================')
+        console.log('token', token,)
+        console.log('maKH', maKH,)
+        console.log('maBG', maBG,)
+        console.log('===============================================')
+        dispatch(coursesAction.ADD_PROGRESS({
+          token,
+          maKH,
+          maBG: arrVideos[videoIndex + 1].id,
+        }, (responseAddProgress) => {
+          console.log('responseAddProgress init', responseAddProgress)
+          if (responseAddProgress.success) {
+            setEnableView(enableView + 1)
+            setIsModalShow(true)
+            setTypeModal('success')
+            setTextModal(`Your point is: ${response.data.point}/100`)
+            console.log('responseAddProgress success', responseAddProgress)
+          } else {
+            setTypeModal('fail')
+            setTextModal('Add Progress fail !!')
+            setIsModalShow(true)
+          }
+        }))
       } else {
         setIsModalShow(true)
         setTypeModal('fail')
@@ -117,6 +290,7 @@ const CourseDetails = (props) => {
   }
   useEffect(() => {
     setTimeCourse(GetHourOfTime(params.tongThoiLuong))
+    setmaKH(params.id)
   })
 
   return (
@@ -194,6 +368,14 @@ const CourseDetails = (props) => {
                 rel="noreferrer"
                 onClick={active && !expired ? () => handleVideoItemClick(item, index) : null}
                 href
+                style={index > enableView ? {
+                  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                  borderRadius: 10,
+                  cursor: 'not-allowed',
+                } : {
+                    borderRadius: 10,
+                    cursor: 'pointer',
+                  }}
               >
                 <div className={styles.divCircle}>
                   <p>
@@ -309,15 +491,16 @@ const CourseDetails = (props) => {
               </div>
             )
           })}
-          <div className={styles.divButton}>
-            <button
-              className={styles.buttonDoneExam}
-              onClick={handleDoneExamClick}
-              type="button"
-            >
-              <p>Done</p>
-            </button>
-          </div>
+          {arrQuestion.length !== 0
+            && <div className={styles.divButton}>
+              <button
+                className={styles.buttonDoneExam}
+                onClick={handleDoneExamClick}
+                type="button"
+              >
+                <p>Done</p>
+              </button>
+            </div>}
         </div>
       </div>}
     </div>

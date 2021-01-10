@@ -20,9 +20,32 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.ADD_QUESTION, addQuestion)
   yield takeLatest(coursesTypes.CHECK_POINT, checkPoint)
   yield takeLatest(coursesTypes.GET_UNCENSORED_COURSE, getUncensoredCourses)
+  yield takeLatest(coursesTypes.ADD_PROGRESS, addProgress)
 }
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
+function* addProgress(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    maKH,
+    maBG,
+  } = data
+
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/tdht/add`, {
+        token,
+        maKH,
+        maBG,
+      })
+    )
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
+
 function* getAllCourse(action) {
   const { data, callback } = action.payload
   try {

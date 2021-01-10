@@ -25,6 +25,7 @@ const CourseItem = (props) => {
     onClickBuyNow,
     onClickLearnNow,
     onClickExtend,
+    progress,
 
   } = props
   const parseTimeToString = (time) => {
@@ -58,6 +59,11 @@ const CourseItem = (props) => {
     }
     return <p className={styles.description}>{' '}</p>
   }
+
+  const ProgressComponent = () => {
+    const valProgress = (progress * 100).toFixed(0)
+    return <p className={styles.description}>{`Progress: ${valProgress}%`}</p>
+  }
   const getTypeButton = () => {
     if (!active) {
       return 'addToCart'
@@ -70,17 +76,9 @@ const CourseItem = (props) => {
     return 'extend'
   }
   const type = getTypeButton()
-
-  // const timeout = setTimeout(() => {
-  //   console.log('===============================================')
-  //   console.log('title', title)
-  //   console.log('active', active)
-  //   console.log('expired', expired)
-  //   console.log('type', type)
-  //   console.log('===============================================')
-  //   clearTimeout(timeout)
-  // }, 50)
-
+  console.log('===============================================')
+  console.log('active', active)
+  console.log('===============================================')
   return (
     to
       ? <Link
@@ -95,15 +93,17 @@ const CourseItem = (props) => {
         <p className={styles.title}>{title}</p>
         <p className={styles.description}>{description}</p>
         <TotalVideosComponent />
-        <TotalViewComponent />
+        {!active ? <TotalViewComponent /> : <ProgressComponent />}
         <GiaComponent />
-        {!hideButton && <ButtonCourseItem
-          type={type}
-          onClickAddToCart={onClickAddToCart && onClickAddToCart}
-          onClickBuyNow={onClickBuyNow && onClickBuyNow}
-          onClickLearnNow={onClickLearnNow && onClickLearnNow}
-          onClickExtend={onClickExtend && onClickExtend}
-        />}
+        {
+          !hideButton && <ButtonCourseItem
+            type={type}
+            onClickAddToCart={onClickAddToCart && onClickAddToCart}
+            onClickBuyNow={onClickBuyNow && onClickBuyNow}
+            onClickLearnNow={onClickLearnNow && onClickLearnNow}
+            onClickExtend={onClickExtend && onClickExtend}
+          />
+        }
       </Link>
       : <Link
         className={styles.container}
@@ -116,7 +116,7 @@ const CourseItem = (props) => {
         <p className={styles.title}>{title}</p>
         <p className={styles.description}>{description}</p>
         <TotalVideosComponent />
-        <TotalViewComponent />
+        {!active ? <TotalViewComponent /> : <ProgressComponent />}
         <GiaComponent />
         {!hideButton && <ButtonCourseItem
           type={type}

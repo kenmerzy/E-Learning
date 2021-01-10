@@ -186,6 +186,8 @@ const Courses = () => {
             onClickBuyNow={(event) => onClickBuyNow(event, item)}
             onClickLearnNow={onClickLearnNow}
             onClickExtend={onClickExtend}
+            progress={item.progress.percent}
+
           />)}
         </ul>
       </div>

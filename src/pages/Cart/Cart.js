@@ -7,6 +7,7 @@ import styles from './Cart.module.scss'
 import trash from '../../assets/images/trash.svg'
 import PurchaseConfirmModal from '../../components/Cart/PurchaseConfirmModal/PurchaseConfirmModal'
 import { coursesAction } from '../../redux/actions'
+import { truncateString } from '../../utils'
 
 const Cart = () => {
   const [isCheckAll, setIsCheckAll] = useState(false)
@@ -137,7 +138,7 @@ const Cart = () => {
                   />
                   <p className={styles.tenKhoaHoc}>{item.tenKhoaHoc}</p>
                   <p className={styles.ma}>{item.tenLoaiKhoaHoc}</p>
-                  <p className={styles.moTa}>{item.moTa}</p>
+                  <p className={styles.moTa}>{truncateString(item.moTa, 70)}</p>
                   <p className={styles.thoiHan}>{item.thoiHan}</p>
                   <p className={styles.soLuongDaBan}>{item.soLuongDaBan}</p>
                   <p className={styles.gia}>{`$ ${item.gia}`}</p>

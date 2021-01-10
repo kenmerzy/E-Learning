@@ -140,28 +140,28 @@
       display: flex;
       height: fit-content;
       li{
-        width: 360px;
+        width:     350px                                                                                                                                                  ;
         height: 109px;
         color:white;
         margin-top: 20px;
-
+        margin-left: 10px;
+        border-radius: 10px;
         :hover{
-          cursor:pointer;
           background: rgba(59, 167, 104, 0.5);
           background-blend-mode: overlay;
           mix-blend-mode: normal;
           box-shadow: inset 0px 0px 0px 0.5px rgba(68, 66, 178, 0.2);
-          border-radius: 10px;
           text-decoration: none;
-        }
-      
+          border-radius: 10px;
 
+        }
         .item{
           display: flex;
-          width: 360px;
+          width: 350px;
           flex-direction: row;
           padding: 10px 10px;
           justify-content: space-between;
+
           :hover{
           background-color: transparent;
           border: none;
@@ -182,8 +182,7 @@
               justify-content: space-between;
               margin-bottom: 10px;
               p{
-                flex:1;
-                width:234px;
+                width:220px;
                 font-family: SF Pro Text;
               font-style: normal;
               font-weight: 500;
@@ -259,10 +258,11 @@
       display: flex;
       height: fit-content;
       li{
-        width: 360px;
+        width: 350px;
         height: 109px;
         color:white;
         margin-top: 20px;
+        margin-left: 10px;
 
         :hover{
           cursor:not-allowed;
@@ -272,7 +272,7 @@
 
         .item{
           display: flex;
-          width: 360px;
+          width: 350px;
           flex-direction: row;
           padding: 10px 10px;
           justify-content: space-between;
@@ -297,7 +297,7 @@
               margin-bottom: 10px;
               p{
                 flex:1;
-                width:234px;
+                width:220px;
                 font-family: SF Pro Text;
               font-style: normal;
               font-weight: 500;
@@ -484,7 +484,7 @@
     .logoBack{
       position: absolute;
       left:-100px;
-      top:350px;
+      top:  350px;                                                                                                                                                  ;
       cursor: pointer;
       img{
            width:70px;

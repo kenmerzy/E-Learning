@@ -57,6 +57,8 @@ const MyCourses = () => {
     expired={item.expired}
     onClickLearnNow={(e) => onClickLearnNow(e, item)}
     onClickExtend={(e) => onClickLearnNow(e, item)}
+    progress={item.progress.percent}
+
   />)
   return (
     <div className={styles.container}>
