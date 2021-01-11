@@ -25,7 +25,7 @@ const CourseItem = (props) => {
     onClickBuyNow,
     onClickLearnNow,
     onClickExtend,
-    progress,
+    progress = 0,
 
   } = props
   const parseTimeToString = (time) => {

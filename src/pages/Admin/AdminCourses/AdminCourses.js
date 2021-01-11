@@ -8,6 +8,7 @@ import eye from '../../../assets/images/eye.png'
 import checkMark from '../../../assets/images/checkMark.png'
 
 import { adminAction, coursesAction } from '../../../redux/actions'
+import { truncateString } from '../../../utils'
 
 const AdminCourses = () => {
   const token = useSelector((value) => value?.userReducer?.token)
@@ -127,7 +128,7 @@ const AdminCourses = () => {
 
               <p className={styles.tenKhoaHoc}>{item.tenKhoaHoc}</p>
               <p className={styles.ma}>{item.tenLoaiKhoaHoc}</p>
-              <p className={styles.moTa}>{item.moTa}</p>
+              <p className={styles.moTa}>{truncateString(item.moTa, 70)}</p>
               <p className={styles.thoiHan}>{item.thoiHan}</p>
               <p className={styles.gia}>{`$ ${item.gia}`}</p>
 

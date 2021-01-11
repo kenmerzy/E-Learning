@@ -82,7 +82,8 @@ const MainPage = () => {
       </Modal>}
       <div className="container">
         <Router>
-          {accountType !== 'AD' ? <Header /> : <HeaderAdmin />}
+          {/* {accountType !== 'AD' ? <Header /> : <HeaderAdmin />} */}
+          {<HeaderAdmin />}
           <div className={styles.Main}>
             <Switch>
               <Route path="/courses" component={Courses} />
