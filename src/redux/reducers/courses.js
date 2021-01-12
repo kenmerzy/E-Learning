@@ -41,9 +41,7 @@ const coursesReducer = (state = initState, action) => {
         arrayAuthor: data,
       }
     case coursesTypes.GET_UPLOADED_COURSES_SUCCESS:
-      console.log('===============================================')
-      console.log('3',)
-      console.log('===============================================')
+
       return {
         ...state,
         arrayUploadedCourses: data,

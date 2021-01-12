@@ -1,71 +1,64 @@
 /* eslint-disable react/jsx-indent */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './AdminStudents.module.scss'
 import banned from '../../../assets/images/banned.svg'
 import unbanned from '../../../assets/images/unbanned.png'
 import { truncateString } from '../../../utils'
-
-const arrStudentAccount = [
-  {
-    id: 1,
-    hoVaTen: 'Nguyen Ngoc Long',
-    ngaySinh: '17/10/1999',
-    diaChi: '140 Le Trong Tan, TPHCM',
-    sdt: '0909123456',
-    ngheNghiep: 'React Native Developer',
-    gioiThieu: 'This is my Bio',
-  },
-  {
-    id: 2,
-    hoVaTen: 'Vu Duy Duong',
-    ngaySinh: '17/10/1999',
-    diaChi: '140 Le Trong Tan, TPHCM',
-    sdt: '0909123456',
-    ngheNghiep: 'React Native Developer',
-    gioiThieu: 'This is my Bio',
-  },
-  {
-    id: 3,
-    hoVaTen: 'Tien Truong',
-    ngaySinh: '17/10/1999',
-    diaChi: '140 Le Trong Tan, TPHCM',
-    sdt: '0909123456',
-    ngheNghiep: 'React Native Developer',
-    gioiThieu: 'This is  my Biomy Biomy Biomy Biomy Biomy Biomy Bio',
-  },
-  {
-    id: 4,
-    hoVaTen: 'Toan Ho',
-    ngaySinh: '17/10/1999',
-    diaChi: '140 Le Trong Tan, TPHCM',
-    sdt: '0909123456',
-    ngheNghiep: 'React Native Developer',
-    gioiThieu: 'This is my Bio',
-  },
-]
+import { adminAction } from '../../../redux/actions'
 
 const AdminStudents = () => {
   const [isFilter, setIsFilter] = useState(true)
   const [valueFilter, setValueFilter] = useState('')
-  const arrNormalStudentAccount = useSelector((value) => value)
-  const arrBannedStudentAccount = useSelector((value) => value)
-  const [arrStudent, setArrStudent] = useState(useSelector((value) => value.coursesReducer.arrayAllCourse))
-  const dispatch = useDispatch()
+  const [arrFilter, setArrFilter] = useState([])
+  const arrStudent = useSelector((value) => value.adminReducer.arrayStudent)
 
-  const handleBanClick = () => {
+  const dispatch = useDispatch()
+  const token = useSelector((value) => value?.userReducer?.token)
+
+  const handleBanClick = (item) => {
+    dispatch(adminAction.BAN_USER({
+      token,
+      maUser: item.id,
+    }, (response) => {
+      if (response.success) {
+        dispatch(adminAction.GET_ALL_STUDENT())
+        console.log('===============================================')
+        console.log('ban author success', response)
+        console.log('===============================================')
+      } else {
+        console.log('===============================================')
+        console.log('ban author fail', response)
+        console.log('===============================================')
+      }
+    }))
   }
-  const handleUnBanClick = () => {
+
+  const handleUnBanClick = (item) => {
+    dispatch(adminAction.UN_BAN_USER({
+      token,
+      maUser: item.id,
+    }, (response) => {
+      if (response.success) {
+        dispatch(adminAction.GET_ALL_STUDENT())
+        console.log('ban author success', response)
+      } else {
+        console.log('===============================================')
+        console.log('ban author fail', response)
+        console.log('===============================================')
+      }
+    }))
   }
   useEffect(() => {
+    console.log('===============================================')
+    console.log('effect',)
+    console.log('===============================================')
     if (isFilter) {
-      setArrStudent(arrNormalStudentAccount)
+      setArrFilter(arrStudent.filter((i) => i.ban === 0))
     } else {
-      setArrStudent(arrBannedStudentAccount)
+      setArrFilter(arrStudent.filter((i) => i.ban === 1))
     }
-  }, [arrNormalStudentAccount, arrBannedStudentAccount, isFilter])
+  }, [isFilter, arrStudent])
   const handleFilterAuthorChange = (event) => {
     setValueFilter(event.target.value)
     if (event.target.value === 'normal') {
@@ -77,7 +70,7 @@ const AdminStudents = () => {
   return (
     <div className={styles.container}>
       <div className={styles.divFilter}>
-        <p>Filter account: </p>
+        <p>Filter Student: </p>
         <select
           value={valueFilter}
           onChange={handleFilterAuthorChange}
@@ -87,7 +80,7 @@ const AdminStudents = () => {
         </select>
       </div>
       <div className={styles.listCartItem}>
-        {arrStudentAccount?.length > 0 ? <ul className="row">
+        {arrFilter?.length > 0 ? <ul className="row">
           <li>
 
             <p className={styles.tenHeader}>Name</p>
@@ -99,14 +92,14 @@ const AdminStudents = () => {
             <p className={styles.trashHeader}> </p>
 
           </li>
-          {arrStudentAccount.map((item) => (
+          {arrFilter.map((item) => (
             <li>
               <p className={styles.ten}>{item.hoVaTen}</p>
               <p className={styles.ngaySinh}>{item.ngaySinh}</p>
               <p className={styles.sdt}>{`${item.sdt}`}</p>
               <p className={styles.ngheNghiep}>{item.ngheNghiep}</p>
               <p className={styles.diaChi}>{item.diaChi}</p>
-              <p className={styles.bio}>{truncateString(item.gioiThieu, 30)}</p>
+              <p className={styles.bio}>{item.gioiThieu && truncateString(item.gioiThieu, 30)}</p>
               {isFilter ? <a
                 href
                 onClick={() => handleBanClick(item)}

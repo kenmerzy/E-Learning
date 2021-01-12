@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
-import { userAction, coursesAction } from '../../../redux/actions'
+import { userAction, coursesAction, adminAction } from '../../../redux/actions'
 import styles from './SignInComponent.module.scss'
 import phone from '../../../assets/images/phone.png'
 import deleteIcon from '../../../assets/images/delete.svg'
@@ -80,18 +80,21 @@ const SignInComponent = () => {
             console.log('res', res)
             console.log('===============================================')
           }))
-          dispatch(coursesAction.GET_ALL_CATEGORY({},
-            (responseGetCategories) => {
-              if (responseGetCategories.success) {
-                console.log('===============================================')
-                console.log('GET_ALL_CATEGORY success')
-                console.log('===============================================')
-              } else {
-                console.log('===============================================')
-                console.log('GET_ALL_CATEGORY Fail')
-                console.log('===============================================')
-              }
-            }))
+          dispatch(adminAction.GET_ALL_CATEGORIES({
+            token,
+          }, (responseGetCategories) => {
+            if (responseGetCategories.success) {
+              console.log('===============================================')
+              console.log('GET_ALL_CATEGORY success', responseGetCategories)
+              console.log('===============================================')
+            } else {
+              console.log('===============================================')
+              console.log('GET_ALL_CATEGORY Fail', responseGetCategories)
+              console.log('===============================================')
+            }
+          }))
+          dispatch(coursesAction.GET_ALL_AUTHOR())
+          dispatch(adminAction.GET_ALL_STUDENT())
         }
         dispatch(userAction.SET_IS_MODAL_SHOW({ isModalShow: false }))
         setIsLoading(false)

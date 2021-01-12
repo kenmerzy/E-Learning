@@ -1,7 +1,52 @@
 @import "../../../assets/styles/configs";
 
 .Container{
+  .divFilter{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+    p{
+        color:white;
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        margin:0px 0px;
+
+    }
+    select{
+      margin:0px 10px;
+      padding:5px 15px;
+      outline:none;
+      color: rgba(0, 0, 0);
+      font-family: 'SF Pro Text';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+       background-color: rgba(255, 255, 255, 1);
+      option {
+        margin-left: 5px;
+        outline:none;
+        color: rgba(0, 0, 0);
+        font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        margin:0px 5px;
+     }
+    }
+  }
   .listCartItem{
+    .notiEmptyCart
+    {
+      color:white;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
     margin-top: 40px;
    
     ul{

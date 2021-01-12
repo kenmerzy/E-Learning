@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import userReducer from './user'
 import coursesReducer from './courses'
+import adminReducer from './admin'
 
 const appReducer = combineReducers({
-  userReducer, coursesReducer,
+  userReducer, coursesReducer, adminReducer,
 })
 
 const rootReducer = (state, action) => {

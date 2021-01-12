@@ -11,9 +11,9 @@
 // export const URL = 'http://10.26.90.171:3000'
 
 // APIDuong
-export const API_URL = 'http://192.168.43.177:3000/api'
-export const URL = 'http://192.168.43.177:3000'
+// export const API_URL = 'http://192.168.43.177:3000/api'
+// export const URL = 'http://192.168.43.177:3000'
 
-// // QuanCafe
-// export const API_URL = 'http://192.168.1.7:3000/api'
-// export const URL = 'http://192.168.1.7:3000/'
+// QuanCafe
+export const API_URL = 'http://192.168.1.7:3000/api'
+export const URL = 'http://192.168.1.7:3000/'
