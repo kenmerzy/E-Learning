@@ -1,8 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Modal from 'react-bootstrap/Modal'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 import styles from './Account.module.scss'
 import verified from '../../assets/images/verified.svg'
 import { userAction } from '../../redux/actions'
@@ -15,6 +18,7 @@ import occupation from '../../assets/images/occupation.png'
 import ProfileItem from '../../components/Account/ProfileItem/ProfileItem'
 import plusIcon from '../../assets/images/plusIcon.svg'
 import RechargeModal from '../../components/Account/RechargeModal/RechargeModal'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const Account = () => {
   const [informationUser, setInformationUser] = useState(useSelector((value) => value?.userReducer?.informationUser))
@@ -37,6 +41,7 @@ const Account = () => {
   const [isButtonCancelVisible, setIsButtonCancelVisible] = useState(false)
   const [isModalShow, setModalShow] = useState(false)
   const dispatch = useDispatch()
+
   useEffect(() => {
     if (token) {
       dispatch(userAction.GET_PROFILE({
@@ -72,9 +77,15 @@ const Account = () => {
   const setValueAddressChange = (event) => {
     setValueAddress(event.target.value)
   }
-  const setValueDateOfBirthChange = (event) => {
-    setValueDateOfBirth(event.target.value)
+  const handleDateChange = (date) => {
+    console.log('===============================================')
+    console.log('e', moment(date).format('YYYY/MM/DD'))
+    console.log('===============================================')
+    setValueDateOfBirth(date)
   }
+  // const setValueDateOfBirthChange = (event) => {
+  //   setValueDateOfBirth(event.target.value)
+  // }
   const setValueOccupationChange = (event) => {
     setValueOccupation(event.target.value)
   }
@@ -128,6 +139,7 @@ const Account = () => {
       hoVaTen: valueName,
       diaChi: valueAddress,
       ngheNghiep: valueOccupation,
+      ngaySinh: moment(valueDateOfBirth).format('YYYY/MM/DD'),
       gioiTinh: valueGender,
       gioiThieu: valueBio,
 
@@ -150,7 +162,7 @@ const Account = () => {
           setIsButtonCancelVisible(false)
         } else {
           console.log('===============================================')
-          console.log('get Profile fail')
+          console.log('get Profile fail', response)
           console.log('===============================================')
         }
       }))
@@ -239,8 +251,9 @@ const Account = () => {
               </span>}
           </p>
           <p className={styles.money}>
-            Email :
+            Email:
             <span>
+              {' '}
               {email}
             </span>
 
@@ -257,14 +270,29 @@ const Account = () => {
               textValue={informationUser.hoVaTen}
               onChange={setValueNameChange}
             />
-            <ProfileItem
+            {/* <ProfileItem
               type={profileItemType}
               image={birthday}
               placeholder="Date of birth"
               value={valueDateOfBirth}
               textValue={informationUser.ngaySinh}
               onChange={setValueDateOfBirthChange}
-            />
+            /> */}
+            <div className={styles.divInput}>
+              <div className={styles.coverImage}>
+                <img
+                  src={birthday}
+                  alt="logo"
+                />
+              </div>
+              {profileItemType !== 'text' ? <DatePicker
+                selected={new Date(valueDateOfBirth)}
+                onChange={handleDateChange}
+              />
+                : <div className={styles.textP}>
+                  <p>{`${moment(valueDateOfBirth).format('DD/MM/YYYY')}`}</p>
+                </div>}
+            </div>
             <ProfileItem
               type={profileItemType}
               image={address}
@@ -314,7 +342,7 @@ const Account = () => {
               onClick={handleCancelClick}
             >
               Cancel
-            </button>}
+              </button>}
           </div>
         </div>
         <button
