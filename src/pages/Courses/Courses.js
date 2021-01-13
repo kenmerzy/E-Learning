@@ -26,9 +26,11 @@ const Courses = () => {
   const token = useSelector((value) => value?.userReducer?.token)
   const [itemBuy, setItemBuy] = useState()
   const history = useHistory()
+
   const [filterAuthor, setFilterAuthor] = useState('')
   const [filterCourse, setFilterCourse] = useState('')
   const [isModalShow, setIsModalShow] = useState('')
+
   const handleFilterAuthorChange = (event) => {
     setFilterAuthor(event.target.value)
     dispatch(coursesAction.GET_ALL_COURSE({
@@ -89,6 +91,11 @@ const Courses = () => {
         maKH: item.id,
       }, (response) => {
         if (response.success) {
+          dispatch(userAction.SEND_MAIL({
+            token,
+            subject: 'Subject',
+            description: 'abcabc\n acddf \n sdas',
+          }))
           console.log('Add to cart success')
         } else {
           console.log('Add to cart fail')
@@ -124,7 +131,7 @@ const Courses = () => {
   const listmaLoaiKhoaHoc = arrayAllCategory.map((item) => <ListGroup.Item as="li">
     <Link
       onClick={() => handleMenuItemClick(item)}
-      key={`${item.id}`}
+      key={`${item.id} `}
     >
       <div className={styles.MenuItem}>
         <p>{item.tenLoaiKhoaHoc}</p>
@@ -134,14 +141,18 @@ const Courses = () => {
 
   const listAuthors = arrayAuthor
     .map((item) => <option
-      value={`${item.id}`}
+      value={`${item.id} `}
       key={item.id}
     >
       {item.hoVaTen}
     </option>)
 
   // eslint-disable-next-line no-unused-vars
-
+  const handleSearchFilter = () => {
+    console.log('===============================================')
+    console.log('12',)
+    console.log('===============================================')
+  }
   const coursesComponentLink = () => {
     return (
       <div>
@@ -161,7 +172,7 @@ const Courses = () => {
             item={itemBuy}
           />
         </Modal>}
-        <ul className="row">
+        <ul className="row" id="myUL">
           {arrayAllCourse.map((item) => <CourseItem
             key={item.id}
             title={item.tenKhoaHoc}
@@ -187,7 +198,6 @@ const Courses = () => {
             onClickLearnNow={onClickLearnNow}
             onClickExtend={onClickExtend}
             progress={item?.progress?.percent}
-
           />)}
         </ul>
       </div>
@@ -240,6 +250,7 @@ const Courses = () => {
               {listAuthors}
 
             </select>
+
           </div>
 
           <Switch>

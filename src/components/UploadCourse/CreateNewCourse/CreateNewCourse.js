@@ -231,7 +231,7 @@ const CreateNewCourse = (props) => {
                 </div>
                 <div className={styles.divContent}>
                   <div className={styles.rowTitle}>
-                    <p>{item.tieuDe}</p>
+                    <p>{truncateString(item.tieuDe, 50)}</p>
                     <div className={styles.time}>{`${item.thoiLuong.minute}:${item.thoiLuong.seconds}`}</div>
                   </div>
                   <p className={styles.contentDes}>{truncateString(item.moTa, 85)}</p>

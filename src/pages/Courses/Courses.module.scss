@@ -1,5 +1,7 @@
 @import "../../assets/styles/_configs";
-
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 0, 0, 1);
+}
 .container
 {
   width:100%;
@@ -56,11 +58,27 @@
   .courses{
       
     .divFilter{
-      margin-left: 150px;
+      margin-left: 100px;
       display: flex;
       flex-direction: row;
       align-items: center;
-     
+      .inputSearch{
+        display: flex;
+        flex-direction: row;
+        margin-left: 100px;
+          input{
+            margin-left: 10px;
+            width: 300px;
+            font-size: 16px;
+            padding: 5px 0px 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            :hover{
+              outline: none;
+            }
+          }
+         }
       p{
           color:$white;
           font-family: 'SF Pro Display';
@@ -68,7 +86,6 @@
           font-weight: normal;
           font-size: 22px;
           margin:0px 0px;
-
       }
       select{
         margin:0px 10px;

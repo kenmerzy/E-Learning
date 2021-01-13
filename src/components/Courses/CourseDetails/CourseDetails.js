@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 /* eslint-disable indent */
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react'
@@ -15,6 +16,7 @@ import Next from '../../../assets/images/Next.svg'
 import Back from '../../../assets/images/Back.svg'
 import { coursesAction } from '../../../redux/actions'
 import ModalComponent from '../../Account/ModalComponent/ModalComponent'
+import CourseCard from '../../../assets/images/CourseCard.svg'
 
 const CourseDetails = (props) => {
   const { location } = props
@@ -37,8 +39,20 @@ const CourseDetails = (props) => {
   const [typeModal, setTypeModal] = useState('')
   const [enableView, setEnableView] = useState(data?.enableView)
   const [arrayAnswersExam, setArrayAnswersExam] = useState(Array(useSelector((value) => value?.coursesReducer?.arrQuestion?.length)).fill())
+  console.log('===============================================')
+  console.log('maBG', maBG)
+  console.log('===============================================')
+  useEffect(() => {
+    setTimeCourse(GetHourOfTime(params.tongThoiLuong))
+    setmaKH(params.id)
+  })
   const handleVideoItemClick = (item, index) => {
     if (index < enableView) {
+      console.log('===============================================')
+      console.log('index', index)
+      console.log('enableView', enableView)
+      console.log('index < enableView',)
+      console.log('===============================================')
       setMaBG(item.id)
       dispatch(coursesAction.GET_LIST_QUESTION({
         token,
@@ -67,6 +81,7 @@ const CourseDetails = (props) => {
         }
       }))
     } else if (index === enableView) {
+      setMaBG(item.id)
       dispatch(coursesAction.GET_LIST_QUESTION({
         token,
         maBG: item.id,
@@ -77,8 +92,10 @@ const CourseDetails = (props) => {
           setVideoTitle(item.tieuDe)
           setVideoDescription(item.moTa)
           setVideoIndex(index)
-
-          if (arrQuestion.length === 0) {
+          console.log('===============================================')
+          console.log('response.data', response.data)
+          console.log('===============================================')
+          if (response.data.length === 0) {
             dispatch(coursesAction.ADD_PROGRESS({
               token,
               maKH,
@@ -146,9 +163,11 @@ const CourseDetails = (props) => {
       }
     }))
   }
+
   const handleVideoNextClick = () => {
     console.log('===============================================')
     console.log('VIDEO INDEX', videoIndex)
+    console.log('enableView', enableView)
     console.log('===============================================')
     if ((videoIndex) === enableView) {
       if (arrQuestion.length === 0) {
@@ -166,6 +185,7 @@ const CourseDetails = (props) => {
             setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
             setVideoDescription(arrVideos[videoIndex + 1].moTa)
             setVideoIndex(videoIndex + 1)
+
             dispatch(coursesAction.ADD_PROGRESS({
               token,
               maKH,
@@ -207,21 +227,6 @@ const CourseDetails = (props) => {
           setVideoTitle(arrVideos[videoIndex + 1].tieuDe)
           setVideoDescription(arrVideos[videoIndex + 1].moTa)
           setVideoIndex(videoIndex + 1)
-          dispatch(coursesAction.ADD_PROGRESS({
-            token,
-            maKH,
-            maBG: arrVideos[videoIndex + 1].id,
-          }, (responseAddProgress) => {
-            console.log('responseAddProgress init', responseAddProgress)
-            if (responseAddProgress.success) {
-              setEnableView(enableView + 1)
-              console.log('responseAddProgress success', responseAddProgress)
-            } else {
-              setTypeModal('fail')
-              setTextModal('Add Progress fail !!')
-              setIsModalShow(true)
-            }
-          }))
         } else {
           console.log('===============================================')
           console.log('get List Question fail')
@@ -246,24 +251,30 @@ const CourseDetails = (props) => {
         console.log('maKH', maKH,)
         console.log('maBG', maBG,)
         console.log('===============================================')
-        dispatch(coursesAction.ADD_PROGRESS({
-          token,
-          maKH,
-          maBG: arrVideos[videoIndex + 1].id,
-        }, (responseAddProgress) => {
-          console.log('responseAddProgress init', responseAddProgress)
-          if (responseAddProgress.success) {
-            setEnableView(enableView + 1)
-            setIsModalShow(true)
-            setTypeModal('success')
-            setTextModal(`Your point is: ${response.data.point}/100`)
-            console.log('responseAddProgress success', responseAddProgress)
-          } else {
-            setTypeModal('fail')
-            setTextModal('Add Progress fail !!')
-            setIsModalShow(true)
-          }
-        }))
+        if (response.data.point >= 50) {
+          dispatch(coursesAction.ADD_PROGRESS({
+            token,
+            maKH,
+            maBG,
+          }, (responseAddProgress) => {
+            console.log('responseAddProgress init', responseAddProgress)
+            if (responseAddProgress.success) {
+              setEnableView(enableView + 1)
+              setIsModalShow(true)
+              setTypeModal('success')
+              setTextModal(`Your point is: ${response.data.point}/100 \n You can learn next lesson now !`)
+              console.log('responseAddProgress success', responseAddProgress)
+            } else {
+              setTypeModal('fail')
+              setTextModal('Add Progress fail !!')
+              setIsModalShow(true)
+            }
+          }))
+        } else {
+          setIsModalShow(true)
+          setTypeModal('fail')
+          setTextModal(`Your point is: ${response.data.point}/100\n You have to get least 50 point to pass this lesson `)
+        }
       } else {
         setIsModalShow(true)
         setTypeModal('fail')
@@ -288,10 +299,6 @@ const CourseDetails = (props) => {
   const handleModalComponentCloseClick = () => {
     setIsModalShow(false)
   }
-  useEffect(() => {
-    setTimeCourse(GetHourOfTime(params.tongThoiLuong))
-    setmaKH(params.id)
-  })
 
   return (
     <div className={styles.container}>
@@ -309,7 +316,7 @@ const CourseDetails = (props) => {
       </Modal>}
       <div className="row">
         <div className="col-lg-4">
-          <img src={LogoFlutter} className={styles.logo} alt="logo" />
+          <img src={CourseCard} className={styles.courseCard} alt="logo" />
         </div>
         <div className="col-lg-8">
           <div className={styles.information}>
@@ -361,14 +368,14 @@ const CourseDetails = (props) => {
 
       <div className={active && !expired ? styles.videos : styles.videosNoAccess}>
         <ul className="row">
-          {arrVideos.map((item, index) => (
+          {arrVideos.length > 0 ? arrVideos.map((item, index) => (
             <li>
               <a
                 className={styles.item}
                 rel="noreferrer"
                 onClick={active && !expired ? () => handleVideoItemClick(item, index) : null}
                 href
-                style={index > enableView ? {
+                style={active && !expired && index > enableView ? {
                   backgroundColor: 'rgba(0, 0, 0, 0.2)',
                   borderRadius: 10,
                   cursor: 'not-allowed',
@@ -384,14 +391,22 @@ const CourseDetails = (props) => {
                 </div>
                 <div className={styles.divContent}>
                   <div className={styles.rowTitle}>
-                    <p>{item.tieuDe}</p>
+                    <p>{truncateString(item.tieuDe, 50)}</p>
                     <div className={styles.time}>{`${item.thoiLuong.minute}:${item.thoiLuong.seconds}`}</div>
                   </div>
                   <p className={styles.contentDes}>{truncateString(item.moTa, 85)}</p>
                 </div>
               </a>
             </li>
-          ))}
+          )) : <p style={{
+            color: '#FFFFFF',
+            fontSize: 20,
+            margin: 0,
+            marginLeft: 20,
+          }}
+          >
+              There is no videos uploaded
+          </p>}
         </ul>
       </div>
       {isVideoShow && <div
@@ -431,9 +446,9 @@ const CourseDetails = (props) => {
         </a>}
         <div className={styles.divExam}>
           <p className={styles.titleQues}>
-            {arrQuestion.length !== 0 ? `Lesson ${videoIndex + 1} Examination` : 'There is no exam for this lesson'}
+            {arrQuestion.length > 0 ? `Lesson ${videoIndex + 1} Examination` : 'There is no exam for this lesson'}
           </p>
-          {arrQuestion.length !== 0 && arrQuestion.map((item, index) => {
+          {arrQuestion.length > 0 && arrQuestion.map((item, index) => {
             const { arrayAnswer } = item
             return (
               <div className={styles.coverItemExam} key={`cau hoi - ${item.id}`}>

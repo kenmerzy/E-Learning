@@ -76,9 +76,7 @@ const CourseItem = (props) => {
     return 'extend'
   }
   const type = getTypeButton()
-  console.log('===============================================')
-  console.log('active', active)
-  console.log('===============================================')
+
   return (
     to
       ? <Link

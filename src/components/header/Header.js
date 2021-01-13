@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-indent-props */
 import React from 'react'
 import {
@@ -93,7 +94,7 @@ const Header = () => {
                   </Link>
                 </div>
               </li>}
-              <li key="cart">
+              <li key="cart" style={token ? { marginRight: 80, marginLeft: -60 } : { marginRight: 0 }}>
                 <div className="col-lg-2">
                   <Link
                     to="/cart"
@@ -109,7 +110,7 @@ const Header = () => {
                   </Link>
                 </div>
               </li>
-              <li key="search">
+              {/* <li key="search">
                 <div className="col-lg-2">
                   <Link
                     onClick={() => { }}
@@ -120,9 +121,9 @@ const Header = () => {
                     </div>
                   </Link>
                 </div>
-              </li>
+              </li> */}
               <li key="account">
-                <div>
+                <div className="col-lg-2">
                   {
                     !token
                       ? <Link

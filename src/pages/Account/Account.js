@@ -278,6 +278,14 @@ const Account = () => {
               textValue={informationUser.ngaySinh}
               onChange={setValueDateOfBirthChange}
             /> */}
+            <ProfileItem
+              type={profileItemType}
+              image={address}
+              placeholder="Address"
+              value={valueAddress}
+              textValue={informationUser.diaChi}
+              onChange={setValueAddressChange}
+            />
             <div className={styles.divInput}>
               <div className={styles.coverImage}>
                 <img
@@ -293,14 +301,6 @@ const Account = () => {
                   <p>{`${moment(valueDateOfBirth).format('DD/MM/YYYY')}`}</p>
                 </div>}
             </div>
-            <ProfileItem
-              type={profileItemType}
-              image={address}
-              placeholder="Address"
-              value={valueAddress}
-              textValue={informationUser.diaChi}
-              onChange={setValueAddressChange}
-            />
 
           </div>
           <div className="col-lg-6">

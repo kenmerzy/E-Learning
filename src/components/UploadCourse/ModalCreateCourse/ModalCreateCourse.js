@@ -63,6 +63,9 @@ const ModalCreateCourse = (props) => {
         if (response.success) {
           setTextModal('Add video successful !')
           setTypeModal('success')
+          setTenBaiGiang('')
+          setMoTa('')
+          setFileInput('')
           console.log('===============================================')
           console.log('responseSuccess', response)
           console.log('===============================================')

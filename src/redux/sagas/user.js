@@ -9,6 +9,25 @@ export default function* userSagas() {
   yield takeLatest(userType.REGISTER, registerUser)
   yield takeLatest(userType.GET_PROFILE, getProfileUser)
   yield takeLatest(userType.RECHARGE, recharge)
+  yield takeLatest(userType.SEND_MAIL, sendMail)
+}
+function* sendMail(action) {
+  const { data, callback } = action.payload
+  const { token, subject, description } = data
+
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/sendmail/`, {
+        token,
+        subject,
+        description,
+      })
+    )
+
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
 }
 function* loginUser(action) {
   const { data, callback } = action.payload
@@ -76,6 +95,7 @@ function* registerUser(action) {
     password,
     hoVaTen,
     accountType,
+    email,
   } = data
   let response = ''
   try {
@@ -85,6 +105,7 @@ function* registerUser(action) {
           sdt,
           password,
           hoVaTen,
+          email,
         })
       )
     } else {
@@ -93,6 +114,7 @@ function* registerUser(action) {
           sdt,
           password,
           hoVaTen,
+          email,
         })
       )
     }

@@ -41,3 +41,9 @@ export const RECHARGE = (data, callback) => {
     payload: { data, callback },
   }
 }
+export const SEND_MAIL = (data, callback) => {
+  return {
+    type: userType.SEND_MAIL,
+    payload: { data, callback },
+  }
+}

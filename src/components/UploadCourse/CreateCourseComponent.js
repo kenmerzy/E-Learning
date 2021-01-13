@@ -46,18 +46,36 @@ const CreateCourseComponent = (props) => {
   const handleFileUploadChange = (e) => {
     const { files } = e.target
     setFileUpload(files[0])
+    console.log('===============================================')
+    console.log('files[0]', files[0])
+    console.log('===============================================')
   }
 
   const handleCreateCourseClick = () => {
-    dispatch(coursesAction.ADD_NEW_COURSE({
-      token,
-      tenKhoaHoc,
-      moTa,
-      gia,
-      thoiHan,
-      maLKH,
-      fileUpload,
-    }, (response) => {
+    const formData = new FormData()
+    formData.append(
+      'token', token,
+    )
+    formData.append(
+      'tenKhoaHoc', tenKhoaHoc,
+    )
+    formData.append(
+      'moTa', moTa,
+    )
+    formData.append(
+      'gia', gia,
+    )
+    formData.append(
+      'thoiHan', thoiHan,
+    )
+    formData.append(
+      'maLKH', maLKH,
+    )
+    formData.append(
+      'fileupload', fileUpload, fileUpload.name,
+    )
+    console.tron.log({ formData })
+    dispatch(coursesAction.ADD_NEW_COURSE(formData, (response) => {
       if (response.success) {
         console.log('===============================================')
         console.log('response', response)

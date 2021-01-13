@@ -25,6 +25,11 @@ const AdminCategories = () => {
       tenLoaiKhoaHoc: valueCategories,
     }, (response) => {
       if (response.success) {
+        dispatch(adminAction.GET_ALL_CATEGORIES({ token }, (res) => {
+          console.log('===============================================')
+          console.log('res', res)
+          console.log('===============================================')
+        }))
         console.log('===============================================')
         console.log('ADD_CATEGORIES success',)
         console.log('===============================================')

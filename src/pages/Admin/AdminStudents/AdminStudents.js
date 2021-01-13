@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-indent */
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import moment from 'moment'
 import styles from './AdminStudents.module.scss'
 import banned from '../../../assets/images/banned.svg'
 import unbanned from '../../../assets/images/unbanned.png'
@@ -95,7 +96,7 @@ const AdminStudents = () => {
           {arrFilter.map((item) => (
             <li>
               <p className={styles.ten}>{item.hoVaTen}</p>
-              <p className={styles.ngaySinh}>{item.ngaySinh}</p>
+              <p className={styles.ngaySinh}>{item.ngaySinh && moment(item.ngaySinh).format('DD/MM/YYYY')}</p>
               <p className={styles.sdt}>{`${item.sdt}`}</p>
               <p className={styles.ngheNghiep}>{item.ngheNghiep}</p>
               <p className={styles.diaChi}>{item.diaChi}</p>

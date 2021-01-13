@@ -41,11 +41,15 @@ const SignUpComponent = () => {
     setAccountType(event.target.value)
   }
   const handleSignUpClick = () => {
+    console.log('===============================================')
+    console.log('valueEmail', valueEmail)
+    console.log('===============================================')
     if (valuePassword === valueConfirmPassword) {
       dispatch(userAction.REGISTER({
         sdt: valuePhoneNumber,
         password: valuePassword,
         hoVaTen: valueName,
+        email: valueEmail,
         accountType,
       }, (response) => {
         console.log('response', response)

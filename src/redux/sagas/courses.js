@@ -21,6 +21,7 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.CHECK_POINT, checkPoint)
   yield takeLatest(coursesTypes.GET_UNCENSORED_COURSE, getUncensoredCourses)
   yield takeLatest(coursesTypes.ADD_PROGRESS, addProgress)
+  yield takeLatest(coursesTypes.PURCHASE, purchase)
 }
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
@@ -129,24 +130,10 @@ function* getUploadedCourses(action) {
 }
 function* addNewCourse(action) {
   const { data, callback } = action.payload
-  const {
-    token,
-    tenKhoaHoc,
-    moTa,
-    gia,
-    thoiHan,
-    maLKH,
-  } = data
+
   try {
     const response = yield call(
-      () => axios.post(`${API_URL}/khoahoc/add`, {
-        token,
-        tenKhoaHoc,
-        moTa,
-        gia,
-        thoiHan,
-        maLKH,
-      })
+      () => axios.post(`${API_URL}/khoahoc/add`, data)
     )
     if (response?.data?.success) {
       yield put({

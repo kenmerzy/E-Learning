@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useState }
   from 'react'
@@ -83,7 +84,7 @@ const HoursOfCourses = () => {
               </ul>
             </div>
           </div>
-          <div
+          {/* <div
             className="col-lg-3"
             style={{ marginTop: 10 }}
           >
@@ -112,7 +113,7 @@ const HoursOfCourses = () => {
                 />
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
 
       </div>

@@ -51,6 +51,7 @@ const ConfirmModal = (props) => {
             console.log('Get all course fail')
           }
         }))
+
         console.log('===============================================')
         console.log('response purchase now success', response)
         console.log('===============================================')
