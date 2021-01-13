@@ -1,0 +1,131 @@
+@import "../../assets/styles/_configs";
+
+.Container{
+  text-align: center;
+  color: whitesmoke;
+  font-size: calc(6px + 4vmin);
+  width: 100%;
+  // background-image: url("../../assets/images/footer.png") ;
+  // background-repeat: no-repeat;
+  // background-size: 1920px 1400px;
+  margin-top: 200px;
+
+
+  .BottomWaterMark{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: whitesmoke;
+    margin: 15px 0px;
+    margin-top: 3%;
+    p{
+      font-size: 15px;
+      font-family: "SF Pro Text";
+      font-style: bold;
+      font-weight: 500;
+    }
+  }
+  .Info{
+    margin: 0% 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+    font-size: calc(2px + 4vmin);
+    padding-left: 1%;
+    width: 20%;
+  }
+  .InfoDetails{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+    a{
+      margin-right: 30px;
+    }
+    img{
+      width:35px;
+      height:35px;
+    }
+    p{
+      margin: 0px 0px 0px 0px;
+      font-family: "SF Pro Text";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      color:whitesmoke;
+
+    }
+  }
+  .Icon{
+    height: calc(2px + 4vmin);
+    margin-right: 12px;
+  }
+  .CompanyIcon{
+    height: calc(4px + 3vmin);
+  }
+  .CompanyName{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 3% 0%;
+    p{
+        font-size: 30px;
+        font-family: "SF Pro Text";
+        font-style: bold;
+        font-weight: 600;
+        color:$secondary-dark;
+        margin: 0% 2%;
+    }
+  
+  }
+  .whoWeAre{
+    p{
+      font-size: 40px;
+      font-family: "SF Pro Text";
+      font-style: bold;
+      font-weight: 600;
+      color:$background-second;
+      margin-bottom: 10px;
+    }
+  }
+    p{
+      margin: 15px 0px;
+      font-family: "SF Pro Text";
+      font-size: 28px;
+      color: white;
+    }
+    .name{
+      margin: 15px 0px;
+      font-size: 32px;
+      font-family: "SF Pro Text";
+      font-style: bold;
+      font-weight: 600;
+      color:$secondary-dark
+
+    }
+    .position{
+      margin: 20px 0px;
+      font-size: 28px;
+      font-family: "SF Pro Text";
+      font-style: bold;
+      font-weight: 500;
+      color:whitesmoke;
+    }
+    .description{
+      margin: 15px 0px;
+      font-family: "SF Pro Text";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      color: #c5cdd6;
+      text-align: start;
+    }
+    a{
+      img{
+        width:100%;
+        border-radius: 20px;
+      }
+    }
+        }
+  

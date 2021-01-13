@@ -1,0 +1,52 @@
+.container{
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  .buttonAddToCart{
+    display: flex;
+    width: 100px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgb(27, 92, 129) 0%,rgb(40, 145, 206) 90%);
+    //box-shadow: 0px 10px 20px rgba(147, 231, 221, 0.3);
+    border-radius: 15px;
+    font-family: 'SF Pro Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    outline: none;
+    color:white;
+    margin-top: 10px;
+
+    :focus{
+      outline: none;
+    }
+
+  }
+  .buttonBuyNow{
+    display: flex;
+    width: 100px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgb(29, 61, 100) 0%,rgb(80, 139, 173) 90%);
+    box-shadow: 0px 20px 40px rgba(147, 231, 221, 0.3);
+    border-radius: 15px;
+    font-family: 'SF Pro Text';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    outline: none;
+    color:white;
+    margin: 10px 0px 0px 20px;
+
+
+    :focus{
+      outline: none;
+    }
+
+  }
+}

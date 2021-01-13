@@ -1,0 +1,161 @@
+.Container{
+  .divFilter{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+    p{
+        color:white;
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        margin:0px 0px;
+
+    }
+    select{
+      margin:0px 10px;
+      padding:5px 15px;
+      outline:none;
+      color: rgba(0, 0, 0);
+      font-family: 'SF Pro Text';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+       background-color: rgba(255, 255, 255, 1);
+      option {
+        margin-left: 5px;
+        outline:none;
+        color: rgba(0, 0, 0);
+        font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        margin:0px 5px;
+     }
+    }
+  }
+  .listCartItem{
+    margin-top: 40px;
+    .notiEmptyCart
+        {
+          color:white;
+          text-align: center;
+          font-size: 30px;
+          font-weight: bold;
+        }
+    ul{
+      list-style-type: none;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.6);
+      li{
+        margin-top: 20px;
+        color:white;
+        border-bottom: 1px solid rgba(255,255,255,0.6);
+        padding: 8px 16px;
+        :last-child{
+          border-bottom: none
+        }
+  
+        input[type=checkbox] {
+          transform: scale(1.4);
+        }
+          .checkBox{
+            width:30px;
+            margin-top: 5px;
+          }
+          .tenKhoaHoc{
+            width:200px;
+          }
+          .ma{
+            width:110px;
+            text-align: center;
+          }
+          .moTa{
+            width:200px;
+          }
+          .thoiHan{
+            text-align: center;
+            width:120px;
+          }
+          .soLuongDaBan{
+            width:80px;
+          }
+          .gia{
+            width:70px;
+          }
+          .tongGia{
+            margin-top: 10px;
+            padding-right: 80px;
+            width:100%;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: right;
+          }
+  
+  
+          .checkBoxHeader{
+            margin-top:10px;
+            width:30px;
+          }
+          .tenKhoaHocHeader{
+            width:200px;
+            font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+          }
+          .maHeader{
+            width:110px;
+            font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+              font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+          }
+          .moTaHeader{
+            width:200px;
+          font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+          }
+          .thoiHanHeader{
+            width:120px;
+            font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+          }
+          .soLuongDaBanHeader{
+            width:80px;
+              font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+          }
+          .giaHeader{
+            width:70px;
+              font-size: 25px;
+            font-weight: bold;
+            color: forestgreen;
+          }
+          .trashHeader{
+            width:30px;
+          }
+          a{
+            width:30px;
+            height:30px;
+            :hover{
+              background-color: transparent;
+            }
+            img{
+              width:30px;
+              height:30px;
+              cursor: pointer;
+            }
+          }
+  
+        }
+      }
+    }
+}

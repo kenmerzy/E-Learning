@@ -1,0 +1,181 @@
+@import "../../../assets/styles/configs";
+
+.Container{
+  .divFilter{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+    p{
+        color:white;
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        margin:0px 0px;
+
+    }
+    select{
+      margin:0px 10px;
+      padding:5px 15px;
+      outline:none;
+      color: rgba(0, 0, 0);
+      font-family: 'SF Pro Text';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+       background-color: rgba(255, 255, 255, 1);
+      option {
+        margin-left: 5px;
+        outline:none;
+        color: rgba(0, 0, 0);
+        font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        margin:0px 5px;
+     }
+    }
+  }
+  .listCartItem{
+    .notiEmptyCart
+    {
+      color:white;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    margin-top: 40px;
+   
+    ul{
+      list-style-type: none;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.6);
+        li{
+          margin-top: 20px;
+          color:white;
+          border-bottom: 1px solid rgba(255,255,255,0.6);
+          padding: 8px 16px;
+          :last-child{
+            border-bottom: none
+          }
+          .tenKhoaHocHeader{
+            font-size: 24px;
+            font-weight: bold;
+          }
+          a{
+            width: 30px;
+            height:30px;
+            cursor:pointer;
+            :hover{
+              background: none;
+            }
+            img{
+              width: 30px;
+              height:30px;
+            }
+          }
+        }
+      }
+    }
+    .divAddCategories{
+      margin-top:100px;
+      color:white;
+
+      .divButton{
+        display: flex;
+        width:100%;
+        flex-direction: row;
+        justify-content: flex-end;
+        .buttonConfirm{
+          display: flex;
+          width: 200px;
+          height: 60px;
+          margin: 30px 0px 0px 0px;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(91.4deg, #2FB8FF 0%, #9EECD9 100%);
+          box-shadow: 0px 20px 40px rgba(147, 231, 221, 0.3);
+          border-radius: 30px;
+          outline: none;
+    
+          :focus{
+            outline: none;
+          }
+          p{
+            display: flex;
+            font-family: SF Pro Text;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 25px;
+            line-height: 20px;
+            color: #0E435C;
+            margin: 0px 0px 0px 0px;
+    
+          }
+        }
+   
+      }
+      .title{
+        font-size: 25 px;
+        font-weight: bold;
+      }
+      .divInput{
+        margin-top: 20px;;
+         display: flex;
+         flex-direction: row;
+        
+       /* Note: backdrop-filter has minimal browser support */
+   
+         .coverImage{
+           display: flex;
+           width:49px;
+           height:42px;
+           border-radius: 42px;
+           align-items: center;
+           justify-items: center;
+           background-color: rgba(255, 255, 255, 0.2);
+           img{
+             display: flex;
+             width:30px;
+             height:30px;
+             margin-left: 5px;
+           }
+         }
+         p{
+           align-self: center;
+           width:250px;
+           margin: 0px;
+         }
+         .formInput{
+           width:100%;
+            background: linear-gradient(180deg, rgba(99, 106, 150, 0.4) 0%, rgba(182, 186, 214, 0.25) 100%);
+            border-radius: 50px;
+            border: 0.5px solid rgba(255, 255, 255, 0.3);
+         align-items: center;
+         padding: 10px 20px;
+         box-sizing: border-box;
+         box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+         backdrop-filter: blur(40px); 
+           margin: 0px 0px 0px 15px;
+           :focus{
+             outline-style:none ;
+           }
+           .input{
+             width:100%;
+             height: 44px;
+             border: none;
+             background-color: transparent;
+             color: $white;
+             font-size: 18px;
+             margin-right:5px;
+             margin-left:5px;
+   
+           }
+         }
+       }
+    }
+  
+}

@@ -1,0 +1,47 @@
+@import "../../assets/styles/_configs";
+@import '~video-react/styles/scss/video-react'; // or import scss
+.Container {
+  background-image: url("../../assets/images/mainbackground.png");
+  background-repeat: no-repeat;
+  background: linear-gradient(to bottom,   rgba(37, 37, 105,1)0%,rgba(40, 35, 77,1) 80%);
+  width:100%;
+  .modal{
+    background: rgba(50, 61, 109, 0.5);
+    .loading{
+      background: rgba(50, 61, 109, 0.5);
+    }
+  }
+
+    .Main
+  {
+    display: flex;
+    flex:1;
+    margin: 60px 0px;
+  }
+
+}
+@media screen and (min-width: 1485px)
+{
+  .Container{
+  width: 100%;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1484px)
+{
+  .Container{
+    width: 70%;
+    height:70%;
+    }
+}
+@media screen and(min-width: 992px) and (max-width: 1199px){
+
+}
+@media screen and(min-width: 768px) and (max-width: 991px){
+
+}
+@media screen and(min-width: 550px) and (max-width: 767px){
+  
+}
+@media screen and(max-width: 549px){
+
+}

@@ -1,0 +1,175 @@
+@import "../../../assets/styles/configs";
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(255, 255, 255, 0.5);
+}
+.container{
+  position: absolute;
+  align-self: center;
+  width: 100%;
+  margin-top: 12%;
+  margin-right:300px ;
+
+  .coverT
+  {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 700px;
+    height: auto;
+    background: rgba(50, 61, 109, 0.5);
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    padding: 20px 20px;
+
+    .listCartItem
+    {
+      padding: 0px 50px;
+      .tenKhoaHocHeader{
+        font-size: 25px;
+        font-weight: bold;
+        color: forestgreen;
+      }
+      .giaHeader{
+          font-size: 25px;
+        font-weight: bold;
+        color: forestgreen;
+      }
+      .tongGia{
+        margin-top: 10px;
+        width:100%;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: right;
+        color:white
+      }
+    }
+    .buttonClose{
+      position: absolute;
+      display: flex;
+      cursor: pointer;
+      width:36px;
+      height:36px;
+      right:-15px;
+      top:-15px;
+      border-radius: 18px;
+      background-color: #b2b2b2;
+      border : solid 2px #FFFFFF ;
+      align-items: center;
+      outline: none;
+      justify-content: center;
+
+      :focus{
+        outline: none;
+      }
+      img{
+        width:18px;
+        height:18px;
+      
+      }
+    }
+    
+    p{
+      font-family: 'SF Pro Text';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 130%;
+      color: rgba(255, 255, 255, 0.7)
+    }
+    
+  
+    .description{
+     margin: 15px 0px 0px 0px;
+    }
+    .title{
+      font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 48px;
+    color: #FFFFFF;
+    }
+    .divFileInput{
+      margin: 30px 0px 0px 0px;
+      width:350px;
+      height:60px;
+      padding: 20px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(99, 106, 150, 0.4) 0%, rgba(182, 186, 214, 0.25) 100%);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
+      box-sizing: border-box;
+      box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(40px);
+    /* Note: backdrop-filter has minimal browser support */
+      border-radius: 30px;
+    }
+   
+    .divButton{
+      display: flex;
+      width:100%;
+      flex-direction: row;
+      justify-content: space-around;
+      .buttonConfirm{
+        display: flex;
+        width: 200px;
+        height: 60px;
+        margin: 30px 0px 0px 0px;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(91.4deg, #2FB8FF 0%, #9EECD9 100%);
+        box-shadow: 0px 20px 40px rgba(147, 231, 221, 0.3);
+        border-radius: 30px;
+        outline: none;
+  
+        :focus{
+          outline: none;
+        }
+        p{
+          display: flex;
+          font-family: SF Pro Text;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 25px;
+          line-height: 20px;
+          color: #0E435C;
+          margin: 0px 0px 0px 0px;
+  
+        }
+      }
+      .buttonCancel{
+        display: flex;
+        width: 200px;
+        height: 60px;
+        margin: 30px 0px 0px 0px;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(91.4deg, #e26666 100%, #d45555 100%);
+        box-shadow: 0px 20px 40px rgba(147, 231, 221, 0.3);
+        border-radius: 30px;
+        outline: none;
+  
+        :focus{
+          outline: none;
+        }
+        p{
+          display: flex;
+          font-family: SF Pro Text;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 25px;
+          line-height: 20px;
+          color: black;
+          margin: 0px 0px 0px 0px;
+  
+        }
+      }
+    }
+  }
+}

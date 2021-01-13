@@ -1,0 +1,151 @@
+.container{
+  .divFilter{
+    margin-left: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
+    p{
+        color:white;
+        font-family: 'SF Pro Display';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        margin:0px 0px;
+
+    }
+    select{
+      margin:0px 10px;
+      padding:5px 15px;
+      outline:none;
+      color: rgba(0, 0, 0);
+      font-family: 'SF Pro Text';
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 5px;
+       background-color: rgba(255, 255, 255, 1);
+      option {
+        margin-left: 5px;
+        outline:none;
+        color: rgba(0, 0, 0);
+        font-family: 'SF Pro Text';
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        margin:0px 5px;
+     }
+    }
+  }
+  .listCartItem{
+    margin-top: 40px;
+    .notiEmptyCart
+    {
+      color:white;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    ul{
+      list-style-type: none;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.6);
+        li{
+          margin-top: 20px;
+          color:white;
+          border-bottom: 1px solid rgba(255,255,255,0.6);
+          padding: 8px 16px;
+          :last-child{
+            border-bottom: none
+          }
+          .tenHeader{
+            width:200px;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .ngaySinhHeader{
+             width:125px;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .sdtHeader{
+            width:125px;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .ngheNghiepHeader{
+             width:210px;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .diaChiHeader{
+             width:230px;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .bioHeader{
+             width:200px;
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .trashHeader{
+            width:30px;
+          }
+
+          .ten{
+            width:200px;
+            font-size: 17px;
+            font-weight: normal;
+            color:rgba(255,255,255,0.8);
+
+          }
+          .ngaySinh{
+             width:125px;
+            font-size: 17px;
+            font-weight: normal;
+            color:rgba(255,255,255,0.8);
+          }
+          .sdt{
+             width:125px;
+            font-size: 17px;
+            font-weight: normal;
+            color:rgba(255,255,255,0.8);
+          }
+          .ngheNghiep{
+             width:210px;
+            font-size: 17px;
+            font-weight: normal;
+            color:rgba(255,255,255,0.8);
+          }
+          .diaChi{
+             width:230px;
+            font-size: 17px;
+            font-weight: normal;
+            color:rgba(255,255,255,0.8);
+          }
+          .bio{
+             width:200px;
+            font-size: 17px;
+            font-weight: normal;
+            color:rgba(255,255,255,0.8);
+          }
+          .trash{
+            width:30px;
+          }
+
+          a{
+            width: 30px;
+            height:30px;
+            cursor:pointer;
+            :hover{
+              background: none;
+            }
+            img{
+              width: 30px;
+              height:30px;
+            }
+          }
+        }
+      }
+    }
+}

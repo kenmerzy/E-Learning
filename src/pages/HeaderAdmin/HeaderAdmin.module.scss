@@ -1,0 +1,128 @@
+@import "../../assets/styles/_configs";
+
+.AppLogo {
+  height: 30px;
+  pointer-events: 'cursor';
+}
+
+.WrappedLogo {
+ background-color: transparent;
+ margin-bottom: 10px;
+ .link{
+   text-decoration: none;
+ }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  
+}
+
+
+.AppHeader {
+  width:100%;
+  height:100%;
+  background-color:transparent;
+  min-height: 10vmin;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  width:100%;
+  position: relative;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+  ul{
+    list-style: none;
+    display: flex;
+    flex:1;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        height: 100%;
+        width: 100%;
+        .link{
+          text-decoration: none;
+        }
+          a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            :hover{
+              background-color: rgba(255, 255, 255, 0.2);
+
+            }
+              .MenuItem{
+                display: flex;
+                position: relative;
+                height: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 20px 10px 20px;
+                border-radius: 10px;
+                text-decoration: none;
+
+                :hover{
+                  background-color:transparent;
+                  text-decoration: none;
+                }
+                 
+                p{
+                  margin-left: 10px;
+                  color: $white;
+                  font-family: "SF Pro Text";
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 23px;
+                  margin-bottom: 0;
+                  text-decoration: none;
+                  white-space: nowrap
+                }
+              }
+              .notifyIcon{
+                position:absolute;
+                background-color: rgb(255,255,255,0.8);
+                width:22px;
+                height:22px;
+                top:2px;
+                right:-8px;
+                border-radius: 20px;
+                justify-items: center;
+                align-items: center;
+                text-align: center;
+                :hover{
+                  background: none;
+                }
+                p{
+                  color:red;
+                  font-size:14px;
+                  font-family: "SF Pro Text";
+                  font-weight: bold;
+                  margin:0px 0px 0px 0px;
+                }
+              }
+           }
+         }
+      }
+
+
+

@@ -1,0 +1,13 @@
+@import '~video-react/styles/scss/video-react'; // or import scss
+$theme-colors: (
+    "info": tomato,
+    "danger": teal
+);
+
+.btn-light {
+  color: #212529;
+  background-color: red;
+  border-color: none; 
+}
+
+@import "~bootstrap/scss/bootstrap";
