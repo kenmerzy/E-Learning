@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-indent */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
 import styles from './Cart.module.scss'
@@ -31,6 +31,16 @@ const Cart = () => {
       arrayCourse: listBuy,
     }, (response) => {
       if (response.success) {
+        dispatch(coursesAction.GET_CART_ITEM({
+          token,
+        }, (responseGetCartItem) => {
+          if (responseGetCartItem.success) {
+            setListBuy([])
+            console.log('Get cart item success')
+          } else {
+            console.log('Get cart item fail')
+          }
+        }))
         console.log('===============================================')
         console.log('Deltete cart item success',)
         console.log('response', response)
@@ -74,13 +84,20 @@ const Cart = () => {
     const checkBox = document.getElementById(`${item.id}`)
     if (checkBox.checked === true) {
       setListBuy([...listBuy, item])
-      setTotalCost(totalCost + item.gia)
     } else {
       setListBuy(listBuy.filter((i) => (i.id !== item.id)))
-      setTotalCost(totalCost - item.gia)
     }
   }
-
+  const totalPrice = () => {
+    let sum = 0
+    listBuy.forEach((o) => {
+      sum += o.gia
+    })
+    return sum
+  }
+  useEffect(() => {
+    setTotalCost(totalPrice())
+  })
   return (
     <div className={styles.container}>
       {isModalShow && <Modal

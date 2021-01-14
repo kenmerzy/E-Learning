@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +7,7 @@ import styles from './PurchaseConfirmModal.module.scss'
 import ModalComponent from '../../Account/ModalComponent/ModalComponent'
 import LoadingComponent from '../../Loading/LoadingComponent'
 import deleteIcon from '../../../assets/images/delete.svg'
-import { coursesAction } from '../../../redux/actions'
+import { coursesAction, userAction } from '../../../redux/actions'
 
 const PurchaseConfirmModal = (props) => {
   const { onCloseModalClick, arrayPurchase, totalCost } = props
@@ -26,7 +27,40 @@ const PurchaseConfirmModal = (props) => {
         console.log('===============================================')
         console.log('response purchase success', response)
         console.log('===============================================')
-
+        dispatch(userAction.SEND_MAIL({
+          token,
+          subject: 'Hóa đơn mua hàng E-Learning',
+          description: `Bạn vừa thanh toán hóa đơn $${totalCost}`,
+        }))
+        dispatch(userAction.GET_PROFILE({
+          token,
+        },
+          (responseGetData) => {
+            if (responseGetData.success) {
+              console.log('Get information when login success !',)
+            } else {
+              console.log('===============================================')
+              console.log('Get information when login fail !')
+              console.log('===============================================')
+            }
+          }))
+        dispatch(coursesAction.GET_MY_COURSE({
+          token,
+        }, (responseGetMyCourse) => {
+          if (responseGetMyCourse.success) {
+            console.log('Get my course success')
+          } else {
+            console.log('Get my course fail')
+          }
+        }))
+        dispatch(coursesAction.GET_ALL_COURSE({
+        }, (responseGetMyCourse) => {
+          if (responseGetMyCourse.success) {
+            console.log('Get all course success')
+          } else {
+            console.log('Get all course fail')
+          }
+        }))
         setTypeModal('success')
         setTextModal('Purchase successfully !')
         setIsModalShow(true)

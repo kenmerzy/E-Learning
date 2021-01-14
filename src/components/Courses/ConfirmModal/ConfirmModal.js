@@ -5,7 +5,7 @@ import styles from './ConfirmModal.module.scss'
 import ModalComponent from '../../Account/ModalComponent/ModalComponent'
 import LoadingComponent from '../../Loading/LoadingComponent'
 import deleteIcon from '../../../assets/images/delete.svg'
-import { coursesAction } from '../../../redux/actions'
+import { coursesAction, userAction } from '../../../redux/actions'
 
 const ConfirmModal = (props) => {
   const {
@@ -25,6 +25,9 @@ const ConfirmModal = (props) => {
 
   const dispatch = useDispatch()
   const handleModalComponentCloseClick = () => {
+    console.log('===============================================')
+    console.log('closessss',)
+    console.log('===============================================')
     setIsModalShow(false)
   }
   const handlePositiveButtonClick = () => {
@@ -51,19 +54,24 @@ const ConfirmModal = (props) => {
             console.log('Get all course fail')
           }
         }))
+        dispatch(userAction.SEND_MAIL({
+          token,
+          subject: 'Hóa đơn mua hàng E-Learning',
+          description: `Bạn vừa thanh toán hóa đơn $${item.gia}`,
+        }))
 
         console.log('===============================================')
         console.log('response purchase now success', response)
         console.log('===============================================')
         setTypeModal('success')
         setTextModal('Purchase successfully !')
-        setIsModalShow(true)
         setIsLoading(false)
+        setIsModalShow(true)
       } else {
         setTypeModal('fail')
         setTextModal(response.message)
-        setIsModalShow(true)
         setIsLoading(false)
+        setIsModalShow(true)
         console.log('===============================================')
         console.log('response purchase now fail', response)
         console.log('===============================================')

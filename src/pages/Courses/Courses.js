@@ -17,6 +17,7 @@ import background1 from '../../assets/images/background1.svg'
 import styles from './Courses.module.scss'
 import { coursesAction, userAction } from '../../redux/actions'
 import ConfirmModal from '../../components/Courses/ConfirmModal/ConfirmModal'
+import ModalComponent from '../../components/Account/ModalComponent/ModalComponent'
 
 const Courses = () => {
   const dispatch = useDispatch()
@@ -30,7 +31,9 @@ const Courses = () => {
   const [filterAuthor, setFilterAuthor] = useState('')
   const [filterCourse, setFilterCourse] = useState('')
   const [isModalShow, setIsModalShow] = useState('')
-
+  const [isModalNotiShow, setIsModalNotiShow] = useState('')
+  const [textModal, setTextModal] = useState('')
+  const [typeModal, setTypeModal] = useState('')
   const handleFilterAuthorChange = (event) => {
     setFilterAuthor(event.target.value)
     dispatch(coursesAction.GET_ALL_COURSE({
@@ -91,13 +94,11 @@ const Courses = () => {
         maKH: item.id,
       }, (response) => {
         if (response.success) {
-          dispatch(userAction.SEND_MAIL({
-            token,
-            subject: 'Subject',
-            description: 'abcabc\n acddf \n sdas',
-          }))
           console.log('Add to cart success')
         } else {
+          setTextModal('This course has been add to cart already !')
+          setTypeModal('fail')
+          setIsModalNotiShow(true)
           console.log('Add to cart fail')
         }
       }))
@@ -127,6 +128,7 @@ const Courses = () => {
   }
   const handleModalComponentCloseClick = () => {
     setIsModalShow(false)
+    setIsModalNotiShow(false)
   }
   const listmaLoaiKhoaHoc = arrayAllCategory.map((item) => <ListGroup.Item as="li">
     <Link
@@ -147,15 +149,21 @@ const Courses = () => {
       {item.hoVaTen}
     </option>)
 
-  // eslint-disable-next-line no-unused-vars
-  const handleSearchFilter = () => {
-    console.log('===============================================')
-    console.log('12',)
-    console.log('===============================================')
-  }
   const coursesComponentLink = () => {
     return (
       <div>
+        {isModalNotiShow && <Modal
+          show
+          centered
+          backdrop
+          bsPrefix="modal"
+        >
+          <ModalComponent
+            textModal={textModal}
+            handleModalComponentCloseClick={handleModalComponentCloseClick}
+            type={typeModal}
+          />
+        </Modal>}
         {isModalShow && <Modal
           show
           centered
