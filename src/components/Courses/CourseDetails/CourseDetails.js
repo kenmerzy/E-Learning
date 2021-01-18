@@ -314,7 +314,7 @@ const CourseDetails = (props) => {
           type={typeModal}
         />
       </Modal>}
-      <div className="row">
+      <div className="row" id="viewRowTop">
         <div className="col-lg-4">
           <img src={CourseCard} className={styles.courseCard} alt="logo" />
         </div>

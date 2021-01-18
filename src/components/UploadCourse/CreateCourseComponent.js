@@ -71,9 +71,11 @@ const CreateCourseComponent = (props) => {
     formData.append(
       'maLKH', maLKH,
     )
-    formData.append(
-      'fileupload', fileUpload, fileUpload.name,
-    )
+    if (fileUpload) {
+      formData.append(
+        'fileupload', fileUpload, fileUpload.name,
+      )
+    }
     console.tron.log({ formData })
     dispatch(coursesAction.ADD_NEW_COURSE(formData, (response) => {
       if (response.success) {

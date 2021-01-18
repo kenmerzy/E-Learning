@@ -22,9 +22,29 @@ export default function* courseSagas() {
   yield takeLatest(coursesTypes.GET_UNCENSORED_COURSE, getUncensoredCourses)
   yield takeLatest(coursesTypes.ADD_PROGRESS, addProgress)
   yield takeLatest(coursesTypes.PURCHASE, purchase)
+  yield takeLatest(coursesTypes.DELETE_QUESTION, deleteQuestion)
 }
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
+function* deleteQuestion(action) {
+  const { data, callback } = action.payload
+  const {
+    token,
+    maCH,
+  } = data
+
+  try {
+    const response = yield call(
+      () => axios.post(`${API_URL}/cauhoi/delete`, {
+        token,
+        maCH,
+      })
+    )
+    callback(response?.data)
+  } catch (error) {
+    callback(error?.response?.data)
+  }
+}
 function* addProgress(action) {
   const { data, callback } = action.payload
   const {
@@ -264,16 +284,19 @@ function* deleteCartItem(action) {
     arrayCourse,
   } = data
   try {
+    console.log('===============================================')
+    console.log('vo1111',)
+    console.log('===============================================')
     const response = yield call(
       () => axios.post(`${API_URL}/giohang/delete`, {
         token,
         arrayCourse,
       })
     )
+    console.log('===============================================')
+    console.log('response deleteCartItem', response.data)
+    console.log('===============================================')
     if (response?.data?.success) {
-      console.log('===============================================')
-      console.log('response deleteCartItem', response)
-      console.log('===============================================')
       yield put({
         type: coursesTypes.GET_CART_ITEM_SUCCESS,
         payload: { data: response?.data?.data },

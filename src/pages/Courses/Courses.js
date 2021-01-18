@@ -34,6 +34,7 @@ const Courses = () => {
   const [isModalNotiShow, setIsModalNotiShow] = useState('')
   const [textModal, setTextModal] = useState('')
   const [typeModal, setTypeModal] = useState('')
+
   const handleFilterAuthorChange = (event) => {
     setFilterAuthor(event.target.value)
     dispatch(coursesAction.GET_ALL_COURSE({
@@ -48,7 +49,7 @@ const Courses = () => {
         console.log('===============================================')
       } else {
         console.log('===============================================')
-        console.log('filter Author Fail')
+        console.log('filter Author Fail', response)
         console.log('===============================================')
       }
     }))
@@ -128,6 +129,11 @@ const Courses = () => {
   }
   const handleModalComponentCloseClick = () => {
     setIsModalShow(false)
+    setTextModal('Buy course successfully!')
+    setTypeModal('success')
+    setIsModalNotiShow(true)
+  }
+  const handleModalNotiCloseClick = () => {
     setIsModalNotiShow(false)
   }
   const listmaLoaiKhoaHoc = arrayAllCategory.map((item) => <ListGroup.Item as="li">
@@ -160,7 +166,7 @@ const Courses = () => {
         >
           <ModalComponent
             textModal={textModal}
-            handleModalComponentCloseClick={handleModalComponentCloseClick}
+            handleModalComponentCloseClick={handleModalNotiCloseClick}
             type={typeModal}
           />
         </Modal>}

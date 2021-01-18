@@ -25,9 +25,6 @@ const ConfirmModal = (props) => {
 
   const dispatch = useDispatch()
   const handleModalComponentCloseClick = () => {
-    console.log('===============================================')
-    console.log('closessss',)
-    console.log('===============================================')
     setIsModalShow(false)
   }
   const handlePositiveButtonClick = () => {
@@ -47,8 +44,11 @@ const ConfirmModal = (props) => {
           }
         }))
         dispatch(coursesAction.GET_ALL_COURSE({
-        }, (responseGetMyCourse) => {
-          if (responseGetMyCourse.success) {
+          maUser: '',
+          maLKH: undefined,
+          token,
+        }, (responseGeyCtAllourse) => {
+          if (responseGeyCtAllourse.success) {
             console.log('Get all course success')
           } else {
             console.log('Get all course fail')
@@ -58,11 +58,22 @@ const ConfirmModal = (props) => {
           token,
           subject: 'Hóa đơn mua hàng E-Learning',
           description: `Bạn vừa thanh toán hóa đơn $${item.gia}`,
+        }, (resMail) => {
+          if (resMail.success) {
+            console.log('===============================================')
+            console.log('SEND MAIL SUCCESS')
+            console.log('===============================================')
+          } else {
+            console.log('===============================================')
+            console.log('send mail fail')
+            console.log('===============================================')
+          }
         }))
 
         console.log('===============================================')
         console.log('response purchase now success', response)
         console.log('===============================================')
+        onCloseModalClick()
         setTypeModal('success')
         setTextModal('Purchase successfully !')
         setIsLoading(false)

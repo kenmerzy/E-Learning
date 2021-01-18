@@ -30,21 +30,17 @@ const Cart = () => {
       token,
       arrayCourse: listBuy,
     }, (response) => {
-      if (response.success) {
-        dispatch(coursesAction.GET_CART_ITEM({
-          token,
-        }, (responseGetCartItem) => {
-          if (responseGetCartItem.success) {
-            setListBuy([])
-            console.log('Get cart item success')
-          } else {
-            console.log('Get cart item fail')
+      if (response?.success) {
+        console.log('===============================================')
+        console.log('resdelete', response)
+        console.log('===============================================')
+        const c = document.getElementsByTagName('input')
+        for (let i = 0; i < c.length; i++) {
+          if (c[i].type === 'checkbox') {
+            c[i].checked = false
           }
-        }))
-        console.log('===============================================')
-        console.log('Deltete cart item success',)
-        console.log('response', response)
-        console.log('===============================================')
+        }
+        setListBuy([])
       } else {
         console.log('===============================================')
         console.log('Deltete cart item fail',)
@@ -67,7 +63,6 @@ const Cart = () => {
         checkBoxItem.checked = true
         total += i.gia
       })
-      setTotalCost(total)
       setListBuy([...arrCart])
     } else {
       setIsCheckAll(false)
@@ -75,7 +70,6 @@ const Cart = () => {
         const checkBoxItem = document.getElementById(`${i.id}`)
         checkBoxItem.checked = false
       })
-      setTotalCost(0)
       setListBuy([])
     }
   }
@@ -87,6 +81,7 @@ const Cart = () => {
     } else {
       setListBuy(listBuy.filter((i) => (i.id !== item.id)))
     }
+    setTotalCost(totalPrice())
   }
   const totalPrice = () => {
     let sum = 0

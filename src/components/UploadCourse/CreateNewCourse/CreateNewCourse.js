@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
@@ -134,6 +135,20 @@ const CreateNewCourse = (props) => {
   }
   const handleAnswer4OnChange = (event) => {
     setCurrentAnswer4(event.target.value)
+  }
+  const handleDeleteQues = (item) => {
+    dispatch(coursesAction.DELETE_QUESTION({
+      token,
+      maCH: item.id,
+    }, (res) => {
+      if (res.success) {
+        dispatch(coursesAction.GET_LIST_QUESTION({ token, maBG: maBaiGiang }))
+      } else {
+        console.log('===============================================')
+        console.log('get ques fail',)
+        console.log('===============================================')
+      }
+    }))
   }
 
   // Tat lam off line mai bat lai
@@ -369,11 +384,16 @@ const CreateNewCourse = (props) => {
                 <p className={styles.answer}>{wrongAns[0] ? wrongAns[0].noiDung : ''}</p>
                 <p className={styles.answer}>{wrongAns[1] ? wrongAns[1].noiDung : ''}</p>
                 <p className={styles.answer}>{wrongAns[2] ? wrongAns[2].noiDung : ''}</p>
-                <a className={styles.delete}>
+                <a
+                  href
+                  onClick={() => handleDeleteQues(item)}
+                  className={styles.delete}
+                >
                   <img
                     src={trash}
                     className={styles.deleteIcon}
                     alt="logo"
+
                   />
                 </a>
               </li>

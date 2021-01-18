@@ -109,3 +109,9 @@ export const ADD_PROGRESS = (data, callback) => {
     payload: { data, callback },
   }
 }
+export const DELETE_QUESTION = (data, callback) => {
+  return {
+    type: coursesTypes.DELETE_QUESTION,
+    payload: { data, callback },
+  }
+}

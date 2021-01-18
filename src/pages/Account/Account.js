@@ -218,11 +218,7 @@ const Account = () => {
             src={verified}
             alt="logo"
           />
-          <button
-            type="button"
-          >
-            CHANGE AVATAR
-          </button>
+
           <div className={styles.divMoney}>
             <p>
               You have:
@@ -298,7 +294,7 @@ const Account = () => {
                 onChange={handleDateChange}
               />
                 : <div className={styles.textP}>
-                  <p>{`${moment(valueDateOfBirth).format('DD/MM/YYYY')}`}</p>
+                  <p>{valueDateOfBirth ? `${moment(valueDateOfBirth).format('DD/MM/YYYY')}` : ''}</p>
                 </div>}
             </div>
 
