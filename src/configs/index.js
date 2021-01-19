@@ -6,13 +6,13 @@
 // export const API_URL = 'http://192.168.22.50:3000/api'
 // export const URL = 'http://192.168.22.50:3000'
 
-// // Website
-// export const API_URL = 'https://elearningdl.herokuapp.com/api'
-// export const URL = 'https://elearningdl.herokuapp.com'
+// Website
+export const API_URL = 'https://elearningdl.herokuapp.com/api'
+export const URL = 'https://elearningdl.herokuapp.com'
 
-// The tree
-export const API_URL = 'http://192.168.22.50:3000/api'
-export const URL = 'http://192.168.22.50:3000'
+// // The tree
+// export const API_URL = 'http://192.168.22.50:3000/api'
+// export const URL = 'http://192.168.22.50:3000'
 
 // HUFI
 // export const API_URL = 'http://10.26.90.171:3000/api'
